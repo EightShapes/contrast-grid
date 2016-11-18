@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "project.css",
+	"sources": [
+		"../../src/styles/project.scss"
+	],
+	"mappings": "AAAA,AAAA,IAAI,CAAC;EACD,UAAU,EAAE,UAAW;EACvB,KAAK,EAAE,KAAM,GAChB",
+	"names": []
+}

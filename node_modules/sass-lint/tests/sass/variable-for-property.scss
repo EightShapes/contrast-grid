@@ -1,0 +1,41 @@
+.foo {
+  content: $content;
+  margin: $margin;
+
+  &__element {
+    margin: $margin;
+  }
+}
+
+@mixin blue() {
+  margin: $margin;
+}
+
+.bar {
+  content: ' ';
+  margin: 0;
+
+  &__element {
+    margin: 0;
+  }
+}
+
+@mixin red() {
+  margin: 0;
+}
+
+.test {
+  background: inherit;
+  background: initial;
+  background: transparent;
+  background: none;
+}
+
+// Issue #714 - !important and spaces were classed as erroneous value types
+.t-neutral {
+  color: $gray-chateau !important;
+}
+
+.t-neutral {
+  color: red !important;
+}

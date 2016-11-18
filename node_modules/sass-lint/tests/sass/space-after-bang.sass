@@ -1,0 +1,52 @@
+// Important
+
+.foo
+  color: orange !important
+
+
+.bar
+  color: orange ! important
+
+
+.baz
+  color: orange!important
+
+
+.qux
+  color: orange! important
+
+
+// Default
+
+$foo: red!default
+
+$bar: orange !default
+
+$baz: blue! default
+
+$qux: green ! default
+
+// Global
+
+$foo: red!global
+
+$bar: orange !global
+
+$baz: blue! global
+
+$qux: green ! global
+
+// Optional
+
+.foo
+  @extend .notice !optional
+
+.bar
+  @extend .notice ! optional
+
+// Both the following are invalid
+// .baz
+//   @extend .notice!optional
+//
+// .qux
+//   @extend .notice! optional

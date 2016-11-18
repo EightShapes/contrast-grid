@@ -1,0 +1,74 @@
+@function kabab-case() {
+  @return 'foo';
+}
+
+@function snake_case() {
+  @return 'foo';
+}
+
+@function camelCase() {
+  @return 'foo';
+}
+
+@function PascalCase() {
+  @return 'foo';
+}
+
+@function Camel_Snake_Case() {
+  @return 'foo';
+}
+
+@function SCREAMING_SNAKE_CASE() {
+  @return 'foo';
+}
+
+@function _with-leading-underscore() {
+  @return 'foo';
+}
+
+@function strictbem() {
+  @return 'foo';
+}
+
+@function strictbem__function() {
+  @return 'foo';
+}
+
+@function strictbem__function_modifier() {
+  @return 'foo';
+}
+
+@function strictbem_modifier__function() {
+  @return 'foo';
+}
+
+@function hyphenatedbem__function() {
+  @return 'foo';
+}
+
+@function hyphenatedbem__function--modifier() {
+  @return 'foo';
+}
+
+@function hyphenatedbem--modifier__function() {
+  @return 'foo';
+}
+
+@function _does_NOT-fitSTANDARD($x) {
+  @return $x;
+}
+
+$foo: SCREAMING_SNAKE_CASE();
+
+.class {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  content: snake_case();
+  color: _does_NOT-fitSTANDARD('bar');
+  border-color: $foo;
+  transform: translateX(1px) translateY(1px) translateZ(1px) scaleX(0.5) scaleY(0.5) scaleZ(0.5) skewX(1deg) skewY(1deg) rotateX(1deg) rotateY(1deg) rotateZ(1deg);
+}
+
+.test {
+  background: repeating-radial-gradient(black, black 5px, white 5px, white 10px);
+  color: rgb(25, 25, 25);
+}

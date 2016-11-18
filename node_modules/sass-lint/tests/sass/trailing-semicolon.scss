@@ -1,0 +1,40 @@
+.foo {
+  content: 'bar'
+}
+
+.bar {
+  content: 'qux';
+  padding: 0
+
+  .qux {
+    content: 'waldo'
+  }
+}
+
+.qux {
+  font: {
+    family: 'Arial';
+    weight: bold;
+    size: 2rem;
+  }
+}
+
+.baz {
+  font: {
+    family: 'Arial';
+    weight: bold;
+    size: 2rem
+  }
+}
+
+.norf {
+  border: {
+    top: {
+      color: red;
+
+      left: {
+        radius: 5px
+      }
+    }
+  }
+}
