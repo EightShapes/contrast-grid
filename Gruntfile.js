@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
-    var currentVersion = require('./package.json').version;
+    const currentVersion = require('./package.json').version;
+    const version_stamp = 'EightShapes Contrast Grid v' + currentVersion;
+
 
     grunt.initConfig({
         sasslint: {
@@ -58,6 +60,14 @@ module.exports = function(grunt) {
                 },
                 src: ['src/components/**/*.njk', '!src/components/project.njk'],
                 dest: 'src/components/project.njk'
+            },
+            // Copy/Concatenate Component JS Files
+            component_scripts: {
+                options: {
+                    banner: '/* ' + version_stamp + ' */\n' + '/* DO NOT EDIT: The contents of this file are dynamically generated and will be overwritten */\n'
+                },
+                src: ['src/components/**/*.js'],
+                dest: 'dist/scripts/eightshapes-contrast-grid.js'
             }
         },
 
@@ -83,10 +93,33 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+            vendor_assets: {
+                expand: true,
+                src: [
+                    'node_modules/jquery/dist/jquery.min.js',
+                    'node_modules/clipboard/dist/clipboard.min.js',
+                    'node_modules/prismjs/prism.js',
+                    'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js',
+                    'node_modules/prismjs/plugins/keep-markup/prism-keep-markup.min.js',
+                    'node_modules/prismjs/plugins/-whitespace/prism-normalize-whitespace.min.js',
+                    'node_modules/prismjs/themes/prism.css',
+                    'node_modules/js-beautify/js/lib/beautify.js',
+                    'node_modules/js-beautify/js/lib/beautify-html.js'
+                ],
+                flatten: true,
+                dest: 'dist/scripts/'
+            } 
+        },
+
         watch: {
             styles: {
                 files: 'src/styles/*.scss',
                 tasks: ['styles']
+            },
+            scripts: {
+                files: 'src/**/*.js',
+                tasks: ['concat:component_scripts']
             },
             nunjucks_render: {
                 files: ['src/**/*{.njk,.md}', '!src/components/project.njk'],
@@ -124,7 +157,7 @@ module.exports = function(grunt) {
     });
     grunt.registerTask('styles', ['sasslint', 'sass', 'postcss']);
     grunt.registerTask('markup', ['concat:component_macros', 'nunjucks']);
-    grunt.registerTask('build-dist', ['styles', 'markup']);
+    grunt.registerTask('build-dist', ['copy:vendor_assets', 'concat:component_scripts', 'styles', 'markup']);
     grunt.registerTask('dev', ['build-dist', 'browserSync', 'watch']);
 
 

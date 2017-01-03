@@ -42,7 +42,7 @@ release_web()
       ORIGINAL_BRANCH=$(git branch | grep '[*] .*' | awk '{print $2}')
       git clean -xfd || exit 1
       git fetch || exit 1
-      git checkout gh-pages && 	git reset --hard origin/gh-pages || exit 1
+      git checkout -B gh-pages origin/gh-pages || exit 1
       git merge origin/master && git push || exit 1
       git checkout $ORIGINAL_BRANCH
 }
@@ -60,8 +60,9 @@ sedi() {
 update_readme_versions()
 {
     git clean -xfd || exit 1
-    sedi -E 's@(cdn.rawgit.+beautify/)[^/]+@\1'$NEW_VERSION'@' README.md
-    sedi -E 's/\((README.md: js-beautify@).+\)/(\1'$NEW_VERSION')/' README.md
+    sedi -E 's@(cdn.rawgit.+beautify/v)[^/]+@\1'$NEW_VERSION'@' README.md
+    sedi -E 's@(cdnjs.cloudflare.+beautify/)[^/]+@\1'$NEW_VERSION'@' README.md
+    sedi -E 's/\((README\.md:.js-beautify@).+\)/(\1'$NEW_VERSION')/' README.md
     git add README.md
     git commit -m "Bump version numbers in README.md"
 }

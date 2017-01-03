@@ -1,1 +1,41 @@
 {# DO NOT EDIT: The contents of this file are dynamically generated and will be overwritten #}
+{% macro code_snippet() %}
+    <pre class="es-code-snippet"><code class="language-markup">
+&lt;h1&gt;Fuzzballs&lt;/h1&gt;
+    </code></pre>
+{% endmacro %}
+
+{% macro contrast_grid() %}
+    <button class="es-contrast-grid__punch-it">Punch It!</button>
+    <div class="es-contrast-grid">
+        <table class="es-contrast-grid__table">
+            <thead>
+                <tr class="es-contrast-grid__foreground-key">
+                    <th><!-- Intentionally Empty --></th>
+                    <th><!-- Intentionally Empty --></th>
+                    <th id="es-contrast-grid__foreground-key-cell-template" class="es-contrast-grid__foreground-key-cell"></th>
+                </tr>
+            </thead>
+            <tbody class="es-contrast-grid__content">
+                <tr class="es-contrast-grid__labels-row">
+                    <td>
+                        Background
+                    </td>
+                    <td>
+                        Foreground
+                    </td>
+                </tr>
+                <tr id="es-contrast-grid__content-row-template" class="es-contrast-grid__content-row">
+                    <td class="es-contrast-grid__background-key-cell"></td>
+                    <td class="es-contrast-grid__separator-cell"></td>
+                    <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
+                        <div class="es-contrast-grid__swatch">
+                            <span class="es-contrast-grid__accessibility-label"></span>
+                            <span class="es-contrast-grid__contrast-ratio"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endmacro %}

@@ -1,4 +1,71 @@
 # Changelog
+## v1.6.8
+
+### Description
+* Fixed a batch of comment and semicolon-less code bugs
+
+
+### Closed Issues
+* Incorrect indentation after loop with comment ([#1090](https://github.com/beautify-web/js-beautify/issues/1090))
+* Extra newline is inserted after beautifying code with anonymous function ([#1085](https://github.com/beautify-web/js-beautify/issues/1085))
+* end brace with next comment line make bad indent ([#1043](https://github.com/beautify-web/js-beautify/issues/1043))
+* Javascript comment in last line doesn't beautify well ([#964](https://github.com/beautify-web/js-beautify/issues/964))
+* indent doesn't work with comment (jsdoc) ([#913](https://github.com/beautify-web/js-beautify/issues/913))
+* Wrong indentation, when new line between chained methods ([#892](https://github.com/beautify-web/js-beautify/issues/892))
+* Comments in a non-semicolon style have extra indent ([#815](https://github.com/beautify-web/js-beautify/issues/815))
+* [bug] Incorrect indentation due to commented line(s) following a function call with a function argument. ([#713](https://github.com/beautify-web/js-beautify/issues/713))
+* Wrong indent formatting ([#569](https://github.com/beautify-web/js-beautify/issues/569))
+
+
+## v1.6.7
+
+### Description
+Added `content_unformatted` option (Thanks @arai-a)
+
+### Closed Issues
+* HTML pre code indentation ([#928](https://github.com/beautify-web/js-beautify/issues/928))
+* Beautify script/style tags but ignore their inner JS/CSS content ([#906](https://github.com/beautify-web/js-beautify/issues/906))
+
+
+## v1.6.6
+
+### Description
+* Added support for editorconfig from stdin
+* Added js-beautify to cdnjs
+* Fixed CRLF to LF for HTML and CSS on windows
+* Added inheritance/overriding to config format (Thanks @DaniGuardiola and @HookyQR)
+* Added `force-align` to `wrap-attributes` (Thanks @Lukinos)
+* Added `force-expand-multiline` to `wrap-attributes` (Thanks @tobias-zucali)
+* Added `preserve-inline` as independent brace setting (Thanks @Coburn37)
+* Fixed handlebars with angle-braces (Thanks @mmsqe)
+
+
+
+### Closed Issues
+* Wrong indentation for comment after nested unbraced control constructs ([#1079](https://github.com/beautify-web/js-beautify/issues/1079))
+* Should prefer breaking the line after operator ? instead of before operator < ([#1073](https://github.com/beautify-web/js-beautify/issues/1073))
+* New option "force-expand-multiline" for "wrap_attributes" ([#1070](https://github.com/beautify-web/js-beautify/pull/1070))
+* Breaks if html file starts with comment ([#1068](https://github.com/beautify-web/js-beautify/issues/1068))
+* collapse-preserve-inline restricts users to collapse brace_style ([#1057](https://github.com/beautify-web/js-beautify/issues/1057))
+* Parsing failure on numbers with "e" ([#1054](https://github.com/beautify-web/js-beautify/issues/1054))
+* Issue with Browser Instructions ([#1053](https://github.com/beautify-web/js-beautify/issues/1053))
+* Add preserve inline function for expand style braces ([#1052](https://github.com/beautify-web/js-beautify/issues/1052))
+* Update years in LICENSE ([#1038](https://github.com/beautify-web/js-beautify/issues/1038))
+* JS. Switch with template literals. Unexpected indentation. ([#1030](https://github.com/beautify-web/js-beautify/issues/1030))
+* The object with spread object formatted not correctly ([#1023](https://github.com/beautify-web/js-beautify/issues/1023))
+* Bad output generator function in class ([#1013](https://github.com/beautify-web/js-beautify/issues/1013))
+* Support editorconfig for stdin ([#1012](https://github.com/beautify-web/js-beautify/issues/1012))
+* Publish to cdnjs ([#992](https://github.com/beautify-web/js-beautify/issues/992))
+* breaks if handlebars comments contain handlebars tags ([#930](https://github.com/beautify-web/js-beautify/issues/930))
+* Using jsbeautifyrc is broken ([#929](https://github.com/beautify-web/js-beautify/issues/929))
+* Option to put HTML attributes on their own lines, aligned ([#916](https://github.com/beautify-web/js-beautify/issues/916))
+* Erroneously changes CRLF to LF on Windows in HTML and CSS ([#899](https://github.com/beautify-web/js-beautify/issues/899))
+* Weird space in {get } vs { normal } ([#888](https://github.com/beautify-web/js-beautify/issues/888))
+* Bad for-of formatting with constant Array ([#875](https://github.com/beautify-web/js-beautify/issues/875))
+* Problems with filter property in css and scss ([#755](https://github.com/beautify-web/js-beautify/issues/755))
+* Add "collapse-one-line" option for non-collapse brace styles  ([#487](https://github.com/beautify-web/js-beautify/issues/487))
+
+
 ## v1.6.4
 
 ### Description
@@ -34,6 +101,7 @@
 * CSS beautify changing symantics ([#883](https://github.com/beautify-web/js-beautify/issues/883))
 * Dojo unsupported script types. ([#874](https://github.com/beautify-web/js-beautify/issues/874))
 * Readme version comment  ([#868](https://github.com/beautify-web/js-beautify/issues/868))
+* Extra space after pseudo-elements within :not() ([#618](https://github.com/beautify-web/js-beautify/issues/618))
 * space in media queries after colon &: selectors ([#565](https://github.com/beautify-web/js-beautify/issues/565))
 * Integrating editor config ([#551](https://github.com/beautify-web/js-beautify/issues/551))
 * Preserve short expressions/statements on single line ([#338](https://github.com/beautify-web/js-beautify/issues/338))
