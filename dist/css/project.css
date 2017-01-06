@@ -1,3 +1,13 @@
+.es-code-snippet {
+  max-height: 300px;
+  overflow-y: scroll; }
+
+.es-color-form__input {
+  height: 200px; }
+
+.es-color-form__label {
+  display: block; }
+
 body {
   background: darkorange;
   color: white; }

@@ -13,6 +13,7 @@ module.exports = function(grunt) {
         },
         sass: {
             options: {
+                includePaths: ['src/components'],
                 sourceMap: true
             },
             dist: {
@@ -114,7 +115,7 @@ module.exports = function(grunt) {
 
         watch: {
             styles: {
-                files: 'src/styles/*.scss',
+                files: ['src/styles/*.scss', 'src/components/**/*.scss'],
                 tasks: ['styles']
             },
             scripts: {

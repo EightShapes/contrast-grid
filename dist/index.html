@@ -14,10 +14,17 @@
     <script src="scripts/beautify-html.js"></script>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>Testingly</p>
+    <h1>EightShapes Contrast Grid Generator</h1>
     
-    <button class="es-contrast-grid__punch-it">Punch It!</button>
+    <form method="GET" class="es-color-form">
+        <label for="es-color-form__foreground-colors" class="es-color-form__label">Foreground Colors</label>
+        <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__input"></textarea>
+        <label for="es-color-background-colors" class="es-color-form__label">Background Colors</label>
+        <textarea id="es-color-background-colors" name="background-colors" class="es-color-form__input"></textarea>
+        <button class="es-color-form__submit">Update Grid</button>
+    </form>
+
+    
     <div class="es-contrast-grid">
         <table class="es-contrast-grid__table">
             <thead>
@@ -37,7 +44,7 @@
                     </td>
                 </tr>
                 <tr id="es-contrast-grid__content-row-template" class="es-contrast-grid__content-row">
-                    <td class="es-contrast-grid__background-key-cell"></td>
+                    <th class="es-contrast-grid__background-key-cell"></th>
                     <td class="es-contrast-grid__separator-cell"></td>
                     <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
                         <div class="es-contrast-grid__swatch">
