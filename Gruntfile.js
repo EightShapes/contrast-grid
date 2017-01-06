@@ -13,8 +13,7 @@ module.exports = function(grunt) {
         },
         sass: {
             options: {
-                includePaths: ['src/components'],
-                sourceMap: true
+                includePaths: ['src/components']
             },
             dist: {
                 files: [{
@@ -23,6 +22,12 @@ module.exports = function(grunt) {
                     src: '*.scss',
                     dest: 'dist/css/',
                     ext: '.css'
+                }]
+            },
+            grid_itself: {
+                files: [{
+                    src: 'src/components/contrast_grid/contrast_grid.scss',
+                    dest: 'dist/css/contrast_grid.css'
                 }]
             }
         },
@@ -79,7 +84,7 @@ module.exports = function(grunt) {
                     // 
                 },
                 data: grunt.file.exists('src/data.json') ? grunt.file.readJSON('src/data.json') : {},
-                paths: ['src/components', 'src/templates', 'src']
+                paths: ['src/components', 'src/templates', 'src', 'dist/css']
             },
             render: {
                 files: [
@@ -106,7 +111,8 @@ module.exports = function(grunt) {
                     'node_modules/prismjs/plugins/-whitespace/prism-normalize-whitespace.min.js',
                     'node_modules/prismjs/themes/prism.css',
                     'node_modules/js-beautify/js/lib/beautify.js',
-                    'node_modules/js-beautify/js/lib/beautify-html.js'
+                    'node_modules/js-beautify/js/lib/beautify-html.js',
+                    'node_modules/js-beautify/js/lib/beautify-css.js'
                 ],
                 flatten: true,
                 dest: 'dist/scripts/'
@@ -123,7 +129,7 @@ module.exports = function(grunt) {
                 tasks: ['concat:component_scripts']
             },
             nunjucks_render: {
-                files: ['src/**/*{.njk,.md}', '!src/components/project.njk'],
+                files: ['src/**/*{.njk,.md}', 'dist/css/contrast_grid.css', '!src/components/project.njk'],
                 tasks: 'markup'
             },
             // svg: {

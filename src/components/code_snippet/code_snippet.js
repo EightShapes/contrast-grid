@@ -6,7 +6,8 @@ EightShapes.CodeSnippet = function() {
 
     function updateContent(e, content) {
         var formatted_html = html_beautify(content);
-        var html = Prism.highlight(formatted_html, Prism.languages.html);
+        var formatted_css = html_beautify($(".es-contrast-grid-styles").removeAttr("class").prop('outerHTML'));
+        var html = Prism.highlight(formatted_css + "\n\n" + formatted_html, Prism.languages.html);
         $codeSnippet.html(html);
     }
 
