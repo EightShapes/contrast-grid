@@ -1,3 +1,8 @@
+.es-contrast-grid__table td, .es-contrast-grid__table th {
+  font-size: 16px;
+  height: 80px;
+  width: 80px; }
+
 .es-contrast-grid__table {
   border-collapse: collapse;
   font-family: sans-serif; }

@@ -1,7 +1,7 @@
 
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,400i,700|Lato:400,400i,700|Lora:400,400i,700|Montserrat:400,700|Open+Sans+Condensed:300,700|Open+Sans:400,400i,700|Oswald:400,700|PT+Sans:400,700|Raleway:400,400i,700|Roboto+Condensed:400,400i,700|Roboto+Slab:400,700|Roboto:400,400i,700|Slabo+27px|Source+Sans+Pro:400,400i,700|Ubuntu:400,400i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="css/project.css">
     <link rel="stylesheet" href="scripts/prism.css">
     <script src="scripts/prism.js"></script>
@@ -18,16 +18,25 @@
     <h1>EightShapes Contrast Grid Generator</h1>
     
     <form method="GET" class="es-color-form">
-        <label for="es-color-form__foreground-colors" class="es-color-form__label">Foreground Colors</label>
-        <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__input"></textarea>
-        <label for="es-color-background-colors" class="es-color-form__label">Background Colors</label>
-        <textarea id="es-color-background-colors" name="background-colors" class="es-color-form__input"></textarea>
+        <div class="es-color-form__field-wrapper">
+            <label for="es-color-form__foreground-colors" class="es-color-form__label">Foreground Colors</label>
+            <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__input"></textarea>
+        </div>
+        <div class="es-color-form__field-wrapper">
+            <label for="es-color-background-colors" class="es-color-form__label">Background Colors</label>
+            <textarea id="es-color-background-colors" name="background-colors" class="es-color-form__input" placeholder="Defaults to inverse of Foreground Colors"></textarea>
+        </div>
         <button class="es-color-form__submit">Update Grid</button>
     </form>
 
     
     <style class="es-contrast-grid-styles">
-        .es-contrast-grid__table {
+        .es-contrast-grid__table td, .es-contrast-grid__table th {
+  font-size: 16px;
+  height: 80px;
+  width: 80px; }
+
+.es-contrast-grid__table {
   border-collapse: collapse;
   font-family: sans-serif; }
 

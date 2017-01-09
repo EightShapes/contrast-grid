@@ -4,12 +4,16 @@ var EightShapes = EightShapes || {};
 
 EightShapes.CodeSnippet = function() {
     'use strict';
-    var $codeSnippet;
+    var $codeSnippet,
+        formattedCss = false;
 
     function updateContent(e, content) {
-        var formatted_html = html_beautify(content);
-        var formatted_css = html_beautify($(".es-contrast-grid-styles").removeAttr("class").prop('outerHTML'));
-        var html = Prism.highlight(formatted_css + "\n\n" + formatted_html, Prism.languages.html);
+        if (!formattedCss) {
+            formattedCss = html_beautify($(".es-contrast-grid-styles").removeAttr("class").prop('outerHTML'));
+        }
+
+        var formattedHtml = html_beautify(content);
+        var html = Prism.highlight(formattedCss + "\n\n" + formattedHtml, Prism.languages.html);
         $codeSnippet.html(html);
     }
 
@@ -38,7 +42,7 @@ EightShapes.ColorForm = function() {
         $backgroundColorsInput,
         foregroundColors,
         backgroundColors,
-        hexRegex = /^(#?[A-Fa-f0-9]{6}|#?[A-Fa-f0-9]{3}),?\s?(.*)?$/gim;
+        hexRegex = /^(#?[A-Fa-f0-9]{6}|#?[A-Fa-f0-9]{3})(,.*)?/gim;
 
     function processFormSubmission(e) {
         e.preventDefault();
@@ -72,7 +76,10 @@ EightShapes.ColorForm = function() {
             colorData.hex = hex;
 
             if (typeof label !== 'undefined') {
-                colorData.label = label;
+                label = label.slice(1).trim(); //Remove the leading comma matched in the regex and any leading or trailing whitespace
+                if (label.length > 0) {
+                    colorData.label = label;
+                }
             }
 
             if (hexValues.indexOf(hex) === -1) {

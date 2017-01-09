@@ -8,6 +8,9 @@
 .es-color-form__label {
   display: block; }
 
+.es-color-form {
+  align-items: flex-start;
+  display: flex; }
+
 body {
-  background: darkorange;
-  color: white; }
+  font-family: 'Lato', sans-serif; }

@@ -7,7 +7,7 @@ EightShapes.ColorForm = function() {
         $backgroundColorsInput,
         foregroundColors,
         backgroundColors,
-        hexRegex = /^(#?[A-Fa-f0-9]{6}|#?[A-Fa-f0-9]{3}),?\s?(.*)?$/gim;
+        hexRegex = /^(#?[A-Fa-f0-9]{6}|#?[A-Fa-f0-9]{3})(,.*)?/gim;
 
     function processFormSubmission(e) {
         e.preventDefault();
@@ -41,7 +41,10 @@ EightShapes.ColorForm = function() {
             colorData.hex = hex;
 
             if (typeof label !== 'undefined') {
-                colorData.label = label;
+                label = label.slice(1).trim(); //Remove the leading comma matched in the regex and any leading or trailing whitespace
+                if (label.length > 0) {
+                    colorData.label = label;
+                }
             }
 
             if (hexValues.indexOf(hex) === -1) {

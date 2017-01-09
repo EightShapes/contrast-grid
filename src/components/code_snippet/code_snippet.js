@@ -2,12 +2,16 @@ var EightShapes = EightShapes || {};
 
 EightShapes.CodeSnippet = function() {
     'use strict';
-    var $codeSnippet;
+    var $codeSnippet,
+        formattedCss = false;
 
     function updateContent(e, content) {
-        var formatted_html = html_beautify(content);
-        var formatted_css = html_beautify($(".es-contrast-grid-styles").removeAttr("class").prop('outerHTML'));
-        var html = Prism.highlight(formatted_css + "\n\n" + formatted_html, Prism.languages.html);
+        if (!formattedCss) {
+            formattedCss = html_beautify($(".es-contrast-grid-styles").removeAttr("class").prop('outerHTML'));
+        }
+
+        var formattedHtml = html_beautify(content);
+        var html = Prism.highlight(formattedCss + "\n\n" + formattedHtml, Prism.languages.html);
         $codeSnippet.html(html);
     }
 
