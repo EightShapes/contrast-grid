@@ -14,45 +14,28 @@ EightShapes.ContrastGrid = function() {
         gridData = {
             foregroundColors: [
                 {
-                    hex: "#FFFFFF",
-                    label: "W"
+                    hex: "#000",
+                    label: "Black"
                 },
                 {
-                    hex: "#F0F2F4"
+                    hex: "#323232"
                 },
                 {
-                    hex: "#E2E4E9"
+                    hex: "#4D4D4D"
                 },
                 {
-                    hex: "#C4C9D4"
+                    hex: "#F3F1F1"
                 },
                 {
-                    hex: "#98A1B3"
+                    hex: "#FFF",
+                    label: "White"
                 },
                 {
-                    hex: "#7B869D"
+                    hex: "#DC6729"
                 },
                 {
-                    hex: "#6C7893"
-                },
-                {
-                    hex: "#535C70"
-                },
-                {
-                    hex: "#404653"
-                },
-                {
-                    hex: "#363C49"
-                },
-                {
-                    hex: "#2B303B"
-                },
-                {
-                    hex: "#21242C"
-                },
-                {
-                    hex: "#262626",
-                    label: "B"                    
+                    hex: "#3995A9",
+                    label: "Link Color"
                 }
             ]
         };
@@ -87,7 +70,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function getBackgroundColors() {
-        if (typeof gridData.backgroundColors === 'undefined') {
+        if (typeof gridData.backgroundColors === 'undefined' || gridData.backgroundColors.length === 0) {
             return gridData.foregroundColors.slice(0).reverse();
         } else {
             return gridData.backgroundColors;
@@ -202,7 +185,6 @@ EightShapes.ContrastGrid = function() {
 
     function setGridData(data) {
         gridData = data;
-        console.log(gridData);
     }
 
     function resetGrid() {
@@ -211,7 +193,6 @@ EightShapes.ContrastGrid = function() {
     }
 
     function updateGrid(event, data) {
-        console.log(data);
         setGridData(data);
         resetGrid();
         generateGrid();
@@ -239,9 +220,6 @@ EightShapes.ContrastGrid = function() {
     return public_vars;
 }();
 
-$(document).ready(function(){
-    EightShapes.ContrastGrid.initialize();
-});
 
 // MIT Licensed function courtesty of Lea Verou
 // https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js

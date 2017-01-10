@@ -9,18 +9,8 @@ EightShapes.ColorForm = function() {
         backgroundColors,
         hexRegex = /^(#?[A-Fa-f0-9]{6}|#?[A-Fa-f0-9]{3})(,.*)?/gim;
 
-    function processFormSubmission(e) {
-        e.preventDefault();
-        var gridData = {
-            foregroundColors: foregroundColors
-        };
-
-        $(document).trigger('escg.updateGrid', [gridData]);
-    }
-
-    function processColorInput(e) {
-        var $input = $(e.target),
-            value = $input.val(),
+    function processColorInput($input) {
+        var value = $input.val(),
             m,
             hexValues = [],
             colors = [];
@@ -38,7 +28,7 @@ EightShapes.ColorForm = function() {
                 hex = "#" + hex;
             }
 
-            colorData.hex = hex;
+            colorData.hex = hex.toUpperCase();
 
             if (typeof label !== 'undefined') {
                 label = label.slice(1).trim(); //Remove the leading comma matched in the regex and any leading or trailing whitespace
@@ -48,22 +38,36 @@ EightShapes.ColorForm = function() {
             }
 
             if (hexValues.indexOf(hex) === -1) {
+                hexValues.push(hex);
                 colors.push(colorData);
             }
         }
 
-        if ($(e.target).attr("id") == "es-color-form__foreground-colors") {
+        if ($input.attr("id") == "es-color-form__foreground-colors") {
             foregroundColors = colors;
-        } else if ($(e.target).attr("id") == "es-color-form__background-colors") {
+        } else if ($input.attr("id") == "es-color-form__background-colors") {
             backgroundColors = colors;
         }
+    }
 
-        processFormSubmission(e);
+    function triggerGridUpdate() {
+        $colorForm.find(".es-color-form__input").each(function(){
+            processColorInput($(this));
+        });
+
+        var gridData = {
+            foregroundColors: foregroundColors,
+            backgroundColors: backgroundColors
+        };
+
+        console.log(gridData);
+
+        $(document).trigger('escg.updateGrid', [gridData]);
     }
 
     function initializeEventHandlers() {
-        $colorForm.on('submit', processFormSubmission);
-        $foregroundColorsInput.on('keyup', processColorInput);
+        $foregroundColorsInput.on('keyup', triggerGridUpdate);
+        $backgroundColorsInput.on('keyup', triggerGridUpdate);
     }
 
     var initialize = function initialize() {
@@ -71,6 +75,7 @@ EightShapes.ColorForm = function() {
         $foregroundColorsInput = $("#es-color-form__foreground-colors");   
         $backgroundColorsInput = $("#es-color-form__background-colors");   
         initializeEventHandlers();
+        triggerGridUpdate();
     };
 
     var public_vars = {
@@ -79,7 +84,3 @@ EightShapes.ColorForm = function() {
 
     return public_vars;
 }();
-
-$(document).ready(function(){
-    EightShapes.ColorForm.initialize();
-});

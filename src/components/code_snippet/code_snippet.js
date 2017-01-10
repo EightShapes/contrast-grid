@@ -26,7 +26,3 @@ EightShapes.CodeSnippet = function() {
 
     return public_vars;
 }();
-
-$(document).ready(function(){
-    EightShapes.CodeSnippet.initialize();
-});

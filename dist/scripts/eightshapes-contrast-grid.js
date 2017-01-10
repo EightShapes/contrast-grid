@@ -29,10 +29,6 @@ EightShapes.CodeSnippet = function() {
     return public_vars;
 }();
 
-$(document).ready(function(){
-    EightShapes.CodeSnippet.initialize();
-});
-
 var EightShapes = EightShapes || {};
 
 EightShapes.ColorForm = function() {
@@ -44,18 +40,8 @@ EightShapes.ColorForm = function() {
         backgroundColors,
         hexRegex = /^(#?[A-Fa-f0-9]{6}|#?[A-Fa-f0-9]{3})(,.*)?/gim;
 
-    function processFormSubmission(e) {
-        e.preventDefault();
-        var gridData = {
-            foregroundColors: foregroundColors
-        };
-
-        $(document).trigger('escg.updateGrid', [gridData]);
-    }
-
-    function processColorInput(e) {
-        var $input = $(e.target),
-            value = $input.val(),
+    function processColorInput($input) {
+        var value = $input.val(),
             m,
             hexValues = [],
             colors = [];
@@ -73,7 +59,7 @@ EightShapes.ColorForm = function() {
                 hex = "#" + hex;
             }
 
-            colorData.hex = hex;
+            colorData.hex = hex.toUpperCase();
 
             if (typeof label !== 'undefined') {
                 label = label.slice(1).trim(); //Remove the leading comma matched in the regex and any leading or trailing whitespace
@@ -83,22 +69,36 @@ EightShapes.ColorForm = function() {
             }
 
             if (hexValues.indexOf(hex) === -1) {
+                hexValues.push(hex);
                 colors.push(colorData);
             }
         }
 
-        if ($(e.target).attr("id") == "es-color-form__foreground-colors") {
+        if ($input.attr("id") == "es-color-form__foreground-colors") {
             foregroundColors = colors;
-        } else if ($(e.target).attr("id") == "es-color-form__background-colors") {
+        } else if ($input.attr("id") == "es-color-form__background-colors") {
             backgroundColors = colors;
         }
+    }
 
-        processFormSubmission(e);
+    function triggerGridUpdate() {
+        $colorForm.find(".es-color-form__input").each(function(){
+            processColorInput($(this));
+        });
+
+        var gridData = {
+            foregroundColors: foregroundColors,
+            backgroundColors: backgroundColors
+        };
+
+        console.log(gridData);
+
+        $(document).trigger('escg.updateGrid', [gridData]);
     }
 
     function initializeEventHandlers() {
-        $colorForm.on('submit', processFormSubmission);
-        $foregroundColorsInput.on('keyup', processColorInput);
+        $foregroundColorsInput.on('keyup', triggerGridUpdate);
+        $backgroundColorsInput.on('keyup', triggerGridUpdate);
     }
 
     var initialize = function initialize() {
@@ -106,6 +106,7 @@ EightShapes.ColorForm = function() {
         $foregroundColorsInput = $("#es-color-form__foreground-colors");   
         $backgroundColorsInput = $("#es-color-form__background-colors");   
         initializeEventHandlers();
+        triggerGridUpdate();
     };
 
     var public_vars = {
@@ -114,10 +115,6 @@ EightShapes.ColorForm = function() {
 
     return public_vars;
 }();
-
-$(document).ready(function(){
-    EightShapes.ColorForm.initialize();
-});
 
 var EightShapes = EightShapes || {};
 
@@ -135,45 +132,28 @@ EightShapes.ContrastGrid = function() {
         gridData = {
             foregroundColors: [
                 {
-                    hex: "#FFFFFF",
-                    label: "W"
+                    hex: "#000",
+                    label: "Black"
                 },
                 {
-                    hex: "#F0F2F4"
+                    hex: "#323232"
                 },
                 {
-                    hex: "#E2E4E9"
+                    hex: "#4D4D4D"
                 },
                 {
-                    hex: "#C4C9D4"
+                    hex: "#F3F1F1"
                 },
                 {
-                    hex: "#98A1B3"
+                    hex: "#FFF",
+                    label: "White"
                 },
                 {
-                    hex: "#7B869D"
+                    hex: "#DC6729"
                 },
                 {
-                    hex: "#6C7893"
-                },
-                {
-                    hex: "#535C70"
-                },
-                {
-                    hex: "#404653"
-                },
-                {
-                    hex: "#363C49"
-                },
-                {
-                    hex: "#2B303B"
-                },
-                {
-                    hex: "#21242C"
-                },
-                {
-                    hex: "#262626",
-                    label: "B"                    
+                    hex: "#3995A9",
+                    label: "Link Color"
                 }
             ]
         };
@@ -208,7 +188,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function getBackgroundColors() {
-        if (typeof gridData.backgroundColors === 'undefined') {
+        if (typeof gridData.backgroundColors === 'undefined' || gridData.backgroundColors.length === 0) {
             return gridData.foregroundColors.slice(0).reverse();
         } else {
             return gridData.backgroundColors;
@@ -323,7 +303,6 @@ EightShapes.ContrastGrid = function() {
 
     function setGridData(data) {
         gridData = data;
-        console.log(gridData);
     }
 
     function resetGrid() {
@@ -332,7 +311,6 @@ EightShapes.ContrastGrid = function() {
     }
 
     function updateGrid(event, data) {
-        console.log(data);
         setGridData(data);
         resetGrid();
         generateGrid();
@@ -360,9 +338,6 @@ EightShapes.ContrastGrid = function() {
     return public_vars;
 }();
 
-$(document).ready(function(){
-    EightShapes.ContrastGrid.initialize();
-});
 
 // MIT Licensed function courtesty of Lea Verou
 // https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
@@ -487,3 +462,10 @@ function rgb2hex(rgb) {
     }
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
+
+$(document).ready(function(){
+    // Initialize the various components in the correct order
+    EightShapes.ContrastGrid.initialize();
+    EightShapes.CodeSnippet.initialize();
+    EightShapes.ColorForm.initialize();
+});

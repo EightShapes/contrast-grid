@@ -73,7 +73,7 @@ module.exports = function(grunt) {
                 options: {
                     banner: '/* ' + version_stamp + ' */\n' + '/* DO NOT EDIT: The contents of this file are dynamically generated and will be overwritten */\n'
                 },
-                src: ['src/components/**/*.js'],
+                src: ['src/components/**/*.js', 'src/scripts/project.js'],
                 dest: 'dist/scripts/eightshapes-contrast-grid.js'
             }
         },
