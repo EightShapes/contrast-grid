@@ -11,3 +11,10 @@
 
 .es-contrast-grid--dark-label {
   color: black; }
+
+.es-contrast-grid__accessibility-label {
+  background: #ccc;
+  border-radius: 4px;
+  color: #000;
+  font-size: 12px;
+  padding: 2px 4px; }

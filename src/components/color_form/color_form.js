@@ -60,8 +60,6 @@ EightShapes.ColorForm = function() {
             backgroundColors: backgroundColors
         };
 
-        console.log(gridData);
-
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 

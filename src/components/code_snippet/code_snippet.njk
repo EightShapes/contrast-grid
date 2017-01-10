@@ -1,5 +1,16 @@
 {% macro code_snippet() %}
-    <pre class="es-code-snippet"><code class="language-markup">
-&lt;h1&gt;Fuzzballs&lt;/h1&gt;
-    </code></pre>
+    <div class="es-code-snippet">
+        <div class="es-code-snippet__actions-wrap">
+            <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
+                {# {{ comet.icon(name='copy', class='es-code-snippet__copy-button-icon', path=icon_path) }} #}
+                <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
+                <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
+            </a>
+        </div>
+        
+        <pre id="es-code-snippet__code"><code class="language-markup">
+    &lt;h1&gt;Fuzzballs&lt;/h1&gt;
+        </code></pre>
+    </div>
 {% endmacro %}
+

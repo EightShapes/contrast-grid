@@ -1,7 +1,4 @@
 {% macro contrast_grid() %}
-    <style class="es-contrast-grid-styles">
-        {% include 'contrast_grid.css' %}
-    </style>
     <div class="es-contrast-grid">
         <table class="es-contrast-grid__table">
             <thead>
@@ -33,4 +30,7 @@
             </tbody>
         </table>
     </div>
+    <style class="es-contrast-grid-styles">
+        {% include 'contrast_grid.css' %}
+    </style>
 {% endmacro %}
