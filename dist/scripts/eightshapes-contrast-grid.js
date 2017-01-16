@@ -172,11 +172,39 @@ EightShapes.ColorForm = function() {
         triggerGridUpdate();
     }
 
+    function sortBackgroundColors(e, sortedColorsKey) {
+        var sortedBackgroundColors = [],
+            gridDataText = '',
+            inputField = '',
+            startingColorData;
+
+        if (backgroundColors.length > 0) {
+            inputField = 'background';
+            startingColorData = backgroundColors;
+        } else {
+            inputField = 'foreground';
+            startingColorData = foregroundColors;
+        }
+
+
+        sortedColorsKey.forEach(function(hexKey){
+            startingColorData.forEach(function(colorData){
+                if (colorData.hex === hexKey) {
+                    sortedBackgroundColors.push(colorData);
+                }
+            });
+        });
+        gridDataText = convertGridDataToText(sortedBackgroundColors);
+        updateInputText(inputField, gridDataText);
+        triggerGridUpdate();
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
+        $(document).on('escg.rowsSorted', sortBackgroundColors);
     }
 
     var initialize = function initialize() {
@@ -307,8 +335,6 @@ EightShapes.ContrastGrid = function() {
             $swatch.css("backgroundColor", bg).attr('data-hex', bg);
             $removeAction.attr('data-hex', bg).attr('data-colorset', 'background');
             $label.html(bgLabel);
-            // $backgroundKeyCell.html(bgLabel).css("backgroundColor", bg).attr('data-hex', bg);
-
 
             for (var j = 0; j < foregroundColors.length; j++) {
                 var fg = foregroundColors[j].hex,
@@ -335,9 +361,9 @@ EightShapes.ContrastGrid = function() {
         $(".es-contrast-grid__content").addClass('es-contrast-grid__content--sortable-initialized').sortable({
             axis: 'y',
             handle: '.es-contrast-grid__key-swatch-drag-handle--row',
-            stop: function(table) {
-                console.log("Save sortable rows");
-                // triggerSnippetUpdate();
+            update: function(table) {
+                var sortedColors = extractBackgroundColorsFromGrid();
+                broadcastRowSort(sortedColors);
             }
         });
 
@@ -346,8 +372,6 @@ EightShapes.ContrastGrid = function() {
             dragHandle: '.es-contrast-grid__key-swatch-drag-handle--column',
             dragaccept: '.es-contrast-grid__foreground-key-cell',
             persistState: function(table) {
-                console.log("Save sortable columns");
-                // triggerSnippetUpdate();
                 var sortedColors = extractForegroundColorsFromGrid();
                 broadcastColumnSort(sortedColors);
             }
@@ -357,11 +381,23 @@ EightShapes.ContrastGrid = function() {
     function extractForegroundColorsFromGrid() {
         var sortedForegroundColors = [];
         $(".es-contrast-grid__key-swatch--foreground").each(function(){
-            // console.log($(this).attr("data-hex"));
             sortedForegroundColors.push($(this).attr("data-hex"));
         });
 
         return sortedForegroundColors;
+    }
+
+    function extractBackgroundColorsFromGrid() {
+        var sortedBackgroundColors = [];
+        $(".es-contrast-grid__key-swatch--background").each(function(){
+            sortedBackgroundColors.push($(this).attr("data-hex"));
+        });
+
+        return sortedBackgroundColors;
+    }
+
+    function broadcastRowSort(sortedColors) {
+        $(document).trigger("escg.rowsSorted", [sortedColors]);
     }
 
     function broadcastColumnSort(sortedColors) {

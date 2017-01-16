@@ -117,11 +117,39 @@ EightShapes.ColorForm = function() {
         triggerGridUpdate();
     }
 
+    function sortBackgroundColors(e, sortedColorsKey) {
+        var sortedBackgroundColors = [],
+            gridDataText = '',
+            inputField = '',
+            startingColorData;
+
+        if (backgroundColors.length > 0) {
+            inputField = 'background';
+            startingColorData = backgroundColors;
+        } else {
+            inputField = 'foreground';
+            startingColorData = foregroundColors;
+        }
+
+
+        sortedColorsKey.forEach(function(hexKey){
+            startingColorData.forEach(function(colorData){
+                if (colorData.hex === hexKey) {
+                    sortedBackgroundColors.push(colorData);
+                }
+            });
+        });
+        gridDataText = convertGridDataToText(sortedBackgroundColors);
+        updateInputText(inputField, gridDataText);
+        triggerGridUpdate();
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
+        $(document).on('escg.rowsSorted', sortBackgroundColors);
     }
 
     var initialize = function initialize() {
