@@ -1,6 +1,13 @@
 @import '../../styles/variables';
 
-$cell-height: 80px;
+$compact-swatch-size: 75px;
+$default-swatch-size: 100px;
+$large-swatch-size: 150px;
+
+.es-contrast-grid {
+    overflow: auto;
+    width: 100%;
+}
 
 .es-contrast-grid__table {
     color: #fff;
@@ -40,6 +47,24 @@ $cell-height: 80px;
     background: red;
     color: $color-white;
 }
+
+.es-contrast-grid__swatch {
+    height: $default-swatch-size;
+    width: $default-swatch-size;
+
+    .es-contrast-grid--compact & {
+        height: $compact-swatch-size;
+        width: $compact-swatch-size;        
+    }
+
+    .es-contrast-grid--large & {
+        height: $large-swatch-size;
+        width: $large-swatch-size;
+    }
+}
+
+
+
 
 /* 
  * dragtable
@@ -101,36 +126,4 @@ table td, table th {
     border:1px solid #CCC;
     font-size:0.9em;
     padding:3px;
-}
-
-table.sar-table th {
-    background:none repeat scroll 0 0 #FBF9EA;
-    color:#000;
-    font-weight:normal;
-    height:20px;
-    width:100px;
-    cursor:move;
-}
-
-#handlerTable th {
-    cursor:default;
-}
-
-.some-handle {
-    cursor:move;
-}
-
-#constrainTable th {
-    cursor:default;
-}
-
-#constrainTable th.accept {
-    cursor:move;
-}
-
-.some-handle {
-    background-image:url("../img/handle.png");
-    background-repeat:repeat-x;
-    height:18px;
-    margin:0 1px;
 }

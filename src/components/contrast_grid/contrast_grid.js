@@ -135,6 +135,7 @@ EightShapes.ContrastGrid = function() {
         // Draggable Rows
         $(".es-contrast-grid__content").addClass('es-contrast-grid__content--sortable-initialized').sortable({
             axis: 'y',
+            containment: '.es-contrast-grid',
             handle: '.es-contrast-grid__key-swatch-drag-handle--row',
             update: function(table) {
                 var sortedColors = extractBackgroundColorsFromGrid();
@@ -144,6 +145,7 @@ EightShapes.ContrastGrid = function() {
 
         // Draggable Columns
         $(".es-contrast-grid__table").addClass('es-contrast-grid__table--dragtable-initialized').dragtable({
+            containment: '.es-contrast-grid',
             dragHandle: '.es-contrast-grid__key-swatch-drag-handle--column',
             dragaccept: '.es-contrast-grid__foreground-key-cell',
             persistState: function(table) {
@@ -270,8 +272,15 @@ EightShapes.ContrastGrid = function() {
         generateGrid();
     }
 
+    function changeTileSize(e, tileSize) {
+        console.log("DO IT");
+        $(".es-contrast-grid").removeClass("es-contrast-grid--regular es-contrast-grid--compact es-contrast-grid--large")
+            .addClass(`es-contrast-grid--${tileSize}`);
+    }
+
     function initializeEventHandlers() {
         $(document).on("escg.updateGrid", updateGrid);
+        $(document).on("escg.tileSizeChanged", changeTileSize);
         $(document).on('click', '.es-contrast-grid__key-swatch-remove', function(e){
             e.preventDefault();
             $(document).trigger('escg.removeColor', [$(this).attr('data-hex'), $(this).attr('data-colorset')]);

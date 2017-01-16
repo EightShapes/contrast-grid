@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0;
-  max-width: 320px;
+  flex: 0 0 320px;
   padding: 26px; }
 
 .es-color-form__title {
@@ -102,6 +102,7 @@ a {
   flex: 1; }
 
 .es-contrast-grid-generator__content-wrap {
+  min-width: 0;
   padding: 26px; }
 
 .es-contrast-grid__title {

@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 0;
-    max-width: 320px;
+    flex: 0 0 320px;
     padding: $spacing-md;
 }
 

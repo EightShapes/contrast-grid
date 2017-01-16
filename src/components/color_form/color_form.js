@@ -162,6 +162,10 @@ EightShapes.ColorForm = function() {
         }
     }
 
+    function broadcastTileSizeChange(e) {
+        $(document).trigger("escg.tileSizeChanged", [$(e.target).val()]);
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
@@ -169,6 +173,7 @@ EightShapes.ColorForm = function() {
         $(document).on('escg.columnsSorted', sortForegroundColors);
         $(document).on('escg.rowsSorted', sortBackgroundColors);
         $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
+        $("input[name='es-color-form__tile-size']").on("change", broadcastTileSizeChange);
     }
 
     var initialize = function initialize() {

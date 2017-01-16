@@ -1,3 +1,7 @@
+.es-contrast-grid {
+  overflow: auto;
+  width: 100%; }
+
 .es-contrast-grid__table {
   color: #fff; }
   .es-contrast-grid__table td, .es-contrast-grid__table th {
@@ -28,6 +32,16 @@
 .es-contrast-grid__accessibility-label--dnp {
   background: red;
   color: #FFFFFF; }
+
+.es-contrast-grid__swatch {
+  height: 100px;
+  width: 100px; }
+  .es-contrast-grid--compact .es-contrast-grid__swatch {
+    height: 75px;
+    width: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__swatch {
+    height: 150px;
+    width: 150px; }
 
 /* 
  * dragtable
@@ -93,29 +107,3 @@ table td, table th {
   border: 1px solid #CCC;
   font-size: 0.9em;
   padding: 3px; }
-
-table.sar-table th {
-  background: none repeat scroll 0 0 #FBF9EA;
-  color: #000;
-  font-weight: normal;
-  height: 20px;
-  width: 100px;
-  cursor: move; }
-
-#handlerTable th {
-  cursor: default; }
-
-.some-handle {
-  cursor: move; }
-
-#constrainTable th {
-  cursor: default; }
-
-#constrainTable th.accept {
-  cursor: move; }
-
-.some-handle {
-  background-image: url("../img/handle.png");
-  background-repeat: repeat-x;
-  height: 18px;
-  margin: 0 1px; }
