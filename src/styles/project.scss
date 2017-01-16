@@ -48,6 +48,10 @@ a {
 .es-contrast-grid-generator {
     display: flex;
     flex: 1;
+
+    .es-contrast-grid__outer-wrap--code-snippet-visible & {
+        display: none;
+    }
 }
 
 .es-contrast-grid-generator__content-wrap {
@@ -103,18 +107,24 @@ a {
     }
 }
 
-// font-family: 'Open Sans', sans-serif;
-// font-family: 'Roboto', sans-serif;
-// font-family: 'Slabo 27px', serif;
-// font-family: 'Oswald', sans-serif;
-// font-family: 'Roboto Condensed', sans-serif;
-// font-family: 'Source Sans Pro', sans-serif;
-// font-family: 'Montserrat', sans-serif;
-// font-family: 'Raleway', sans-serif;
-// font-family: 'PT Sans', sans-serif;
-// font-family: 'Roboto Slab', serif;
-// font-family: 'Open Sans Condensed', sans-serif;
-// font-family: 'Lora', serif;
-// font-family: 'Droid Sans', sans-serif;
-// font-family: 'Ubuntu', sans-serif;
-// font-family: 'Droid Serif', serif;
+.es-button {
+    border: 0;
+    border-radius: $spacing-xs / 2;
+    background: $color-link;
+    display: inline-block;
+    color: $color-white;
+    font-family: 'Lato', sans-serif; 
+    font-size: $font-size-default;
+    padding: $spacing-xs $spacing-default;
+
+    &:hover {
+        background: $color-link-hover;
+        color: $color-white;
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        margin-bottom: -2px;
+    }
+}

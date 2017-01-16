@@ -19,6 +19,16 @@ EightShapes.CodeSnippet = function() {
         $codeSnippet.html(html);
     }
 
+    function showCodeSnippet() {
+        $(".es-contrast-grid__outer-wrap").addClass("es-contrast-grid__outer-wrap--code-snippet-visible");
+    }
+
+    function hideCodeSnippet(e) {
+        if (typeof e !== 'undefined') {
+            e.preventDefault();
+        }
+        $(".es-contrast-grid__outer-wrap").removeClass("es-contrast-grid__outer-wrap--code-snippet-visible");
+    }
 
     function setEventHandlers() {
         var clipboard = new Clipboard('.es-code-snippet__copy-button');
@@ -39,7 +49,10 @@ EightShapes.CodeSnippet = function() {
             e.preventDefault();
         });
 
+        $(".es-code-snippet__hide-snippet").on("click", hideCodeSnippet);
+
         $(document).on("escg.contrastGridUpdated", updateContent);
+        $(document).on("escg.showCodeSnippet", showCodeSnippet);
     }
 
     var initialize = function initialize() {
@@ -221,6 +234,11 @@ EightShapes.ColorForm = function() {
         $(document).trigger("escg.tileSizeChanged", [$(e.target).val()]);
     }
 
+    function broadcastCodeSnippetViewToggle(e) {
+        e.preventDefault();
+        $(document).trigger("escg.showCodeSnippet");
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
@@ -229,6 +247,7 @@ EightShapes.ColorForm = function() {
         $(document).on('escg.rowsSorted', sortBackgroundColors);
         $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
         $("input[name='es-color-form__tile-size']").on("change", broadcastTileSizeChange);
+        $(".es-color-form__view-code-toggle").on("click", broadcastCodeSnippetViewToggle);
     }
 
     var initialize = function initialize() {

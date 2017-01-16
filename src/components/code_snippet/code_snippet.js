@@ -17,6 +17,16 @@ EightShapes.CodeSnippet = function() {
         $codeSnippet.html(html);
     }
 
+    function showCodeSnippet() {
+        $(".es-contrast-grid__outer-wrap").addClass("es-contrast-grid__outer-wrap--code-snippet-visible");
+    }
+
+    function hideCodeSnippet(e) {
+        if (typeof e !== 'undefined') {
+            e.preventDefault();
+        }
+        $(".es-contrast-grid__outer-wrap").removeClass("es-contrast-grid__outer-wrap--code-snippet-visible");
+    }
 
     function setEventHandlers() {
         var clipboard = new Clipboard('.es-code-snippet__copy-button');
@@ -37,7 +47,10 @@ EightShapes.CodeSnippet = function() {
             e.preventDefault();
         });
 
+        $(".es-code-snippet__hide-snippet").on("click", hideCodeSnippet);
+
         $(document).on("escg.contrastGridUpdated", updateContent);
+        $(document).on("escg.showCodeSnippet", showCodeSnippet);
     }
 
     var initialize = function initialize() {

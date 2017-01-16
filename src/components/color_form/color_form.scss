@@ -38,27 +38,6 @@
     display: block;
 }
 
-.es-color-form__apply {
-    border: 0;
-    border-radius: $spacing-xs / 2;
-    background: $color-link;
-    display: block;
-    color: $color-white;
-    font-family: 'Lato', sans-serif; 
-    font-size: $font-size-default;
-    padding: $spacing-xs $spacing-default;
-
-    &:hover {
-        background: $color-link-hover;
-    }
-
-    &:before {
-        content: '';
-        display: block;
-        margin-bottom: -2px;
-    }
-}
-
 .es-color-form__content {
     margin-bottom: $spacing-default;
 }

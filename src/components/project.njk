@@ -1,19 +1,26 @@
 {# DO NOT EDIT: The contents of this file are dynamically generated and will be overwritten #}
 {% macro code_snippet() %}
     <div class="es-code-snippet">
-        <div class="es-code-snippet__actions-wrap">
-            <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
-                <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
-                <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
+        <div class="es-code-snippet__header">
+            <a href="#" class="es-code-snippet__hide-snippet">
+                {{ icon(icon_name="angle-left", class="es-code-snippet__hide-snippet-icon") }}
+                <span class="es-code-snippet__hide-snippet-text">Return to Grid</span>
             </a>
+            <div class="es-code-snippet__actions-wrap">
+                <a href="#" class="es-button es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
+                    <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
+                    <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
+                </a>
+            </div>
         </div>
-        
-        <pre id="es-code-snippet__code"><code class="language-markup">
-    &lt;h1&gt;Fuzzballs&lt;/h1&gt;
-        </code></pre>
+        <div class="es-code-snippet__code-wrap">
+            
+            <pre id="es-code-snippet__code"><code class="language-markup">
+        &lt;h1&gt;Fuzzballs&lt;/h1&gt;
+            </code></pre>
+        </div>
     </div>
 {% endmacro %}
-
 
 {% macro color_form() %}
     <form method="GET" class="es-color-form">
@@ -56,7 +63,7 @@
             </div>
 
 
-            <button class="es-color-form__apply" type="button">Apply</button>
+            <button class="es-color-form__apply es-button" type="button">Apply</button>
         </div>
         <a class="es-color-form__view-code-toggle" href="#">View &amp; Copy Code</a>
     </form>
