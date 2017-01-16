@@ -1,16 +1,104 @@
 .es-code-snippet {
+  display: none;
   max-height: 300px;
   overflow-y: scroll; }
 
-.es-color-form__input {
-  height: 200px; }
+.es-color-form {
+  background: #f3f1f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  max-width: 240px;
+  padding: 26px; }
+
+.es-color-form__title {
+  margin: 0; }
+
+.es-color-form__textarea {
+  border-radius: 4px;
+  border: solid 1px #888888;
+  font-family: 'Lato', sans-serif;
+  height: 200px;
+  padding: 8px;
+  width: 100%; }
 
 .es-color-form__label {
+  display: block;
+  margin-bottom: 8px; }
+
+.es-color-form__field-wrapper {
+  margin-bottom: 26px; }
+
+.es-color-form__radio-button {
   display: block; }
 
-.es-color-form {
-  align-items: flex-start;
-  display: flex; }
+.es-color-form__apply {
+  border: 0;
+  border-radius: 4px;
+  background: #0795aa;
+  display: block;
+  color: #FFFFFF;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  padding: 8px 32px; }
+  .es-color-form__apply:hover {
+    background: #033f48; }
+  .es-color-form__apply:before {
+    content: '';
+    display: block;
+    margin-bottom: -2px; }
 
+.es-color-form__content {
+  margin-bottom: 32px; }
+
+html,
 body {
-  font-family: 'Lato', sans-serif; }
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+a {
+  color: #0795aa;
+  text-decoration: none; }
+  a:hover {
+    color: #033f48; }
+
+.es-contrast-grid__outer-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100%; }
+
+.es-contrast-grid__header {
+  align-items: center;
+  background: #1e1e1e;
+  color: #FFFFFF;
+  display: flex;
+  flex: 0 0 92px;
+  justify-content: space-between;
+  padding: 26px; }
+
+.es-contrast-grid-generator {
+  display: flex;
+  flex: 1; }
+
+.es-contrast-grid-generator__content-wrap {
+  padding: 26px; }
+
+.es-contrast-grid__title {
+  font-weight: 300;
+  font-size: 26px;
+  margin: 0; }
+
+.es-contrast-grid__header-link {
+  color: #FFFFFF;
+  font-weight: 200;
+  text-decoration: none; }

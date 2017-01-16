@@ -25,6 +25,10 @@
   width: 20px;
   background: limegreen; }
 
+.es-contrast-grid__accessibility-label--dnp {
+  background: red;
+  color: #FFFFFF; }
+
 /* 
  * dragtable
  *

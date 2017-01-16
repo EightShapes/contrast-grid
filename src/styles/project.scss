@@ -1,10 +1,69 @@
+@import 'variables';
 @import 'code_snippet/code_snippet';
 @import 'color_form/color_form';
 
+
+
+html,
 body {
-    font-family: 'Lato', sans-serif;
-    // background: darkorange;
-    // color: white;
+  box-sizing: border-box;
+  font-family: $font-family-default;
+  font-weight: $font-weight-light;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+    color: $color-link;
+    text-decoration: none;
+
+    &:hover {
+        color: $color-link-hover;
+    }
+}
+
+.es-contrast-grid__outer-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100%;
+}
+
+.es-contrast-grid__header {
+    align-items: center;
+    background: $color-gray-12;
+    color: $color-white;
+    display: flex;
+    flex: 0 0 92px;
+    justify-content: space-between;
+    padding: $spacing-md;
+}
+
+.es-contrast-grid-generator {
+    display: flex;
+    flex: 1;
+}
+
+.es-contrast-grid-generator__content-wrap {
+    padding: $spacing-md;
+}
+
+.es-contrast-grid__title {
+    font-weight: 300;
+    font-size: $font-size-h3;
+    margin: 0;
+}
+
+.es-contrast-grid__header-link {
+    color: $color-white;
+    font-weight: 200;
+    text-decoration: none;
 }
 
 // font-family: 'Open Sans', sans-serif;

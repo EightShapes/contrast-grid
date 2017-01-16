@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 $cell-height: 80px;
 
 .es-contrast-grid__table {
@@ -32,6 +34,11 @@ $cell-height: 80px;
     height: 20px;
     width: 20px;
     background: limegreen;
+}
+
+.es-contrast-grid__accessibility-label--dnp {
+    background: red;
+    color: $color-white;
 }
 
 /* 

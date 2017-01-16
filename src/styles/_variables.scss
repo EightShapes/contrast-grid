@@ -1,0 +1,129 @@
+// Typography variables
+$font-family-default: 'Lato', sans-serif;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$font-size-default: 16px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-lg: 20px;
+$font-size-xl: 26px;
+
+$font-size-h1: 42px;
+$font-size-h2: 44px;
+$font-size-h3: 26px;
+$font-size-h4: 20px;
+$font-size-h5: 16px;
+$font-size-h6: 14px;
+
+$spacing-row-vertical: 100px;
+$spacing-content: 70px;
+$spacing-default: 30px;
+$spacing-md: 26px;
+$spacing-xs: round($spacing-default / 4);
+$spacing-sm: round($spacing-default / 2);
+$spacing-lg: round($spacing-default * 2);
+$spacing-xl: round($spacing-default * 4);
+
+$spacing-sm: 8px;
+$spacing-md: 26px;
+$spacing-default: 32px;
+$spacing-lg: $spacing-default * 2;
+
+$color-white:           #FFFFFF;
+$color-black:           #000000;
+
+// Gray color numbers are based on the "B" value of the HEX code's HSB equivalent
+$color-gray-12:         #1e1e1e;
+$color-gray-15:         #262626;
+$color-gray-20:         #323232;
+$color-gray-30:         #4d4d4d;
+$color-gray-53:         #888888;
+$color-gray-95:         #f3f1f1;
+$color-orange:          #e76822;
+$color-orange-light:    #F57026;
+$color-blue:            #0795aa;
+
+$color-text-default:    $color-gray-20;
+
+$color-link:            $color-blue;
+$color-link-hover:      darken($color-link, 20%);
+
+$drop-shadow-default: 0 2px 6px rgba($color-black, .3);
+$drop-shadow-even: 0 0 5px rgba($color-black, .3);
+// $border-radius-xs: $spacing-xs / 2;
+// $border-radius-sm: 6px;
+$border-radius-default: 4px;
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  420px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  1000px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1400px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+$grid-columns:              12 !default;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         24px !default;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:     $screen-sm-min !default;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+$container-tablet:             ($screen-sm) !default;
+//** For `$screen-sm-min` and up.
+$container-sm:                 $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:            ($screen-md) !default;
+//** For `$screen-md-min` and up.
+$container-md:                 $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      ($screen-lg) !default;
+//** For `$screen-lg-min` and up.
+$container-lg:                 $container-large-desktop !default;

@@ -85,7 +85,7 @@ EightShapes.ColorForm = function() {
     }
 
     function getCurrentGridData() {
-        $colorForm.find(".es-color-form__input").each(function(){
+        $colorForm.find(".es-color-form__textarea").each(function(){
             processColorInput($(this));
         });
 
@@ -99,6 +99,7 @@ EightShapes.ColorForm = function() {
 
     function triggerGridUpdate() {
         var gridData = getCurrentGridData();
+        console.log(gridData);
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 

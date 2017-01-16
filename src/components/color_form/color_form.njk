@@ -1,20 +1,45 @@
-{% macro color_input() %}
+{% macro color_form() %}
     <form method="GET" class="es-color-form">
-        <div class="es-color-form__field-wrapper">
-            <label for="es-color-form__foreground-colors" class="es-color-form__label">Foreground Colors</label>
-            <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__input">
-#000, Black
-#323232
-#4D4D4D
-#F3F1F1
-#FFF, White
-#DC6729
-#3995A9, Link Color
-            </textarea>
+        <div class="es-color-form__content">
+            <h2 class="es-color-form__title">Colors</h2>
+            <p>
+                Add one color per line, separating hex value and optional label by commas.
+            </p>
+            <div class="es-color-form__field-wrapper">
+                <label for="es-color-form__foreground-colors" class="es-color-form__label">Rows &amp; Columns</label>
+                <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea">
+#FFFFFF, Brand White
+#EDEDEF
+#4784FF, Interactive Blue
+#404040, Dark Background
+#000000
+                </textarea>
+            </div>
+            <div class="es-color-form__field-wrapper">
+                <label for="es-color-form__background-colors" class="es-color-form__label">Background Colors</label>
+                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors"></textarea>
+                <a href="#">Make rows &amp; columns different</a>
+            </div>
+
+            <div class="es-color-form__field-wrapper">
+                <label class="es-color-form__label">Tiles</label>
+                <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
+                    <input type="radio" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size" checked>
+                    Compact (75&times;75)
+                </label>
+                <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
+                    <input type="radio" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size">
+                    Regular (100&times;100)
+                </label>
+                <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
+                    <input type="radio" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
+                    Large (150&times;150)
+                </label>
+            </div>
+
+
+            <button class="es-color-form__apply" type="button">Apply</button>
         </div>
-        <div class="es-color-form__field-wrapper">
-            <label for="es-color-form__background-colors" class="es-color-form__label">Background Colors</label>
-            <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__input" placeholder="Defaults to inverse of Foreground Colors"></textarea>
-        </div>
+        <a class="es-color-form__view-code-toggle" href="#">View &amp; Copy Code</a>
     </form>
 {% endmacro %}

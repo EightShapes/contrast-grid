@@ -17,9 +17,18 @@
     <script src="scripts/beautify-css.js"></script>
 </head>
 <body>
-    <h1>EightShapes Contrast Grid Generator</h1>
-    {{ components.color_input() }}
-    {{ components.contrast_grid() }}    
-    {{ components.code_snippet() }}
+    <div class="es-contrast-grid__outer-wrap">
+        <div class="es-contrast-grid__header">
+            <h1 class="es-contrast-grid__title">EightShapes Contrast Grid</h1>
+            <a class="es-contrast-grid__header-link" href="https://github.com/EightShapes/contrast-grid">On Github</a>
+        </div>
+        <div class="es-contrast-grid-generator">
+            {{ components.color_form() }}
+            <div class="es-contrast-grid-generator__content-wrap">
+                {{ components.contrast_grid() }}    
+                {{ components.code_snippet() }}
+            </div>
+        </div>
+    </div>
 </body>
 </html>
