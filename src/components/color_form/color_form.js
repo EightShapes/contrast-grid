@@ -102,10 +102,26 @@ EightShapes.ColorForm = function() {
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 
+    function sortForegroundColors(e, sortedColorsKey) {
+        var sortedForegroundColors = [],
+            gridDataText = '';
+        sortedColorsKey.forEach(function(hexKey){
+            foregroundColors.forEach(function(colorData){
+                if (colorData.hex === hexKey) {
+                    sortedForegroundColors.push(colorData);
+                }
+            });
+        });
+        gridDataText = convertGridDataToText(sortedForegroundColors);
+        updateInputText('foreground', gridDataText);
+        triggerGridUpdate();
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
         $(document).on('escg.removeColor', removeColor);
+        $(document).on('escg.columnsSorted', sortForegroundColors);
     }
 
     var initialize = function initialize() {

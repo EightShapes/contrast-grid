@@ -134,6 +134,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function enableDragUi() {
+        // Draggable Rows
         $(".es-contrast-grid__content").addClass('es-contrast-grid__content--sortable-initialized').sortable({
             axis: 'y',
             handle: '.es-contrast-grid__key-swatch-drag-handle--row',
@@ -142,22 +143,39 @@ EightShapes.ContrastGrid = function() {
                 // triggerSnippetUpdate();
             }
         });
+
+        // Draggable Columns
         $(".es-contrast-grid__table").addClass('es-contrast-grid__table--dragtable-initialized').dragtable({
             dragHandle: '.es-contrast-grid__key-swatch-drag-handle--column',
             dragaccept: '.es-contrast-grid__foreground-key-cell',
             persistState: function(table) {
                 console.log("Save sortable columns");
                 // triggerSnippetUpdate();
+                var sortedColors = extractForegroundColorsFromGrid();
+                broadcastColumnSort(sortedColors);
             }
         });
     }
 
-    function broadCastGridUpdate() {
+    function extractForegroundColorsFromGrid() {
+        var sortedForegroundColors = [];
+        $(".es-contrast-grid__key-swatch--foreground").each(function(){
+            // console.log($(this).attr("data-hex"));
+            sortedForegroundColors.push($(this).attr("data-hex"));
+        });
+
+        return sortedForegroundColors;
+    }
+
+    function broadcastColumnSort(sortedColors) {
+        $(document).trigger("escg.columnsSorted", [sortedColors]);
+    }
+
+    function broadcastGridUpdate() {
         $(document).trigger("escg.contrastGridUpdated", [getGridMarkup()]);
     }
 
     function generateGrid() {
-        console.log("GENERATING GRID");
         generateForegroundKey();
         generateContentRows();
         addContrastToSwatches();
@@ -165,7 +183,7 @@ EightShapes.ContrastGrid = function() {
         setKeySwatchLabelColors();
         disableDragUi();
         enableDragUi();
-        broadCastGridUpdate();
+        broadcastGridUpdate();
     }
 
     function addAccessibilityToSwatches() {
