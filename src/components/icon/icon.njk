@@ -1,0 +1,5 @@
+{% macro icon(icon_name="twitter", class=false) %}
+  <svg class="icon-{{icon_name}}{{ ' ' + class if class }}">
+    <use xlink:href="svg/contrast-grid.svg#{{icon_name}}"></use>
+  </svg>
+{% endmacro %}

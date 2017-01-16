@@ -3,7 +3,6 @@
     <div class="es-code-snippet">
         <div class="es-code-snippet__actions-wrap">
             <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
-                {# {{ comet.icon(name='copy', class='es-code-snippet__copy-button-icon', path=icon_path) }} #}
                 <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
                 <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
             </a>
@@ -107,4 +106,10 @@
     <style class="es-contrast-grid-styles">
         {% include 'contrast_grid.css' %}
     </style>
+{% endmacro %}
+
+{% macro icon(icon_name="twitter", class=false) %}
+  <svg class="icon-{{icon_name}}{{ ' ' + class if class }}">
+    <use xlink:href="svg/contrast-grid.svg#{{icon_name}}"></use>
+  </svg>
 {% endmacro %}

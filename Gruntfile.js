@@ -114,11 +114,69 @@ module.exports = function(grunt) {
                     'node_modules/js-beautify/js/lib/beautify.js',
                     'node_modules/js-beautify/js/lib/beautify-html.js',
                     'node_modules/js-beautify/js/lib/beautify-css.js',
+                    'node_modules/svg4everybody/svg4everybody.min.js',
                     'src/scripts/dragtable.js'
                 ],
                 flatten: true,
                 dest: 'dist/scripts/'
             } 
+        },
+
+        /* svgmin ********************************************************/
+        /* SVG Optimization, remove inline styles, strip out fill attributes 
+        /* added by Illustrator, etc.
+        /******************************************************************/
+        svgmin: {
+            options: {
+                plugins: [
+                    {
+                        removeAttrs: {
+                            attrs: ['fill']
+                        }
+                    },
+                    {
+                        removeStyleElement: true
+                    }
+                ]
+            },
+            // Optimize icons
+            icons: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/svg/',
+                        src: '*.svg',
+                        dest: 'src/svg/'
+                    }
+                ]
+            }
+        },
+
+        /* svg_sprite ********************************************************/
+        /* SVG Sprite generation
+        /* Enables the <use> SVG method to reference individual icons:
+        /* https://css-tricks.com/svg-use-with-external-reference-take-2/
+        /******************************************************************/
+        svg_sprite: {
+            icons: {
+                expand: true,
+                cwd: 'src/svg/',
+                flatten: true,
+                src: ['*.svg'],
+                dest: 'dist/svg',
+                svg: {
+                    namespaceIDs: false
+                },
+                options: {
+                    mode: {
+                        symbol: {
+                            dest: '.',
+                            sprite: 'contrast-grid.svg',
+                            example: false
+                        }
+                    }
+                }
+            }
         },
 
         watch: {
@@ -134,10 +192,10 @@ module.exports = function(grunt) {
                 files: ['src/**/*{.njk,.md}', 'dist/css/contrast_grid.css', '!src/components/project.njk'],
                 tasks: 'markup'
             },
-            // svg: {
-            //     files: ['src/library/base/icons/**/*.svg', 'src/library/docs/icons/**/*.svg'],
-            //     tasks: ['svg']
-            // },
+            svg: {
+                files: ['src/svg/*.svg'],
+                tasks: ['svg']
+            },
             // project_assets: {
             //     files: ['releases/latest/project/**/*'],
             //     tasks: 'newer:copy:project_to_dist'
@@ -169,6 +227,14 @@ module.exports = function(grunt) {
     grunt.registerTask('build-dist', ['copy:vendor_assets', 'concat:component_scripts', 'styles', 'markup']);
     grunt.registerTask('dev', ['build-dist', 'browserSync', 'watch']);
 
+    /* svg ********************************************************/
+    /* Minify/Optimize individual SVG files (Comet Components AND 
+    /* DOC-ONLY compoents), generate SVG sprite, add a version stamp 
+    /* to the sprite, copy the icon file names to icons.json,
+    /* format icons.json with propert indentation
+    /*
+    /******************************************************************/
+    grunt.registerTask('svg', ['svgmin', 'svg_sprite']);
 
     grunt.registerTask('default', ['dev']);
 };

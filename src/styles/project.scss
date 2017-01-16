@@ -55,15 +55,51 @@ a {
 }
 
 .es-contrast-grid__title {
+    align-items: center;
+    display: flex;
     font-weight: 300;
     font-size: $font-size-h3;
     margin: 0;
 }
 
+.es-contrast-grid__title-logo {
+    fill: $color-white;
+    margin-right: $spacing-md / 2;
+    width: 160px;
+}
+
+.es-contrast-grid__title-text {
+    display: block;
+    border-left: solid 1px $color-white;
+    padding-left: $spacing-md / 2 - 1px;
+    position: relative;
+    top: -1px;
+}
+
 .es-contrast-grid__header-link {
+    align-items: center;
     color: $color-white;
-    font-weight: 200;
+    border-radius: $spacing-xs / 2;
+    display: flex;
+    font-weight: 300;
+    padding: $spacing-xs $spacing-default;
     text-decoration: none;
+
+    &:hover {
+        background: white;
+        color: $color-gray-12;
+    }
+}
+
+.es-contrast-grid__header-link-logo {
+    fill: $color-white;
+    height: 20px;
+    margin-right: $spacing-sm;
+    width: 20px;
+
+    .es-contrast-grid__header-link:hover & {
+        fill: $color-gray-12;
+    }
 }
 
 // font-family: 'Open Sans', sans-serif;

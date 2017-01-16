@@ -94,11 +94,40 @@ a {
   padding: 26px; }
 
 .es-contrast-grid__title {
+  align-items: center;
+  display: flex;
   font-weight: 300;
   font-size: 26px;
   margin: 0; }
 
+.es-contrast-grid__title-logo {
+  fill: #FFFFFF;
+  margin-right: 13px;
+  width: 160px; }
+
+.es-contrast-grid__title-text {
+  display: block;
+  border-left: solid 1px #FFFFFF;
+  padding-left: 12px;
+  position: relative;
+  top: -1px; }
+
 .es-contrast-grid__header-link {
+  align-items: center;
   color: #FFFFFF;
-  font-weight: 200;
+  border-radius: 4px;
+  display: flex;
+  font-weight: 300;
+  padding: 8px 32px;
   text-decoration: none; }
+  .es-contrast-grid__header-link:hover {
+    background: white;
+    color: #1e1e1e; }
+
+.es-contrast-grid__header-link-logo {
+  fill: #FFFFFF;
+  height: 20px;
+  margin-right: 8px;
+  width: 20px; }
+  .es-contrast-grid__header-link:hover .es-contrast-grid__header-link-logo {
+    fill: #1e1e1e; }
