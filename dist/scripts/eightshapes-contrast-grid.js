@@ -200,12 +200,30 @@ EightShapes.ColorForm = function() {
         triggerGridUpdate();
     }
 
+    function toggleBackgroundColorsInput(e) {
+        e.preventDefault();
+        if ($(".es-color-form").hasClass("es-color-form--show-background-colors-input")) {
+            // hide the background Colors Input
+            $(".es-color-form").removeClass("es-color-form--show-background-colors-input");
+            $("label[for='es-color-form__foreground-colors']").text("Rows & Columns");
+            $("#es-color-form__background-colors").val("");
+            triggerGridUpdate();
+        } else {
+            // show the background Colors Input
+            $(".es-color-form").addClass("es-color-form--show-background-colors-input");
+            $("label[for='es-color-form__foreground-colors']").text("Rows");
+            $("#es-color-form__background-colors").val($("#es-color-form__foreground-colors").val());
+            triggerGridUpdate();
+        }
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
         $(document).on('escg.rowsSorted', sortBackgroundColors);
+        $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
     }
 
     var initialize = function initialize() {
