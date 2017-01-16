@@ -37,7 +37,7 @@ EightShapes.CodeSnippet = function() {
             e.preventDefault();
         });
 
-        $(document).on("escg.updateCodeSnippet", updateContent);
+        $(document).on("escg.contrastGridUpdated", updateContent);
     }
 
     var initialize = function initialize() {

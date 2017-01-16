@@ -37,6 +37,8 @@
   "dependencies": {
     "clipboard": "^1.5.16",
     "jquery": "^3.1.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
     "js-beautify": "^1.6.8",
     "prismjs": "^1.6.0"
   }

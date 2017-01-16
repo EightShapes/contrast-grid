@@ -128,13 +128,44 @@ EightShapes.ContrastGrid = function() {
         }
     }
 
+    function disableDragUi() {
+        $(".es-contrast-grid__content.es-contrast-grid__content--sortable-initialized").sortable('destroy');
+        $(".es-contrast-grid__table.es-contrast-grid__table--dragtable-initialized").dragtable('destroy');
+    }
+
+    function enableDragUi() {
+        $(".es-contrast-grid__content").addClass('es-contrast-grid__content--sortable-initialized').sortable({
+            axis: 'y',
+            handle: '.es-contrast-grid__key-swatch-drag-handle--row',
+            stop: function(table) {
+                console.log("Save sortable rows");
+                // triggerSnippetUpdate();
+            }
+        });
+        $(".es-contrast-grid__table").addClass('es-contrast-grid__table--dragtable-initialized').dragtable({
+            dragHandle: '.es-contrast-grid__key-swatch-drag-handle--column',
+            dragaccept: '.es-contrast-grid__foreground-key-cell',
+            persistState: function(table) {
+                console.log("Save sortable columns");
+                // triggerSnippetUpdate();
+            }
+        });
+    }
+
+    function broadCastGridUpdate() {
+        $(document).trigger("escg.contrastGridUpdated", [getGridMarkup()]);
+    }
+
     function generateGrid() {
+        console.log("GENERATING GRID");
         generateForegroundKey();
         generateContentRows();
         addContrastToSwatches();
         addAccessibilityToSwatches();
         setKeySwatchLabelColors();
-        $(document).trigger("escg.updateCodeSnippet", [getGridMarkup()]);
+        disableDragUi();
+        enableDragUi();
+        broadCastGridUpdate();
     }
 
     function addAccessibilityToSwatches() {
@@ -228,7 +259,7 @@ EightShapes.ContrastGrid = function() {
 
         initializeEventHandlers();
         setTemplateObjects();
-        generateGrid();
+        // generateGrid();
     };
 
 

@@ -104,6 +104,7 @@ module.exports = function(grunt) {
                 expand: true,
                 src: [
                     'node_modules/jquery/dist/jquery.min.js',
+                    'node_modules/jquery-ui-dist/jquery-ui.min.js',
                     'node_modules/clipboard/dist/clipboard.min.js',
                     'node_modules/prismjs/prism.js',
                     'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js',
@@ -112,7 +113,8 @@ module.exports = function(grunt) {
                     'node_modules/prismjs/themes/prism.css',
                     'node_modules/js-beautify/js/lib/beautify.js',
                     'node_modules/js-beautify/js/lib/beautify-html.js',
-                    'node_modules/js-beautify/js/lib/beautify-css.js'
+                    'node_modules/js-beautify/js/lib/beautify-css.js',
+                    'src/scripts/dragtable.js'
                 ],
                 flatten: true,
                 dest: 'dist/scripts/'
