@@ -50,7 +50,41 @@ EightShapes.ColorForm = function() {
         }
     }
 
-    function triggerGridUpdate() {
+    function updateInputText(inputName, text) {
+        $(`#es-color-form__${inputName}-colors`).val(text);
+    }
+
+    function convertGridDataToText(colors) {
+        var text = '';
+
+        colors.forEach(function(colorData){
+            text += colorData.hex;
+            if (typeof colorData.label !== 'undefined') {
+                text += ', ' + colorData.label;
+            }
+            text += '\n';
+        });
+        return text;
+    }
+
+    function removeColorFromData(hex, colors) {
+        colors = colors.filter(function(color){
+            return color.hex !== hex ? true : false; 
+        });
+        return colors;
+    }
+
+    var removeColor = function removeColor(e, hex, colorset) {
+        colorset = colorset === 'background' && backgroundColors.length === 0 ? 'foreground' : colorset;
+        var colors = colorset === 'background' ? backgroundColors : foregroundColors,
+            gridDataText = '';
+        colors = removeColorFromData(hex, colors);
+        gridDataText = convertGridDataToText(colors);
+        updateInputText(colorset, gridDataText);
+        triggerGridUpdate();
+    }
+
+    function getCurrentGridData() {
         $colorForm.find(".es-color-form__input").each(function(){
             processColorInput($(this));
         });
@@ -60,12 +94,18 @@ EightShapes.ColorForm = function() {
             backgroundColors: backgroundColors
         };
 
+        return gridData;
+    }
+
+    function triggerGridUpdate() {
+        var gridData = getCurrentGridData();
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
+        $(document).on('escg.removeColor', removeColor);
     }
 
     var initialize = function initialize() {
@@ -77,7 +117,8 @@ EightShapes.ColorForm = function() {
     };
 
     var public_vars = {
-        'initialize': initialize
+        'initialize': initialize,
+        'removeColor': removeColor
     };
 
     return public_vars;

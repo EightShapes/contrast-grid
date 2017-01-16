@@ -105,7 +105,41 @@ EightShapes.ColorForm = function() {
         }
     }
 
-    function triggerGridUpdate() {
+    function updateInputText(inputName, text) {
+        $(`#es-color-form__${inputName}-colors`).val(text);
+    }
+
+    function convertGridDataToText(colors) {
+        var text = '';
+
+        colors.forEach(function(colorData){
+            text += colorData.hex;
+            if (typeof colorData.label !== 'undefined') {
+                text += ', ' + colorData.label;
+            }
+            text += '\n';
+        });
+        return text;
+    }
+
+    function removeColorFromData(hex, colors) {
+        colors = colors.filter(function(color){
+            return color.hex !== hex ? true : false; 
+        });
+        return colors;
+    }
+
+    var removeColor = function removeColor(e, hex, colorset) {
+        colorset = colorset === 'background' && backgroundColors.length === 0 ? 'foreground' : colorset;
+        var colors = colorset === 'background' ? backgroundColors : foregroundColors,
+            gridDataText = '';
+        colors = removeColorFromData(hex, colors);
+        gridDataText = convertGridDataToText(colors);
+        updateInputText(colorset, gridDataText);
+        triggerGridUpdate();
+    }
+
+    function getCurrentGridData() {
         $colorForm.find(".es-color-form__input").each(function(){
             processColorInput($(this));
         });
@@ -115,12 +149,18 @@ EightShapes.ColorForm = function() {
             backgroundColors: backgroundColors
         };
 
+        return gridData;
+    }
+
+    function triggerGridUpdate() {
+        var gridData = getCurrentGridData();
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 
     function initializeEventHandlers() {
         $foregroundColorsInput.on('keyup', triggerGridUpdate);
         $backgroundColorsInput.on('keyup', triggerGridUpdate);
+        $(document).on('escg.removeColor', removeColor);
     }
 
     var initialize = function initialize() {
@@ -132,7 +172,8 @@ EightShapes.ColorForm = function() {
     };
 
     var public_vars = {
-        'initialize': initialize
+        'initialize': initialize,
+        'removeColor': removeColor
     };
 
     return public_vars;
@@ -211,7 +252,7 @@ EightShapes.ContrastGrid = function() {
 
     function getBackgroundColors() {
         if (typeof gridData.backgroundColors === 'undefined' || gridData.backgroundColors.length === 0) {
-            return gridData.foregroundColors.slice(0).reverse();
+            return gridData.foregroundColors.slice(0);
         } else {
             return gridData.backgroundColors;
         }
@@ -222,7 +263,14 @@ EightShapes.ContrastGrid = function() {
         for (var i=0; i < colors.length; i++) {
             var hex = colors[i].hex,
                 hexLabel = typeof colors[i].label === 'undefined' ? hex : colors[i].label,
-                $foregroundKeyCell = $foregroundKeyCellTemplate.clone().html(hexLabel).css("backgroundColor", hex);
+                $foregroundKeyCell = $foregroundKeyCellTemplate.clone(),
+                $swatch = $foregroundKeyCell.find('.es-contrast-grid__key-swatch'),
+                $label = $swatch.find(".es-contrast-grid__key-swatch-label"),
+                $removeAction = $swatch.find(".es-contrast-grid__key-swatch-remove");
+
+            $swatch.css("backgroundColor", hex).attr('data-hex', hex);
+            $removeAction.attr('data-hex', hex).attr('data-colorset', 'foreground');
+            $label.html(hexLabel);
             $foregroundKey.append($foregroundKeyCell);
         }
     }
@@ -235,9 +283,17 @@ EightShapes.ContrastGrid = function() {
             var bg = backgroundColors[i].hex,
                 bgLabel = typeof backgroundColors[i].label === 'undefined' ? bg : backgroundColors[i].label, 
                 $contentRow = $contentRowTemplate.clone(),
-                $backgroundKeyCell = $contentRow.find(".es-contrast-grid__background-key-cell");
+                $backgroundKeyCell = $contentRow.find(".es-contrast-grid__background-key-cell"),
+                $swatch = $backgroundKeyCell.find('.es-contrast-grid__key-swatch'),
+                $label = $swatch.find(".es-contrast-grid__key-swatch-label"),
+                $removeAction = $swatch.find(".es-contrast-grid__key-swatch-remove");
 
-            $backgroundKeyCell.html(bgLabel).css("backgroundColor", bg);
+            $swatch.css("backgroundColor", bg).attr('data-hex', bg);
+            $removeAction.attr('data-hex', bg).attr('data-colorset', 'background');
+            $label.html(bgLabel);
+            // $backgroundKeyCell.html(bgLabel).css("backgroundColor", bg).attr('data-hex', bg);
+
+
             for (var j = 0; j < foregroundColors.length; j++) {
                 var fg = foregroundColors[j].hex,
                     $contentCell = $contentCellTemplate.clone().css({ backgroundColor: bg, color: fg });
@@ -282,7 +338,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function setKeySwatchLabelColors() {
-        var $keys = $(".es-contrast-grid__foreground-key-cell, .es-contrast-grid__background-key-cell");
+        var $keys = $(".es-contrast-grid__key-swatch");
         $keys.each(function(){
             var backgroundColor = rgb2hex($(this).css("backgroundColor")),
                 contrastWithWhite = getContrastRatioForHex("#FFFFFF", backgroundColor);
@@ -340,6 +396,10 @@ EightShapes.ContrastGrid = function() {
 
     function initializeEventHandlers() {
         $(document).on("escg.updateGrid", updateGrid);
+        $(document).on('click', '.es-contrast-grid__key-swatch-remove', function(e){
+            e.preventDefault();
+            $(document).trigger('escg.removeColor', [$(this).attr('data-hex'), $(this).attr('data-colorset')]);
+        });
     }
 
     var initialize = function initialize() {
