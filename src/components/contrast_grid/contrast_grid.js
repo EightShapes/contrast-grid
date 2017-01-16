@@ -104,16 +104,22 @@ EightShapes.ContrastGrid = function() {
                 $contentRow = $contentRowTemplate.clone(),
                 $backgroundKeyCell = $contentRow.find(".es-contrast-grid__background-key-cell"),
                 $swatch = $backgroundKeyCell.find('.es-contrast-grid__key-swatch'),
-                $label = $swatch.find(".es-contrast-grid__key-swatch-label"),
+                $label = $swatch.find(".es-contrast-grid__key-swatch-label-text"),
+                $hexLabel = $swatch.find(".es-contrast-grid__key-swatch-label-hex"),
                 $removeAction = $swatch.find(".es-contrast-grid__key-swatch-remove");
 
             $swatch.css("backgroundColor", bg).attr('data-hex', bg);
             $removeAction.attr('data-hex', bg).attr('data-colorset', 'background');
-            $label.html(bgLabel);
+            $label.text(bgLabel);
+            if (bgLabel !== bg) {
+                $hexLabel.text(bg);
+            }
 
             for (var j = 0; j < foregroundColors.length; j++) {
                 var fg = foregroundColors[j].hex,
-                    $contentCell = $contentCellTemplate.clone().css({ backgroundColor: bg, color: fg });
+                    $contentCell = $contentCellTemplate.clone();
+
+                $contentCell.find(".es-contrast-grid__swatch").css({ backgroundColor: bg, color: fg });
 
                 if (bg == fg) {
                     $contentCell.removeAttr("style").addClass("es-contrast-grid__content-cell--empty").html("");
@@ -197,7 +203,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function addAccessibilityToSwatches() {
-        var $swatches = $(".es-contrast-grid__content-cell:not(.es-contrast-grid__content-cell--empty)");
+        var $swatches = $(".es-contrast-grid__swatch");
         $swatches.each(function(){
             var contrast = parseFloat($(this).find(".es-contrast-grid__contrast-ratio").text()),
                 $pill = $(this).find(".es-contrast-grid__accessibility-label"),
@@ -228,7 +234,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function addContrastToSwatches() {
-        var $swatches = $(".es-contrast-grid__content-cell:not(.es-contrast-grid__content-cell--empty)");
+        var $swatches = $(".es-contrast-grid__swatch");
         $swatches.each(function(){
             if (typeof $(this).css("backgroundColor") !== 'undefined' &&
                 typeof $(this).css("color") !== 'undefined') {

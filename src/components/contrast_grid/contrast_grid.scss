@@ -10,18 +10,15 @@ $large-swatch-size: 150px;
 }
 
 .es-contrast-grid__table {
+    border-collapse: collapse;
     color: #fff;
 
     td, th {
+        border: 0;
         font-size: 16px;
-        height: 80px;
-        width: 80px;
+        padding: 1px;
+        margin: 0;
     }
-}
-
-.es-contrast-grid__table {
-    border-collapse: collapse;
-    font-family: sans-serif;
 }
 
 .es-contrast-grid--dark-label {
@@ -34,13 +31,6 @@ $large-swatch-size: 150px;
     color: #000;
     font-size: 12px;
     padding: 2px 4px;
-}
-
-.es-contrast-grid__key-swatch-drag-handle {
-    display: block;
-    height: 20px;
-    width: 20px;
-    background: limegreen;
 }
 
 .es-contrast-grid__accessibility-label--dnp {
@@ -63,67 +53,60 @@ $large-swatch-size: 150px;
     }
 }
 
+.es-contrast-grid__key-swatch--foreground {
+    align-items: center;
+    // display: flex;
+    font-size: $font-size-sm;
+    height: $default-swatch-size;
+    padding: $spacing-xs;
+    text-align: left;
+    width: $default-swatch-size;
 
+    .es-contrast-grid--compact & {
+        height: $compact-swatch-size;
+        width: $compact-swatch-size;
+    }
 
+    .es-contrast-grid--large & {
+        height: $large-swatch-size;
+        width: $large-swatch-size;
+    }
 
-/* 
- * dragtable
- *
- * @Version 2.0.15
- *
- * default css
- *
- */
-/*##### the dragtable stuff #####*/
-.dragtable-sortable { 
-    list-style-type: none; margin: 0; padding: 0; -moz-user-select: none;
-}
-.dragtable-sortable li {
-    margin: 0; padding: 0; float: left; font-size: 1em; background: white; 
-}
-
-.dragtable-sortable th, .dragtable-sortable td{
-    border-left: 0px;
-}
-
-.dragtable-sortable li:first-child th, .dragtable-sortable li:first-child td {
-    border-left: 1px solid #CCC; 
-}
-
-.ui-sortable-helper {
-    opacity: 0.7;filter: alpha(opacity=70);
-}
-.ui-sortable-placeholder { 
-    -moz-box-shadow: 4px 5px 4px #C6C6C6 inset;
-    -webkit-box-shadow: 4px 5px 4px #C6C6C6 inset;
-    box-shadow: 4px 5px 4px #C6C6C6 inset;
-    border-bottom: 1px solid #CCCCCC;
-    border-top: 1px solid #CCCCCC;
-    visibility: visible !important;
-    background: #EFEFEF !important; 
-    visibility: visible !important;
-}
-.ui-sortable-placeholder * { 
-    opacity: 0.0; visibility: hidden; 
-}
-/*##### the table stuff #####*/
-table {
-    font-size: 10px;
-    border-collapse:collapse;
-    font-family:Tahoma,Helvetica,Arial,sans-serif;
-}
-td, th {
-    text-align:left;
-    vertical-align:top;
+    .es-contrast-grid__swatch-controls {
+        align-items: center;
+        display: flex;
+        margin-left: auto;
+    }
 }
 
-tr{
-    marging:0;
-    padding:0;
+.es-contrast-grid__key-swatch--background {
+    align-items: center;
+    display: flex;
+    height: $default-swatch-size;
+    padding: $spacing-xs;
+    text-align: left;
+    width: 320px;
+
+    .es-contrast-grid--compact & {
+        height: $compact-swatch-size;
+    }
+
+    .es-contrast-grid--large & {
+        height: $large-swatch-size;
+    }
+
+    .es-contrast-grid__swatch-controls {
+        align-items: center;
+        display: flex;
+        margin-left: auto;
+    }
 }
 
-table td, table th {
-    border:1px solid #CCC;
-    font-size:0.9em;
-    padding:3px;
+.es-contrast-grid__key-swatch-label-text {
+    font-weight: bold;
+}
+
+.es-contrast-grid__key-swatch-label-hex {
+    font-weight: normal;
+    font-size: $font-size-sm;
 }

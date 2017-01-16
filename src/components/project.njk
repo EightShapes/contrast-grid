@@ -81,8 +81,12 @@
                                 
                             </div>
                             <div class="es-contrast-grid__key-swatch-controls">
-                                <a class="es-contrast-grid__key-swatch-remove" href="#">Remove</a>
-                                <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--column"></span>
+                                <a class="es-contrast-grid__key-swatch-remove" href="#">
+                                    {{ icon(icon_name="close", class="es-contrast-grid__key-swatch-remove-icon")}}
+                                </a>
+                                <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--column">
+                                    {{ icon(icon_name="bars", class="es-contrast-grid__key-swatch-drag-handle-icon")}}
+                                </span>
                             </div>
                         </div>
                     </th>
@@ -93,16 +97,26 @@
                     <th class="es-contrast-grid__background-key-cell">
                         <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--background">
                             <div class="es-contrast-grid__key-swatch-label">
-                                
+                                <div class="es-contrast-grid__key-swatch-label-text">
+                                    
+                                </div>
+                                <div class="es-contrast-grid__key-swatch-label-hex">
+                                    
+                                </div>
                             </div>
                             <div class="es-contrast-grid__swatch-controls">
-                                <a class="es-contrast-grid__key-swatch-remove" href="#">Remove</a>
-                                <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--row"></span>
+                                <a class="es-contrast-grid__key-swatch-remove" href="#">
+                                    {{ icon(icon_name="close", class="es-contrast-grid__key-swatch-remove-icon")}}
+                                </a>
+                                <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--row">
+                                    {{ icon(icon_name="bars", class="es-contrast-grid__key-swatch-drag-handle-icon")}}
+                                </span>
                             </div>
                         </div>
                     </th>
                     <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
                         <div class="es-contrast-grid__swatch">
+                            <span class="es-contrast-grid__swatch-demo-text">Text</span>
                             <span class="es-contrast-grid__accessibility-label"></span>
                             <span class="es-contrast-grid__contrast-ratio"></span>
                         </div>
