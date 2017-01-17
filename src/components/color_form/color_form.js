@@ -99,7 +99,6 @@ EightShapes.ColorForm = function() {
 
     function triggerGridUpdate() {
         var gridData = getCurrentGridData();
-        console.log(gridData);
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 
@@ -156,7 +155,7 @@ EightShapes.ColorForm = function() {
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Rows");
+            $("label[for='es-color-form__foreground-colors']").text("Columns");
             $("#es-color-form__background-colors").val($("#es-color-form__foreground-colors").val());
             triggerGridUpdate();
         }

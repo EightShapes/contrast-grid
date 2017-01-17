@@ -127,3 +127,9 @@ $container-md:                 $container-desktop !default;
 $container-large-desktop:      ($screen-lg) !default;
 //** For `$screen-lg-min` and up.
 $container-lg:                 $container-large-desktop !default;
+
+
+// CONTRAST GRID
+$compact-swatch-size: 75px;
+$default-swatch-size: 100px;
+$large-swatch-size: 150px;

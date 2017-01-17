@@ -47,6 +47,10 @@
             <p>
                 Add one color per line, separating hex value and optional label by commas.
             </p>
+            <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
+                <label for="es-color-form__background-colors" class="es-color-form__label">Rows</label>
+                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors"></textarea>
+            </div>
             <div class="es-color-form__field-wrapper">
                 <label for="es-color-form__foreground-colors" class="es-color-form__label">Rows &amp; Columns</label>
                 <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea">
@@ -57,10 +61,6 @@
 #000000
                 </textarea>
                 <a href="#" class="es-color-form__show-background-colors">Make rows &amp; columns different</a>
-            </div>
-            <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
-                <label for="es-color-form__background-colors" class="es-color-form__label">Columns</label>
-                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors"></textarea>
                 <a href="#" class="es-color-form__hide-background-colors">Make rows &amp; columns the same</a>
             </div>
 
@@ -92,11 +92,20 @@
         <table class="es-contrast-grid__table">
             <thead>
                 <tr class="es-contrast-grid__foreground-key">
-                    <th><!-- Intentionally Empty --></th>
+                    <th>
+                        <div class="es-contrast-grid__key-swatch-spacer">
+                            <!-- Intentionally Empty -->
+                        </div>
+                    </th>
                     <th id="es-contrast-grid__foreground-key-cell-template" class="es-contrast-grid__foreground-key-cell">
                         <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--foreground">
                             <div class="es-contrast-grid__key-swatch-label">
-                                
+                                <div class="es-contrast-grid__key-swatch-label-text">
+                                    
+                                </div>
+                                <div class="es-contrast-grid__key-swatch-label-hex">
+                                    
+                                </div>
                             </div>
                             <div class="es-contrast-grid__key-swatch-controls">
                                 <a class="es-contrast-grid__key-swatch-remove" href="#">
@@ -130,7 +139,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="es-contrast-grid__swatch-controls">
+                            <div class="es-contrast-grid__key-swatch-controls">
                                 <a class="es-contrast-grid__key-swatch-remove" href="#">
                                     
   <svg class="icon-close es-contrast-grid__key-swatch-remove-icon">
@@ -151,8 +160,10 @@
                     <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
                         <div class="es-contrast-grid__swatch">
                             <span class="es-contrast-grid__swatch-demo-text">Text</span>
-                            <span class="es-contrast-grid__accessibility-label"></span>
-                            <span class="es-contrast-grid__contrast-ratio"></span>
+                            <div class="es-contrast-grid__swatch-stats">
+                                <span class="es-contrast-grid__accessibility-label"></span>
+                                <span class="es-contrast-grid__contrast-ratio"></span>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -161,8 +172,13 @@
     </div>
     <style class="es-contrast-grid-styles">
         .es-contrast-grid {
+  box-sizing: border-box;
   overflow: auto;
   width: 100%; }
+  .es-contrast-grid *,
+  .es-contrast-grid *:before,
+  .es-contrast-grid *:after {
+    box-sizing: inherit; }
 
 .es-contrast-grid__table {
   border-collapse: collapse;
@@ -187,8 +203,16 @@
   background: red;
   color: #FFFFFF; }
 
+.es-contrast-grid__accessibility-label--aa18 {
+  background: goldenrod; }
+
 .es-contrast-grid__swatch {
+  border: solid 1px #f3f1f1;
+  display: flex;
+  flex-direction: column;
   height: 100px;
+  justify-content: space-between;
+  padding: 8px;
   width: 100px; }
   .es-contrast-grid--compact .es-contrast-grid__swatch {
     height: 75px;
@@ -197,11 +221,53 @@
     height: 150px;
     width: 150px; }
 
+.es-contrast-grid__swatch-demo-text {
+  font-size: 18px; }
+
+.es-contrast-grid__swatch-stats {
+  align-items: center;
+  display: flex;
+  justify-content: space-between; }
+
+.es-contrast-grid__contrast-ratio {
+  color: #FFFFFF;
+  font-size: 14px; }
+  .es-contrast-grid--dark-label .es-contrast-grid__contrast-ratio {
+    color: #000000; }
+
+.es-contrast-grid__key-swatch-spacer {
+  border: solid 1px #f3f1f1;
+  height: 100px;
+  width: 320px; }
+  .es-contrast-grid--compact .es-contrast-grid__key-swatch-spacer {
+    height: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__key-swatch-spacer {
+    height: 150px; }
+
+.es-contrast-grid__swatch-spacer {
+  background: #FFFFFF;
+  border: solid 1px #f3f1f1;
+  height: 100px;
+  width: 100px; }
+  .es-contrast-grid--compact .es-contrast-grid__swatch-spacer {
+    height: 75px;
+    width: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__swatch-spacer {
+    height: 150px;
+    width: 150px; }
+
+.es-contrast-grid__key-swatch {
+  border: solid 1px #f3f1f1; }
+
 .es-contrast-grid__key-swatch--foreground {
   align-items: center;
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
   height: 100px;
+  justify-content: center;
   padding: 8px;
+  position: relative;
   text-align: left;
   width: 100px; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch--foreground {
@@ -210,10 +276,6 @@
   .es-contrast-grid--large .es-contrast-grid__key-swatch--foreground {
     height: 150px;
     width: 150px; }
-  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__swatch-controls {
-    align-items: center;
-    display: flex;
-    margin-left: auto; }
 
 .es-contrast-grid__key-swatch--background {
   align-items: center;
@@ -226,10 +288,6 @@
     height: 75px; }
   .es-contrast-grid--large .es-contrast-grid__key-swatch--background {
     height: 150px; }
-  .es-contrast-grid__key-swatch--background .es-contrast-grid__swatch-controls {
-    align-items: center;
-    display: flex;
-    margin-left: auto; }
 
 .es-contrast-grid__key-swatch-label-text {
   font-weight: bold; }

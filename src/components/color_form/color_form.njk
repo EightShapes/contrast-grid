@@ -5,6 +5,10 @@
             <p>
                 Add one color per line, separating hex value and optional label by commas.
             </p>
+            <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
+                <label for="es-color-form__background-colors" class="es-color-form__label">Rows</label>
+                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors"></textarea>
+            </div>
             <div class="es-color-form__field-wrapper">
                 <label for="es-color-form__foreground-colors" class="es-color-form__label">Rows &amp; Columns</label>
                 <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea">
@@ -15,10 +19,6 @@
 #000000
                 </textarea>
                 <a href="#" class="es-color-form__show-background-colors">Make rows &amp; columns different</a>
-            </div>
-            <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
-                <label for="es-color-form__background-colors" class="es-color-form__label">Columns</label>
-                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors"></textarea>
                 <a href="#" class="es-color-form__hide-background-colors">Make rows &amp; columns the same</a>
             </div>
 

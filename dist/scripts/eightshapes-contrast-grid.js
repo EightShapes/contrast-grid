@@ -7,14 +7,25 @@ EightShapes.CodeSnippet = function() {
     var $codeSnippet,
         formattedCss = false;
 
+    function removeInteractionHooksFromMarkup(html) {
+        var $markup = $(html).clone();
+        $markup = $markup.find(".es-contrast-grid__key-swatch-controls").remove().end();
+        $markup = $markup.find(".es-contrast-grid__table--dragtable-initialized").removeClass('es-contrast-grid__table--dragtable-initialized').end();
+        $markup = $markup.find(".es-contrast-grid__content--sortable-initialized.ui-sortable").removeClass('es-contrast-grid__content--sortable-initialized ui-sortable').end();
+        console.log($markup);
+
+        return $markup.prop('outerHTML');
+    }
+
     function updateContent(e, content) {
+        content = removeInteractionHooksFromMarkup(content);
         $codeSnippet = $(".es-code-snippet code");
 
         if (!formattedCss) {
             formattedCss = html_beautify($(".es-contrast-grid-styles").removeAttr("class").prop('outerHTML'));
         }
 
-        var formattedHtml = html_beautify(content);
+        var formattedHtml = html_beautify(content, {preserve_newlines: false});
         var html = Prism.highlight(formattedHtml + "\n\n" + formattedCss, Prism.languages.html);
         $codeSnippet.html(html);
     }
@@ -167,7 +178,6 @@ EightShapes.ColorForm = function() {
 
     function triggerGridUpdate() {
         var gridData = getCurrentGridData();
-        console.log(gridData);
         $(document).trigger('escg.updateGrid', [gridData]);
     }
 
@@ -224,7 +234,7 @@ EightShapes.ColorForm = function() {
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Rows");
+            $("label[for='es-color-form__foreground-colors']").text("Columns");
             $("#es-color-form__background-colors").val($("#es-color-form__foreground-colors").val());
             triggerGridUpdate();
         }
@@ -279,6 +289,7 @@ EightShapes.ContrastGrid = function() {
         $contentCellTemplate,
         $backgroundKey,
         showInlineStylesAsHex = true,
+        showLabelsOnColumnKeys = false,
         gridData = {
             foregroundColors: [
                 {
@@ -325,7 +336,6 @@ EightShapes.ContrastGrid = function() {
 
     function getGridMarkup() {
         var markup = $grid.prop('outerHTML');
-        
         if (showInlineStylesAsHex) {
             markup = convertRgbInlineStylesToHex(markup);
         }
@@ -352,12 +362,22 @@ EightShapes.ContrastGrid = function() {
                 hexLabel = typeof colors[i].label === 'undefined' ? hex : colors[i].label,
                 $foregroundKeyCell = $foregroundKeyCellTemplate.clone(),
                 $swatch = $foregroundKeyCell.find('.es-contrast-grid__key-swatch'),
-                $label = $swatch.find(".es-contrast-grid__key-swatch-label"),
+                $label = $swatch.find(".es-contrast-grid__key-swatch-label-text"),
+                $hexLabel = $swatch.find(".es-contrast-grid__key-swatch-label-hex"),
                 $removeAction = $swatch.find(".es-contrast-grid__key-swatch-remove");
 
             $swatch.css("backgroundColor", hex).attr('data-hex', hex);
             $removeAction.attr('data-hex', hex).attr('data-colorset', 'foreground');
-            $label.html(hexLabel);
+
+            if (showLabelsOnColumnKeys) {
+                $label.text(hexLabel);
+                if (hex !== hexLabel) {
+                    $hexLabel.text(hex);
+                }
+            } else {
+                $label.text(hex);
+            }
+
             $foregroundKey.append($foregroundKeyCell);
         }
     }
@@ -390,7 +410,7 @@ EightShapes.ContrastGrid = function() {
                 $contentCell.find(".es-contrast-grid__swatch").css({ backgroundColor: bg, color: fg });
 
                 if (bg == fg) {
-                    $contentCell.removeAttr("style").addClass("es-contrast-grid__content-cell--empty").html("");
+                    $contentCell.html("").append("<div class='es-contrast-grid__swatch-spacer'></div>");
                 }
                 $contentRow.append($contentCell);
             }
@@ -410,7 +430,13 @@ EightShapes.ContrastGrid = function() {
         $(".es-contrast-grid__content").addClass('es-contrast-grid__content--sortable-initialized').sortable({
             axis: 'y',
             containment: '.es-contrast-grid',
+            placeholder: 'es-contrast-grid__row-placeholder',
             handle: '.es-contrast-grid__key-swatch-drag-handle--row',
+            tolerance: 'pointer',
+            start: function() {
+                var columnCount = $(".es-contrast-grid__row-placeholder td").length;
+                $(".es-contrast-grid__row-placeholder").html("").append("<td colspan='" + columnCount + "'></td>");
+            },
             update: function(table) {
                 var sortedColors = extractBackgroundColorsFromGrid();
                 broadcastRowSort(sortedColors);
@@ -508,8 +534,12 @@ EightShapes.ContrastGrid = function() {
                 typeof $(this).css("color") !== 'undefined') {
                 var backgroundColor = rgb2hex($(this).css("backgroundColor")),
                     foregroundColor = rgb2hex($(this).css("color")),
-                    contrastRatio = getContrastRatioForHex(foregroundColor, backgroundColor);
+                    contrastRatio = getContrastRatioForHex(foregroundColor, backgroundColor),
+                    contrastWithWhite = getContrastRatioForHex("#FFFFFF", backgroundColor);
                 $(this).find(".es-contrast-grid__contrast-ratio").text(contrastRatio);
+                if (contrastWithWhite < 4.0) {
+                    $(this).addClass("es-contrast-grid--dark-label");
+                }
             }
         });
     }
@@ -547,9 +577,10 @@ EightShapes.ContrastGrid = function() {
     }
 
     function changeTileSize(e, tileSize) {
-        console.log("DO IT");
         $(".es-contrast-grid").removeClass("es-contrast-grid--regular es-contrast-grid--compact es-contrast-grid--large")
             .addClass(`es-contrast-grid--${tileSize}`);
+        resetGrid();
+        generateGrid();
     }
 
     function initializeEventHandlers() {

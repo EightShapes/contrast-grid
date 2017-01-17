@@ -14,33 +14,78 @@
     margin: 0; padding: 0; float: left; font-size: 1em; background: white; 
 }
 
-.dragtable-sortable th, .dragtable-sortable td{
-    border-left: 0px;
-}
-
-.dragtable-sortable li:first-child th, .dragtable-sortable li:first-child td {
-    border-left: 1px solid #CCC; 
-}
-
 .ui-sortable-helper {
-    opacity: 0.7;filter: alpha(opacity=70);
+    // opacity: 0.7;
+    // filter: alpha(opacity=70);
+    box-shadow: $drop-shadow-default;
+    transform: scale(1.02);
 }
 .ui-sortable-placeholder { 
-    -moz-box-shadow: 4px 5px 4px #C6C6C6 inset;
-    -webkit-box-shadow: 4px 5px 4px #C6C6C6 inset;
+    // -moz-box-shadow: 4px 5px 4px #C6C6C6 inset;
+    // -webkit-box-shadow: 4px 5px 4px #C6C6C6 inset;
     box-shadow: 4px 5px 4px #C6C6C6 inset;
-    border-bottom: 1px solid #CCCCCC;
-    border-top: 1px solid #CCCCCC;
+    // border-bottom: 1px solid #CCCCCC;
+    // border-top: 1px solid #CCCCCC;
     visibility: visible !important;
     background: #EFEFEF !important; 
     visibility: visible !important;
 }
-.ui-sortable-placeholder * { 
-    opacity: 0.0; visibility: hidden; 
+
+// .ui-sortable-placeholder * { 
+//     opacity: 0.0; visibility: hidden; 
+// }
+
+.es-contrast-grid__row-placeholder {
+    height: $default-swatch-size;
+    padding: 1px;
+    position: relative;
+    visibility: visible !important;
+
+    td {
+        box-shadow: inset $drop-shadow-default;
+        visibility: visible !important;
+    }
 }
 
+.es-contrast-grid__row-placeholder-cell {
+    box-shadow: 4px #C6C6C6 inset;
+}
 
 ////////////////////////
+.es-contrast-grid__key-swatch--foreground {
+    .es-contrast-grid__key-swatch-controls {
+        align-items: center;
+        display: none;
+        margin-left: auto;
+        right: 0;
+        position: absolute;
+        top: 0;
+    }
+
+    .es-contrast-grid__key-swatch-remove {
+        order: 2;
+    }
+
+    
+    &:hover {
+        .es-contrast-grid__key-swatch-controls {
+            display: flex;
+        }
+    }
+}
+
+.es-contrast-grid__key-swatch--background {
+    .es-contrast-grid__key-swatch-controls {
+        align-items: center;
+        display: none;
+        margin-left: auto;
+    }
+    
+    &:hover .es-contrast-grid__key-swatch-controls {
+        display: flex;
+    }
+}
+
 .es-contrast-grid__key-swatch-drag-handle--row {
     cursor: ns-resize;
 }

@@ -3,11 +3,20 @@
         <table class="es-contrast-grid__table">
             <thead>
                 <tr class="es-contrast-grid__foreground-key">
-                    <th><!-- Intentionally Empty --></th>
+                    <th>
+                        <div class="es-contrast-grid__key-swatch-spacer">
+                            <!-- Intentionally Empty -->
+                        </div>
+                    </th>
                     <th id="es-contrast-grid__foreground-key-cell-template" class="es-contrast-grid__foreground-key-cell">
                         <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--foreground">
                             <div class="es-contrast-grid__key-swatch-label">
-                                
+                                <div class="es-contrast-grid__key-swatch-label-text">
+                                    
+                                </div>
+                                <div class="es-contrast-grid__key-swatch-label-hex">
+                                    
+                                </div>
                             </div>
                             <div class="es-contrast-grid__key-swatch-controls">
                                 <a class="es-contrast-grid__key-swatch-remove" href="#">
@@ -33,7 +42,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="es-contrast-grid__swatch-controls">
+                            <div class="es-contrast-grid__key-swatch-controls">
                                 <a class="es-contrast-grid__key-swatch-remove" href="#">
                                     {{ icon(icon_name="close", class="es-contrast-grid__key-swatch-remove-icon")}}
                                 </a>
@@ -46,8 +55,10 @@
                     <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
                         <div class="es-contrast-grid__swatch">
                             <span class="es-contrast-grid__swatch-demo-text">Text</span>
-                            <span class="es-contrast-grid__accessibility-label"></span>
-                            <span class="es-contrast-grid__contrast-ratio"></span>
+                            <div class="es-contrast-grid__swatch-stats">
+                                <span class="es-contrast-grid__accessibility-label"></span>
+                                <span class="es-contrast-grid__contrast-ratio"></span>
+                            </div>
                         </div>
                     </td>
                 </tr>

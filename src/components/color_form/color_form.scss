@@ -34,8 +34,10 @@
 }
 
 
-.es-color-form__radio-button{
+.es-color-form__radio-button {
+    font-weight: 400;
     display: block;
+    margin-bottom: $spacing-sm;
 }
 
 .es-color-form__content {
@@ -52,4 +54,12 @@
 
 .es-color-form--show-background-colors-input .es-color-form__show-background-colors {
     display: none;
+}
+
+.es-color-form__hide-background-colors {
+    display: none;
+
+    .es-color-form--show-background-colors-input & {
+        display: block;
+    }
 }
