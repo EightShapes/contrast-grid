@@ -53,23 +53,38 @@
 
 ////////////////////////
 .es-contrast-grid__key-swatch--foreground {
+    .es-contrast-grid__key-swatch-label {
+        order: 2;
+        margin-bottom: auto;
+        margin-top: auto;
+    }
+
     .es-contrast-grid__key-swatch-controls {
         align-items: center;
-        display: none;
-        margin-left: auto;
-        right: 0;
-        position: absolute;
-        top: 0;
+        display: flex;
+        height: 20px;
+        order: 1;
+        justify-content: flex-end;
+        margin-top: -20px;
+        padding-top: 20px;
+        width: 100%;
+        visibility: hidden;
+
+        > * {
+            display: block;
+            margin-top: $spacing-xs;
+        }
     }
 
     .es-contrast-grid__key-swatch-remove {
+        margin-right: 0;
         order: 2;
     }
 
     
     &:hover {
         .es-contrast-grid__key-swatch-controls {
-            display: flex;
+            visibility: visible;
         }
     }
 }

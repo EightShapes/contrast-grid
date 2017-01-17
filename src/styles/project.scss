@@ -11,6 +11,7 @@ body {
   font-family: $font-family-default;
   font-weight: $font-weight-light;
   margin: 0;
+  min-height: 100vh;
   padding: 0;
 }
 
@@ -29,11 +30,16 @@ a {
     }
 }
 
+.es-contrast-grid__flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .es-contrast-grid__outer-wrap {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 .es-contrast-grid__header {
@@ -41,14 +47,17 @@ a {
     background: $color-gray-12;
     color: $color-white;
     display: flex;
-    flex: 0 0 92px;
+    height: 92px;
+    flex: none;
+    // flex: 0 0 92px;
+    // flex-grow: 0;
     justify-content: space-between;
     padding: $spacing-md;
 }
 
 .es-contrast-grid-generator {
     display: flex;
-    flex: 1;
+    flex: 1 1 100%;
 
     .es-contrast-grid__outer-wrap--code-snippet-visible & {
         display: none;

@@ -1,4 +1,5 @@
 {% import 'project.njk' as components %}
+<!DOCTYPE html>
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
@@ -16,28 +17,33 @@
     <script src="scripts/beautify-html.js"></script>
     <script src="scripts/beautify-css.js"></script>
     <script src="scripts/svg4everybody.min.js"></script>
+{#     <script>
+        svg4everybody();
+    </script> #}
 </head>
 <body>
-    <div class="es-contrast-grid__outer-wrap">
-        <div class="es-contrast-grid__header">
-            <h1 class="es-contrast-grid__title">
-                {{ components.icon(icon_name="eightshapes-logo", class="es-contrast-grid__title-logo") }}
-                <span class="es-contrast-grid__title-text">Contrast Grid</span>
-            </h1>
-            <a class="es-contrast-grid__header-link" href="https://github.com/EightShapes/contrast-grid">
-                {{ components.icon(icon_name="github", class="es-contrast-grid__header-link-logo") }}
-                <span class="es-contrast-grid__header-link-text">
-                    On Github
-                </span>
-            </a>
-        </div>
-        <div class="es-contrast-grid-generator">
-            {{ components.color_form() }}
-            <div class="es-contrast-grid-generator__content-wrap">
-                {{ components.contrast_grid() }}    
+    <div class="es-contrast-grid__flex-container">
+        <div class="es-contrast-grid__outer-wrap">
+            <div class="es-contrast-grid__header">
+                <h1 class="es-contrast-grid__title">
+                    {{ components.icon(icon_name="eightshapes-logo", class="es-contrast-grid__title-logo") }}
+                    <span class="es-contrast-grid__title-text">Contrast Grid</span>
+                </h1>
+                <a class="es-contrast-grid__header-link" href="https://github.com/EightShapes/contrast-grid">
+                    {{ components.icon(icon_name="github", class="es-contrast-grid__header-link-logo") }}
+                    <span class="es-contrast-grid__header-link-text">
+                        On Github
+                    </span>
+                </a>
             </div>
+            <div class="es-contrast-grid-generator">
+                {{ components.color_form() }}
+                <div class="es-contrast-grid-generator__content-wrap">
+                    {{ components.contrast_grid() }}    
+                </div>
+            </div>
+            {{ components.code_snippet() }}
         </div>
-        {{ components.code_snippet() }}
     </div>
 </body>
 </html>

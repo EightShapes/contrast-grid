@@ -51,7 +51,7 @@ EightShapes.ColorForm = function() {
     }
 
     function updateInputText(inputName, text) {
-        $(`#es-color-form__${inputName}-colors`).val(text);
+        $('#es-color-form__' + inputName + '-colors').val(text);
     }
 
     function convertGridDataToText(colors) {

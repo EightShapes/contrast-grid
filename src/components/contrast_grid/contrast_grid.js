@@ -215,6 +215,7 @@ EightShapes.ContrastGrid = function() {
         setKeySwatchLabelColors();
         disableDragUi();
         enableDragUi();
+        svg4everybody(); // render icons on IE
         broadcastGridUpdate();
     }
 
@@ -300,7 +301,7 @@ EightShapes.ContrastGrid = function() {
 
     function changeTileSize(e, tileSize) {
         $(".es-contrast-grid").removeClass("es-contrast-grid--regular es-contrast-grid--compact es-contrast-grid--large")
-            .addClass(`es-contrast-grid--${tileSize}`);
+            .addClass('es-contrast-grid--' + tileSize);
         resetGrid();
         generateGrid();
     }
@@ -322,6 +323,7 @@ EightShapes.ContrastGrid = function() {
         initializeEventHandlers();
         setTemplateObjects();
         // generateGrid();
+        $('.defaultTable').dragtable();
     };
 
 
