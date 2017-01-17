@@ -32,8 +32,16 @@
     background: #ccc;
     border-radius: 4px;
     color: #000;
-    font-size: 12px;
+    font-size: $font-size-xs;
     padding: 2px 4px;
+
+    .es-contrast-grid--large & {
+        font-size: $font-size-lg;
+    }
+
+    .es-contrast-grid--compact & {
+        font-size: $font-size-xs * .9;
+    }
 }
 
 .es-contrast-grid__accessibility-label--dnp {
@@ -61,12 +69,17 @@
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
+        padding: $spacing-sm;
         width: $large-swatch-size;
     }
 }
 
 .es-contrast-grid__swatch-demo-text {
     font-size: 18px;
+
+    .es-contrast-grid--large & {
+        font-size: $font-size-xl;
+    }
 }
 
 .es-contrast-grid__swatch-stats {
@@ -78,6 +91,14 @@
 .es-contrast-grid__contrast-ratio {
     color: $color-white;
     font-size: $font-size-sm;
+
+    .es-contrast-grid--large & {
+        font-size: $font-size-lg;
+    }
+
+    .es-contrast-grid--compact & {
+        font-size: $font-size-xs;
+    }
 
     .es-contrast-grid--dark-label & {
         color: $color-black;
@@ -138,6 +159,7 @@
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
+        padding: $spacing-sm;
         width: $large-swatch-size;
     }
 }
@@ -156,14 +178,23 @@
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
+        padding: $spacing-sm;
     }
 }
 
 .es-contrast-grid__key-swatch-label-text {
     font-weight: bold;
+
+    .es-contrast-grid--large & {
+        font-size: $font-size-lg;
+    }
 }
 
 .es-contrast-grid__key-swatch-label-hex {
     font-weight: normal;
     font-size: $font-size-sm;
+
+    .es-contrast-grid--large & {
+        font-size: $font-size-default;
+    }
 }

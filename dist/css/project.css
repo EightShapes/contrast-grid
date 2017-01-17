@@ -17,7 +17,7 @@
   top: -2px; }
 
 .es-code-snippet__hide-snippet-icon {
-  fill: #4784FF;
+  fill: #4278B2;
   height: 16px;
   width: 16px; }
 
@@ -94,13 +94,13 @@
   font-size: 16px;
   height: 200px;
   padding: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
   width: 100%; }
 
 .es-color-form__label {
   display: block;
   font-weight: bold;
-  margin-bottom: 8px; }
+  margin-bottom: 15px; }
 
 .es-color-form__field-wrapper {
   margin-bottom: 26px; }
@@ -108,7 +108,7 @@
 .es-color-form__radio-button {
   font-weight: 400;
   display: block;
-  margin-bottom: 8px; }
+  margin-bottom: 15px; }
 
 .es-color-form__content {
   margin-bottom: 32px; }
@@ -211,7 +211,7 @@
   cursor: ew-resize; }
 
 .es-contrast-grid__key-swatch-remove {
-  margin-right: 8px; }
+  margin-right: 15px; }
 
 .es-contrast-grid__key-swatch-remove-icon {
   fill: #FFFFFF;
@@ -242,10 +242,10 @@ body {
   box-sizing: inherit; }
 
 a {
-  color: #4784FF;
+  color: #4278B2;
   text-decoration: none; }
   a:hover {
-    color: #004ae0; }
+    color: #264668; }
 
 .es-contrast-grid__flex-container {
   display: flex;
@@ -311,7 +311,7 @@ a {
 .es-contrast-grid__header-link-logo {
   fill: #FFFFFF;
   height: 20px;
-  margin-right: 8px;
+  margin-right: 15px;
   width: 20px; }
   .es-contrast-grid__header-link:hover .es-contrast-grid__header-link-logo {
     fill: #1e1e1e; }
@@ -319,14 +319,14 @@ a {
 .es-button {
   border: 0;
   border-radius: 4px;
-  background: #4784FF;
+  background: #4278B2;
   display: inline-block;
   color: #FFFFFF;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   padding: 8px 32px; }
   .es-button:hover {
-    background: #004ae0;
+    background: #264668;
     color: #FFFFFF; }
   .es-button:before {
     content: '';
