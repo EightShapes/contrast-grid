@@ -94,13 +94,13 @@
   font-size: 16px;
   height: 200px;
   padding: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   width: 100%; }
 
 .es-color-form__label {
   display: block;
   font-weight: bold;
-  margin-bottom: 15px; }
+  margin-bottom: 8px; }
 
 .es-color-form__field-wrapper {
   margin-bottom: 26px; }
@@ -108,7 +108,7 @@
 .es-color-form__radio-button {
   font-weight: 400;
   display: block;
-  margin-bottom: 15px; }
+  margin-bottom: 8px; }
 
 .es-color-form__content {
   margin-bottom: 32px; }

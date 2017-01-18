@@ -54,7 +54,6 @@
 }
 
 .es-contrast-grid__swatch {
-    border: solid 1px $color-gray-95;
     display: flex;
     flex-direction: column;
     height: $default-swatch-size;
@@ -134,10 +133,6 @@
         height: $large-swatch-size;
         width: $large-swatch-size;
     }
-}
-
-.es-contrast-grid__key-swatch {
-    border: solid 1px $color-gray-95;
 }
 
 .es-contrast-grid__key-swatch--foreground {
