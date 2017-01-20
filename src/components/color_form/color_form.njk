@@ -1,8 +1,11 @@
 {% macro color_form() %}
     <form method="GET" class="es-color-form">
         <div class="es-color-form__content">
+            <p class="es-color-form__copy">
+                Test many foreground and background color combos for compliance with <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG 2.0 minimum contrast</a>.
+            </p>
             <h2 class="es-color-form__title">Colors</h2>
-            <p>
+            <p class="es-color-form__copy">
                 Add one color per line, separating hex value and optional label by commas.
             </p>
             <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
@@ -38,9 +41,6 @@
                 </label>
             </div>
 
-
-            <button class="es-color-form__apply es-button" type="button">Apply</button>
         </div>
-        <a class="es-color-form__view-code-toggle" href="#">View &amp; Copy Code</a>
     </form>
 {% endmacro %}

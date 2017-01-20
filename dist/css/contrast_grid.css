@@ -1,3 +1,7 @@
+/* Override Contrast Grid Styles to make color and font changes */
+.es-contrast-grid {
+  font-family: sans-serif; }
+
 .es-contrast-grid {
   box-sizing: border-box;
   overflow: auto;
@@ -7,13 +11,16 @@
   .es-contrast-grid *:after {
     box-sizing: inherit; }
 
+.es-contrast-grid__table-wrap {
+  width: auto; }
+
 .es-contrast-grid__table {
   border-collapse: collapse;
   color: #fff; }
   .es-contrast-grid__table td, .es-contrast-grid__table th {
-    border: 0;
+    border: solid 1px transparent;
     font-size: 16px;
-    padding: 1px;
+    padding: 0;
     margin: 0; }
 
 .es-contrast-grid--dark-label {
@@ -22,13 +29,12 @@
 .es-contrast-grid__accessibility-label {
   background: #ccc;
   border-radius: 4px;
+  display: inline-block;
   color: #000;
   font-size: 12px;
-  padding: 2px 4px; }
-  .es-contrast-grid--large .es-contrast-grid__accessibility-label {
-    font-size: 20px; }
-  .es-contrast-grid--compact .es-contrast-grid__accessibility-label {
-    font-size: 10.8px; }
+  padding: 2px 4px;
+  text-align: center;
+  width: 36px; }
 
 .es-contrast-grid__accessibility-label--dnp {
   background: red;
@@ -38,7 +44,6 @@
   background: goldenrod; }
 
 .es-contrast-grid__swatch {
-  border: solid 1px #f3f1f1;
   display: flex;
   flex-direction: column;
   height: 100px;
@@ -54,9 +59,7 @@
     width: 150px; }
 
 .es-contrast-grid__swatch-demo-text {
-  font-size: 18px; }
-  .es-contrast-grid--large .es-contrast-grid__swatch-demo-text {
-    font-size: 26px; }
+  font-size: 16px; }
 
 .es-contrast-grid__swatch-stats {
   align-items: center;
@@ -66,15 +69,10 @@
 .es-contrast-grid__contrast-ratio {
   color: #FFFFFF;
   font-size: 14px; }
-  .es-contrast-grid--large .es-contrast-grid__contrast-ratio {
-    font-size: 20px; }
-  .es-contrast-grid--compact .es-contrast-grid__contrast-ratio {
-    font-size: 12px; }
   .es-contrast-grid--dark-label .es-contrast-grid__contrast-ratio {
     color: #000000; }
 
 .es-contrast-grid__key-swatch-spacer {
-  border: solid 1px #f3f1f1;
   height: 100px;
   width: 320px; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch-spacer {
@@ -84,7 +82,6 @@
 
 .es-contrast-grid__swatch-spacer {
   background: #FFFFFF;
-  border: solid 1px #f3f1f1;
   height: 100px;
   width: 100px; }
   .es-contrast-grid--compact .es-contrast-grid__swatch-spacer {
@@ -93,9 +90,6 @@
   .es-contrast-grid--large .es-contrast-grid__swatch-spacer {
     height: 150px;
     width: 150px; }
-
-.es-contrast-grid__key-swatch {
-  border: solid 1px #f3f1f1; }
 
 .es-contrast-grid__key-swatch--foreground {
   align-items: center;
@@ -130,11 +124,32 @@
 
 .es-contrast-grid__key-swatch-label-text {
   font-weight: bold; }
-  .es-contrast-grid--large .es-contrast-grid__key-swatch-label-text {
-    font-size: 20px; }
 
 .es-contrast-grid__key-swatch-label-hex {
   font-weight: normal;
   font-size: 14px; }
-  .es-contrast-grid--large .es-contrast-grid__key-swatch-label-hex {
-    font-size: 16px; }
+
+td.es-contrast-grid__key-cell {
+  padding-top: 26px; }
+
+.es-contrast-grid-key {
+  align-items: center;
+  border: solid 1px #f3f1f1;
+  color: #000000;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  width: 100%; }
+
+.es-contrast-grid-key__label {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 8px; }
+  .es-contrast-grid-key__label .es-contrast-grid__accessibility-label {
+    margin-right: 8px; }
+  .es-contrast-grid-key__label:last-child {
+    margin-bottom: 0; }
+
+.es-contrast-grid-key__link {
+  font-size: 14px; }

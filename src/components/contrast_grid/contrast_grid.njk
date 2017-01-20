@@ -1,71 +1,98 @@
 {% macro contrast_grid() %}
     <div class="es-contrast-grid">
-        <table class="es-contrast-grid__table">
-            <thead>
-                <tr class="es-contrast-grid__foreground-key">
-                    <th>
-                        <div class="es-contrast-grid__key-swatch-spacer">
-                            <!-- Intentionally Empty -->
-                        </div>
-                    </th>
-                    <th id="es-contrast-grid__foreground-key-cell-template" class="es-contrast-grid__foreground-key-cell">
-                        <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--foreground">
-                            <div class="es-contrast-grid__key-swatch-label">
-                                <div class="es-contrast-grid__key-swatch-label-text">
-                                    
-                                </div>
-                                <div class="es-contrast-grid__key-swatch-label-hex">
-                                    
-                                </div>
+        <div class="es-contrast-grid__inner">
+            <table class="es-contrast-grid__table">
+                <thead>
+                    <tr class="es-contrast-grid__foreground-key">
+                        <th>
+                            <div class="es-contrast-grid__key-swatch-spacer">
+                                <!-- Intentionally Empty -->
                             </div>
-                            <div class="es-contrast-grid__key-swatch-controls">
-                                <a class="es-contrast-grid__key-swatch-remove" href="#">
-                                    {{ icon(icon_name="close", class="es-contrast-grid__key-swatch-remove-icon")}}
-                                </a>
-                                <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--column">
-                                    {{ icon(icon_name="bars", class="es-contrast-grid__key-swatch-drag-handle-icon")}}
-                                </span>
-                            </div>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="es-contrast-grid__content">
-                <tr id="es-contrast-grid__content-row-template" class="es-contrast-grid__content-row">
-                    <th class="es-contrast-grid__background-key-cell">
-                        <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--background">
-                            <div class="es-contrast-grid__key-swatch-label">
-                                <div class="es-contrast-grid__key-swatch-label-text">
-                                    
+                        </th>
+                        <th id="es-contrast-grid__foreground-key-cell-template" class="es-contrast-grid__foreground-key-cell">
+                            <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--foreground">
+                                <div class="es-contrast-grid__key-swatch-label">
+                                    <div class="es-contrast-grid__key-swatch-label-text">
+                                        
+                                    </div>
+                                    <div class="es-contrast-grid__key-swatch-label-hex">
+                                        
+                                    </div>
                                 </div>
-                                <div class="es-contrast-grid__key-swatch-label-hex">
-                                    
+                                <div class="es-contrast-grid__key-swatch-controls">
+                                    <a class="es-contrast-grid__key-swatch-remove" href="#">
+                                        {{ icon(icon_name="close2", class="es-contrast-grid__key-swatch-remove-icon")}}
+                                    </a>
+                                    <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--column">
+                                        {{ icon(icon_name="grip", class="es-contrast-grid__key-swatch-drag-handle-icon")}}
+                                    </span>
                                 </div>
                             </div>
-                            <div class="es-contrast-grid__key-swatch-controls">
-                                <a class="es-contrast-grid__key-swatch-remove" href="#">
-                                    {{ icon(icon_name="close", class="es-contrast-grid__key-swatch-remove-icon")}}
-                                </a>
-                                <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--row">
-                                    {{ icon(icon_name="bars", class="es-contrast-grid__key-swatch-drag-handle-icon")}}
-                                </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="es-contrast-grid__content">
+                    <tr id="es-contrast-grid__content-row-template" class="es-contrast-grid__content-row">
+                        <th class="es-contrast-grid__background-key-cell">
+                            <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--background">
+                                <div class="es-contrast-grid__key-swatch-label">
+                                    <div class="es-contrast-grid__key-swatch-label-text">
+                                        
+                                    </div>
+                                    <div class="es-contrast-grid__key-swatch-label-hex">
+                                        
+                                    </div>
+                                </div>
+                                <div class="es-contrast-grid__key-swatch-controls">
+                                    <a class="es-contrast-grid__key-swatch-remove" href="#">
+                                        {{ icon(icon_name="close2", class="es-contrast-grid__key-swatch-remove-icon")}}
+                                    </a>
+                                    <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--row">
+                                        {{ icon(icon_name="grip", class="es-contrast-grid__key-swatch-drag-handle-icon")}}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </th>
-                    <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
-                        <div class="es-contrast-grid__swatch">
-                            <span class="es-contrast-grid__swatch-demo-text">Text</span>
-                            <div class="es-contrast-grid__swatch-stats">
-                                <span class="es-contrast-grid__accessibility-label"></span>
-                                <span class="es-contrast-grid__contrast-ratio"></span>
+                        </th>
+                        <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
+                            <div class="es-contrast-grid__swatch">
+                                <span class="es-contrast-grid__swatch-demo-text">Text</span>
+                                <div class="es-contrast-grid__swatch-stats">
+                                    <span class="es-contrast-grid__accessibility-label"></span>
+                                    <span class="es-contrast-grid__contrast-ratio"></span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="es-contrast-grid__key">
+                    <tr class="es-contrast-grid__key-row">
+                        <td class="es-contrast-grid__key-cell">
+                            <div class="es-contrast-grid-key">
+                                <div class="es-contrast-grid-key__column">
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--aaa">AAA</span> Pass, AAA (7+)
+                                    </div>
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--aa">AA</span> Pass, AA (4.5+)
+                                    </div>
+                                </div>
+                                <div class="es-contrast-grid-key__column">
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--aa18">AA18</span> Pass, Large Text Only (3+)
+                                    </div>
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--dnp">DNP</span> Does Not Pass
+                                    </div>
+                                </div>
+                                <a class="es-contrast-grid-key__link" href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">About WCAG 2.0 contrast</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <style class="es-contrast-grid-styles">
+            {% include 'contrast_grid.css' %}
+        </style>
     </div>
-    <style class="es-contrast-grid-styles">
-        {% include 'contrast_grid.css' %}
-    </style>
 {% endmacro %}

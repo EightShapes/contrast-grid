@@ -3,4 +3,5 @@ $(document).ready(function(){
     EightShapes.ContrastGrid.initialize();
     EightShapes.CodeSnippet.initialize();
     EightShapes.ColorForm.initialize();
+    EightShapes.Tabs.initialize();
 });

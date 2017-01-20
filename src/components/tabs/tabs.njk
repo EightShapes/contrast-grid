@@ -1,0 +1,19 @@
+{% macro tabs(labels=[
+                {
+                    name: "First",
+                    active: true
+                }, 
+                {
+                    name: "Second"
+                }]) %}
+    <div class="es-tabs">
+        {% for label in labels %}
+            {% if label.id %}
+                {% set id = label.id %}
+            {% else %}
+                {% set id = "es-tabs__global-panel--" + label.name | lower | replace(' ', '-') | replace(r/[~!@\$%\^&\*\(\)\+=,\.\/\;:\?><\[\]\{}\|`#''""]/g, '') %}
+            {% endif %}
+            <label class="es-tabs__label{{ ' es-tabs__label--active' if label.active }}" for="{{ id }}"><span class="es-tabs__label-text">{{ label.name }}</span></label>
+        {% endfor %}
+    </div>
+{% endmacro %}

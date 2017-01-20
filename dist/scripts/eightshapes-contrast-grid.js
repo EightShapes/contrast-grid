@@ -485,9 +485,15 @@ EightShapes.ContrastGrid = function() {
         $(document).trigger("escg.contrastGridUpdated", [getGridMarkup()]);
     }
 
+    function setKeyCellWidth() {
+        var columnCount = $(".es-contrast-grid__table tr:first-child td").length;
+        $(".es-contrast-grid__key-cell").attr("colspan", columnCount);
+    }
+
     function generateGrid() {
         generateForegroundKey();
         generateContentRows();
+        setKeyCellWidth();
         addContrastToSwatches();
         addAccessibilityToSwatches();
         setKeySwatchLabelColors();
@@ -737,9 +743,45 @@ function rgb2hex(rgb) {
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
 
+var EightShapes = EightShapes || {};
+
+EightShapes.Tabs = function() {
+    'use strict';
+
+    function hideVisibleGlobalTabs() {
+        $(".es-tabs__label--active").removeClass("es-tabs__label--active");
+        $("body").removeClass( function(index, className) {
+            return (className.match (/(^|\s)es-tabs__global-panel--\S+/g) || []).join(' ');
+        });
+    }
+
+    function showGlobalTab(e) {
+        var $tabs = $(e.target).closest(".es-tabs__label"),
+            tabId = $tabs.attr("for");
+        hideVisibleGlobalTabs();
+        $("body").addClass(tabId);
+        $tabs.addClass("es-tabs__label--active");
+    }
+
+    function setEventHandlers() {
+        $(".es-tabs__label").on("click", showGlobalTab);
+    }
+
+    var initialize = function initialize() {
+        setEventHandlers();
+    };
+
+    var public_vars = {
+        'initialize': initialize
+    };
+
+    return public_vars;
+}();
+
 $(document).ready(function(){
     // Initialize the various components in the correct order
     EightShapes.ContrastGrid.initialize();
     EightShapes.CodeSnippet.initialize();
     EightShapes.ColorForm.initialize();
+    EightShapes.Tabs.initialize();
 });

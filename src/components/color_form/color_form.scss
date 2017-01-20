@@ -1,10 +1,4 @@
 .es-color-form {
-    background: $color-gray-95;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0;
-    flex: 0 0 320px;
     padding: $spacing-md;
 }
 
@@ -33,6 +27,9 @@
     margin-bottom: $spacing-md;
 }
 
+.es-color-form__copy {
+    margin: 0 0 $spacing-default;
+}
 
 .es-color-form__radio-button {
     font-weight: 400;

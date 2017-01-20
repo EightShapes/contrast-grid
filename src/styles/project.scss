@@ -2,6 +2,7 @@
 @import 'code_snippet/code_snippet';
 @import 'color_form/color_form';
 @import 'contrast_grid/contrast_grid_interactions';
+@import 'tabs/tabs';
 
 
 
@@ -30,19 +31,19 @@ a {
     }
 }
 
-.es-contrast-grid__flex-container {
+.es-web-tool__flex-container {
     display: flex;
     flex-direction: column;
 }
 
-.es-contrast-grid__outer-wrap {
+.es-web-tool__outer-wrap {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     min-height: 100vh;
 }
 
-.es-contrast-grid__header {
+.es-web-tool__header {
     align-items: center;
     background: $color-gray-12;
     color: $color-white;
@@ -55,21 +56,19 @@ a {
     padding: $spacing-md;
 }
 
-.es-contrast-grid-generator {
+.es-web-tool__body {
+    align-items: stretch;
     display: flex;
-    flex: 1 1 100%;
-
-    .es-contrast-grid__outer-wrap--code-snippet-visible & {
-        display: none;
-    }
+    flex: 1 1 auto;
+    max-width: 100vw;
 }
 
-.es-contrast-grid-generator__content-wrap {
-    min-width: 0;
-    padding: $spacing-md;
+.es-web-tool__sidebar {
+    background: $color-gray-95;
+    flex: 0 0 320px;
 }
 
-.es-contrast-grid__title {
+.es-web-tool__title {
     align-items: center;
     display: flex;
     font-weight: 300;
@@ -77,13 +76,13 @@ a {
     margin: 0;
 }
 
-.es-contrast-grid__title-logo {
+.es-web-tool__title-logo {
     fill: $color-white;
     margin-right: $spacing-md / 2;
     width: 140px;
 }
 
-.es-contrast-grid__title-text {
+.es-web-tool__title-text {
     display: block;
     border-left: solid 1px $color-white;
     padding-left: $spacing-md / 2 - 1px;
@@ -91,7 +90,7 @@ a {
     top: -1px;
 }
 
-.es-contrast-grid__header-link {
+.es-web-tool__header-link {
     align-items: center;
     color: $color-white;
     border-radius: $spacing-xs / 2;
@@ -106,7 +105,7 @@ a {
     }
 }
 
-.es-contrast-grid__header-link-logo {
+.es-web-tool__header-link-logo {
     fill: $color-white;
     height: 20px;
     margin-right: $spacing-sm;
@@ -137,4 +136,10 @@ a {
         display: block;
         margin-bottom: -2px;
     }
+}
+
+.es-web-tool__results {
+    flex: 1;
+    max-width: calc(100vw - 320px);
+    padding: $spacing-default;
 }

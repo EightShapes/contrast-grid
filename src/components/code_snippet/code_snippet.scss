@@ -1,10 +1,13 @@
 .es-code-snippet {
-    background: $color-gray-95;
+    // background: $color-gray-95;
     display: none;
-    flex: 1;
-    padding: $spacing-md;
+    // flex: 1;
+    // padding: $spacing-md;
     
-    .es-contrast-grid__outer-wrap--code-snippet-visible & {
+    // .es-contrast-grid__outer-wrap--code-snippet-visible & {
+    //     display: block;
+    // }
+    .es-tabs__global-panel--copy-code & {
         display: block;
     }
 }
@@ -29,6 +32,7 @@
 
 .es-code-snippet__code-wrap {
     background: $color-white;
+    border: solid 1px $color-gray-53;
     max-height: 60vh;
     overflow-y: scroll;
 }

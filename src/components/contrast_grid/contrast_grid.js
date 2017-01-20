@@ -207,9 +207,15 @@ EightShapes.ContrastGrid = function() {
         $(document).trigger("escg.contrastGridUpdated", [getGridMarkup()]);
     }
 
+    function setKeyCellWidth() {
+        var columnCount = $(".es-contrast-grid__table tr:first-child td").length;
+        $(".es-contrast-grid__key-cell").attr("colspan", columnCount);
+    }
+
     function generateGrid() {
         generateForegroundKey();
         generateContentRows();
+        setKeyCellWidth();
         addContrastToSwatches();
         addAccessibilityToSwatches();
         setKeySwatchLabelColors();
