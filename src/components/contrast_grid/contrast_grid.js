@@ -160,7 +160,6 @@ EightShapes.ContrastGrid = function() {
                 ui.placeholder.html("").append("<td colspan='" + columnCount + "'></td>");
                 $(".es-contrast-grid__foreground-key").find("th").each(function(index){
                     ui.helper.find("td:nth-child(" + (index + 1) + ")").width($(this).outerWidth() + "px");
-                    // console.log($(this).outerWidth());
                 });
             },
             update: function(table) {
@@ -337,7 +336,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function initializeEventHandlers() {
-        $(document).on("escg.updateGrid", updateGrid);
+        $(document).on("escg.colorFormValuesChanged", updateGrid);
         $(document).on("escg.tileSizeChanged", changeTileSize);
         $(document).on('click', '.es-contrast-grid__key-swatch-remove', function(e){
             e.preventDefault();
