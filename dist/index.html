@@ -12,12 +12,13 @@
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <script src="scripts/jquery.deserialize.min.js"></script>
+    <script src="scripts/jquery.typewatch.js"></script>
     <script src="scripts/dragtable.js"></script>
-    <script src="scripts/eightshapes-contrast-grid.js"></script>
     <script src="scripts/beautify.js"></script>
     <script src="scripts/beautify-html.js"></script>
     <script src="scripts/beautify-css.js"></script>
     <script src="scripts/svg4everybody.min.js"></script>
+    <script src="scripts/eightshapes-contrast-grid.js"></script>
 
 </head>
 <body>
@@ -72,11 +73,11 @@
             </p>
             <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
                 <label for="es-color-form__background-colors" class="es-color-form__label">Rows</label>
-                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors"></textarea>
+                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
             </div>
             <div class="es-color-form__field-wrapper">
                 <label for="es-color-form__foreground-colors" class="es-color-form__label">Rows &amp; Columns</label>
-                <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea">
+                <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 #FFFFFF, Brand White
 #EDEDEF
 #4784FF, Interactive Blue
@@ -419,7 +420,7 @@ td.es-contrast-grid__key-cell {
                 <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
             </a>
         </div>
-        <input id="es-code-snippet__persistent-url" type="text" class="es-code-snippet__persistent-url" readonly="true">
+        <input id="es-code-snippet__persistent-url" type="text" class="es-code-snippet__persistent-url" readonly="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 
 
         <div class="es-code-snippet__copy-header">

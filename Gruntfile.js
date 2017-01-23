@@ -106,6 +106,7 @@ module.exports = function(grunt) {
                     'node_modules/jquery/dist/jquery.min.js',
                     'node_modules/jquery-ui-dist/jquery-ui.min.js',
                     'node_modules/jquery-deserialize/dist/jquery.deserialize.min.js',
+                    'node_modules/jquery.typewatch/jquery.typewatch.js',
                     'node_modules/clipboard/dist/clipboard.min.js',
                     'node_modules/prismjs/prism.js',
                     'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js',

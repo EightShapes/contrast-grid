@@ -164,7 +164,10 @@ EightShapes.ColorForm = function() {
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
             $("label[for='es-color-form__foreground-colors']").text("Columns");
 
-            $backgroundColors.val($foregroundColors.val());
+            if ($backgroundColors.val().length == 0) {
+                // $backgroundColors will already have a value when loading from the url
+                $backgroundColors.val($foregroundColors.val());
+            }
             
             if (typeof $foregroundColors.attr("data-persisted-text") !== 'undefined') {
                 $foregroundColors.val($foregroundColors.attr("data-persisted-text"));
@@ -185,13 +188,18 @@ EightShapes.ColorForm = function() {
     }
 
     function updateUrl() {
-        console.log("Change that URL");
         window.history.pushState(false, false, '/?' + $colorForm.serialize());
     }
 
     function initializeEventHandlers() {
-        $foregroundColorsInput.on('keyup', broadcastFormValueChange);
-        $backgroundColorsInput.on('keyup', broadcastFormValueChange);
+        $foregroundColorsInput.typeWatch({
+            wait: 500,
+            callback: broadcastFormValueChange
+        });
+        $backgroundColorsInput.typeWatch({
+            wait: 500,
+            callback: broadcastFormValueChange
+        });
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
         $(document).on('escg.rowsSorted', sortBackgroundColors);
@@ -201,7 +209,6 @@ EightShapes.ColorForm = function() {
     }
 
     function loadFormDataFromUrl() {
-        console.log("Load from URL");
         if (location.search.substr( 1 ).length > 0) {
             $colorForm.deserialize( location.search.substr( 1 ) );
         }
