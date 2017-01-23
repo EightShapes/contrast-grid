@@ -146,17 +146,26 @@ EightShapes.ColorForm = function() {
 
     function toggleBackgroundColorsInput(e) {
         e.preventDefault();
+        var $backgroundColors = $("#es-color-form__background-colors"),
+            $foregroundColors = $("#es-color-form__foreground-colors");
         if ($(".es-color-form").hasClass("es-color-form--show-background-colors-input")) {
             // hide the background Colors Input
             $(".es-color-form").removeClass("es-color-form--show-background-colors-input");
             $("label[for='es-color-form__foreground-colors']").text("Rows & Columns");
-            $("#es-color-form__background-colors").val("");
+            $foregroundColors.attr("data-persisted-text", $foregroundColors.val());
+            $foregroundColors.val($backgroundColors.val());
+            $backgroundColors.val("");
             triggerGridUpdate();
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
             $("label[for='es-color-form__foreground-colors']").text("Columns");
-            $("#es-color-form__background-colors").val($("#es-color-form__foreground-colors").val());
+
+            $backgroundColors.val($foregroundColors.val());
+            
+            if (typeof $foregroundColors.attr("data-persisted-text") !== 'undefined') {
+                $foregroundColors.val($foregroundColors.attr("data-persisted-text"));
+            }
             triggerGridUpdate();
         }
     }

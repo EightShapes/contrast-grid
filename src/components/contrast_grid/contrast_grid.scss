@@ -2,7 +2,7 @@
 
 /* Override Contrast Grid Styles to make color and font changes */
 .es-contrast-grid {
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 .es-contrast-grid {
@@ -54,27 +54,26 @@
 }
 
 .es-contrast-grid__accessibility-label--aa18 {
-    background: goldenrod;
+    background: #CFB317;
 }
 
 .es-contrast-grid__swatch {
-    // border: solid 1px $color-gray-95;
     display: flex;
     flex-direction: column;
     height: $default-swatch-size;
     justify-content: space-between;
     padding: $spacing-xs;
-    width: $default-swatch-size;
+    min-width: $default-swatch-size;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
-        width: $compact-swatch-size;        
+        min-width: $compact-swatch-size;        
     }
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
         padding: $spacing-sm;
-        width: $large-swatch-size;
+        min-width: $large-swatch-size;
     }
 }
 
@@ -98,8 +97,21 @@
 }
 
 .es-contrast-grid__key-swatch-spacer {
-    // border: solid 1px $color-gray-95;
+    align-items: center;
+    background: 
+         linear-gradient(to top right,
+             rgba($color-gray-95,0) 0%,
+             rgba($color-gray-95,0) calc(50% - 1px),
+             rgba($color-gray-95,1) 50%,
+             rgba($color-gray-95,0) calc(50% + 1px),
+             rgba($color-gray-95,0) 100%);
+    background-color: $color-white;
+    border: solid 1px $color-gray-95;
+    color: $color-black;
+    display: flex;
     height: $default-swatch-size;
+    justify-content: space-between;
+    padding: $spacing-xs;
     width: 320px;
 
     .es-contrast-grid--compact & {
@@ -111,20 +123,24 @@
     }
 }
 
+.es-contrast-grid__key-swatch-label--background {
+    align-self: flex-end;
+}
+
 .es-contrast-grid__swatch-spacer {
-    background: $color-white;
-    // border: solid 1px $color-gray-95;
+    background-color: $color-white;
+    border: solid 1px $color-gray-95;
     height: $default-swatch-size;
-    width: $default-swatch-size;
+    width: 100%;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
-        width: $compact-swatch-size;
+        width: 100%;
     }
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
-        width: $large-swatch-size;
+        width: 100%;
     }
 }
 
@@ -137,18 +153,29 @@
     justify-content: center;
     padding: $spacing-xs;
     text-align: left;
-    width: $default-swatch-size;
+    // width: $default-swatch-size;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
-        width: $compact-swatch-size;
+        // width: $compact-swatch-size;
     }
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
         padding: $spacing-sm;
-        width: $large-swatch-size;
+        // width: $large-swatch-size;
     }
+
+    .es-contrast-grid__key-swatch-label-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 220px;
+        white-space: nowrap;
+    }
+}
+
+.es-contrast-grid--bordered-swatch {
+    border: solid 1px $color-gray-95;
 }
 
 .es-contrast-grid__key-swatch--background {
@@ -187,9 +214,22 @@ td.es-contrast-grid__key-cell {
     border: solid 1px $color-gray-95;
     color: $color-black;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: $spacing-sm;
-    width: 100%;
+}
+
+.es-contrast-grid__key-cell[colspan="1"],
+.es-contrast-grid__key-cell[colspan="2"],
+.es-contrast-grid__key-cell[colspan="3"] {
+    .es-contrast-grid-key {
+        display: block;
+    }
+
+    .es-contrast-grid-key__column {
+        margin-bottom: $spacing-xs;
+        width: 100%;
+    }
 }
 
 .es-contrast-grid-key__label {

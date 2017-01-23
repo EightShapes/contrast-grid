@@ -143,6 +143,9 @@
   font-size: 1em;
   background: white; }
 
+.dragtable-sortable .ui-sortable-placeholder th {
+  visibility: hidden; }
+
 .ui-sortable-helper {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transform: scale(1.02); }
@@ -165,34 +168,39 @@
 .es-contrast-grid__row-placeholder-cell {
   box-shadow: 4px #C6C6C6 inset; }
 
+.dragtable-sortable + .es-contrast-grid__table .es-contrast-grid__foreground-key-cell {
+  visibility: hidden; }
+
 .es-tabs__global-panel--copy-code .es-contrast-grid {
   display: none; }
 
-.es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-label {
-  order: 2;
-  margin-bottom: auto;
-  margin-top: auto; }
-
-.es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-controls {
-  align-items: center;
-  display: flex;
-  height: 20px;
-  order: 1;
-  justify-content: flex-end;
-  margin-top: -20px;
-  padding-top: 20px;
-  width: 100%;
-  visibility: hidden; }
-  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-controls > * {
-    display: block;
-    margin-top: 8px; }
-
-.es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-remove {
-  margin-right: 0;
-  order: 2; }
-
-.es-contrast-grid__key-swatch--foreground:hover .es-contrast-grid__key-swatch-controls {
-  visibility: visible; }
+.es-contrast-grid__key-swatch--foreground {
+  position: relative; }
+  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-label {
+    order: 2;
+    margin-bottom: auto;
+    margin-top: auto; }
+  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-controls {
+    align-items: center;
+    background: inherit;
+    display: flex;
+    order: 1;
+    justify-content: space-between;
+    left: 0;
+    padding: 8px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    visibility: hidden; }
+  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-remove {
+    margin-left: auto;
+    margin-right: 0;
+    order: 2; }
+    .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-remove .es-contrast-grid__key-swatch-remove-icon {
+      height: 14px;
+      width: 14px; }
+  .es-contrast-grid__key-swatch--foreground:hover .es-contrast-grid__key-swatch-controls {
+    visibility: visible; }
 
 .es-contrast-grid__key-swatch--background .es-contrast-grid__key-swatch-controls {
   align-items: center;
@@ -209,7 +217,7 @@
   cursor: ew-resize; }
 
 .es-contrast-grid__key-swatch-remove {
-  margin-right: 15px; }
+  margin-right: 8px; }
 
 .es-contrast-grid__key-swatch-remove-icon {
   fill: #FFFFFF;
@@ -317,19 +325,17 @@ a {
   border-radius: 4px;
   display: flex;
   font-weight: 300;
-  padding: 8px 32px;
+  line-height: 1;
   text-decoration: none; }
   .es-web-tool__header-link:hover {
-    background: white;
-    color: #1e1e1e; }
+    color: #FFFFFF;
+    text-decoration: underline; }
 
 .es-web-tool__header-link-logo {
   fill: #FFFFFF;
   height: 20px;
-  margin-right: 15px;
+  margin-right: 8px;
   width: 20px; }
-  .es-contrast-grid__header-link:hover .es-web-tool__header-link-logo {
-    fill: #1e1e1e; }
 
 .es-button {
   border: 0;

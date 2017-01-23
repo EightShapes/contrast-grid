@@ -1,6 +1,6 @@
 /* Override Contrast Grid Styles to make color and font changes */
 .es-contrast-grid {
-  font-family: sans-serif; }
+  font-family: 'Lato', sans-serif; }
 
 .es-contrast-grid {
   box-sizing: border-box;
@@ -41,7 +41,7 @@
   color: #FFFFFF; }
 
 .es-contrast-grid__accessibility-label--aa18 {
-  background: goldenrod; }
+  background: #CFB317; }
 
 .es-contrast-grid__swatch {
   display: flex;
@@ -49,14 +49,14 @@
   height: 100px;
   justify-content: space-between;
   padding: 8px;
-  width: 100px; }
+  min-width: 100px; }
   .es-contrast-grid--compact .es-contrast-grid__swatch {
     height: 75px;
-    width: 75px; }
+    min-width: 75px; }
   .es-contrast-grid--large .es-contrast-grid__swatch {
     height: 150px;
     padding: 15px;
-    width: 150px; }
+    min-width: 150px; }
 
 .es-contrast-grid__swatch-demo-text {
   font-size: 16px; }
@@ -73,23 +73,35 @@
     color: #000000; }
 
 .es-contrast-grid__key-swatch-spacer {
+  align-items: center;
+  background: linear-gradient(to top right, rgba(243, 241, 241, 0) 0%, rgba(243, 241, 241, 0) calc(50% - 1px), #f3f1f1 50%, rgba(243, 241, 241, 0) calc(50% + 1px), rgba(243, 241, 241, 0) 100%);
+  background-color: #FFFFFF;
+  border: solid 1px #f3f1f1;
+  color: #000000;
+  display: flex;
   height: 100px;
+  justify-content: space-between;
+  padding: 8px;
   width: 320px; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch-spacer {
     height: 75px; }
   .es-contrast-grid--large .es-contrast-grid__key-swatch-spacer {
     height: 150px; }
 
+.es-contrast-grid__key-swatch-label--background {
+  align-self: flex-end; }
+
 .es-contrast-grid__swatch-spacer {
-  background: #FFFFFF;
+  background-color: #FFFFFF;
+  border: solid 1px #f3f1f1;
   height: 100px;
-  width: 100px; }
+  width: 100%; }
   .es-contrast-grid--compact .es-contrast-grid__swatch-spacer {
     height: 75px;
-    width: 75px; }
+    width: 100%; }
   .es-contrast-grid--large .es-contrast-grid__swatch-spacer {
     height: 150px;
-    width: 150px; }
+    width: 100%; }
 
 .es-contrast-grid__key-swatch--foreground {
   align-items: center;
@@ -99,15 +111,20 @@
   height: 100px;
   justify-content: center;
   padding: 8px;
-  text-align: left;
-  width: 100px; }
+  text-align: left; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch--foreground {
-    height: 75px;
-    width: 75px; }
+    height: 75px; }
   .es-contrast-grid--large .es-contrast-grid__key-swatch--foreground {
     height: 150px;
-    padding: 15px;
-    width: 150px; }
+    padding: 15px; }
+  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-label-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+    white-space: nowrap; }
+
+.es-contrast-grid--bordered-swatch {
+  border: solid 1px #f3f1f1; }
 
 .es-contrast-grid__key-swatch--background {
   align-items: center;
@@ -137,8 +154,19 @@ td.es-contrast-grid__key-cell {
   border: solid 1px #f3f1f1;
   color: #000000;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 15px;
+  padding: 15px; }
+
+.es-contrast-grid__key-cell[colspan="1"] .es-contrast-grid-key,
+.es-contrast-grid__key-cell[colspan="2"] .es-contrast-grid-key,
+.es-contrast-grid__key-cell[colspan="3"] .es-contrast-grid-key {
+  display: block; }
+
+.es-contrast-grid__key-cell[colspan="1"] .es-contrast-grid-key__column,
+.es-contrast-grid__key-cell[colspan="2"] .es-contrast-grid-key__column,
+.es-contrast-grid__key-cell[colspan="3"] .es-contrast-grid-key__column {
+  margin-bottom: 8px;
   width: 100%; }
 
 .es-contrast-grid-key__label {

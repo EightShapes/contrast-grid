@@ -225,17 +225,26 @@ EightShapes.ColorForm = function() {
 
     function toggleBackgroundColorsInput(e) {
         e.preventDefault();
+        var $backgroundColors = $("#es-color-form__background-colors"),
+            $foregroundColors = $("#es-color-form__foreground-colors");
         if ($(".es-color-form").hasClass("es-color-form--show-background-colors-input")) {
             // hide the background Colors Input
             $(".es-color-form").removeClass("es-color-form--show-background-colors-input");
             $("label[for='es-color-form__foreground-colors']").text("Rows & Columns");
-            $("#es-color-form__background-colors").val("");
+            $foregroundColors.attr("data-persisted-text", $foregroundColors.val());
+            $foregroundColors.val($backgroundColors.val());
+            $backgroundColors.val("");
             triggerGridUpdate();
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
             $("label[for='es-color-form__foreground-colors']").text("Columns");
-            $("#es-color-form__background-colors").val($("#es-color-form__foreground-colors").val());
+
+            $backgroundColors.val($foregroundColors.val());
+            
+            if (typeof $foregroundColors.attr("data-persisted-text") !== 'undefined') {
+                $foregroundColors.val($foregroundColors.attr("data-persisted-text"));
+            }
             triggerGridUpdate();
         }
     }
@@ -433,9 +442,13 @@ EightShapes.ContrastGrid = function() {
             placeholder: 'es-contrast-grid__row-placeholder',
             handle: '.es-contrast-grid__key-swatch-drag-handle--row',
             tolerance: 'pointer',
-            start: function() {
+            start: function(event, ui) {
                 var columnCount = $(".es-contrast-grid__row-placeholder td").length;
-                $(".es-contrast-grid__row-placeholder").html("").append("<td colspan='" + columnCount + "'></td>");
+                ui.placeholder.html("").append("<td colspan='" + columnCount + "'></td>");
+                $(".es-contrast-grid__foreground-key").find("th").each(function(index){
+                    ui.helper.find("td:nth-child(" + (index + 1) + ")").width($(this).outerWidth() + "px");
+                    // console.log($(this).outerWidth());
+                });
             },
             update: function(table) {
                 var sortedColors = extractBackgroundColorsFromGrid();
@@ -497,10 +510,17 @@ EightShapes.ContrastGrid = function() {
         addContrastToSwatches();
         addAccessibilityToSwatches();
         setKeySwatchLabelColors();
+        truncateContrastDisplayValues();
         disableDragUi();
         enableDragUi();
         svg4everybody(); // render icons on IE
         broadcastGridUpdate();
+    }
+
+    function truncateContrastDisplayValues() {
+        $(".es-contrast-grid__contrast-ratio").each(function(){
+            $(this).text($(this).text().slice(0, -1));
+        });
     }
 
     function addAccessibilityToSwatches() {
@@ -528,7 +548,9 @@ EightShapes.ContrastGrid = function() {
             var backgroundColor = rgb2hex($(this).css("backgroundColor")),
                 contrastWithWhite = getContrastRatioForHex("#FFFFFF", backgroundColor);
 
-            if (contrastWithWhite < 4.0) {
+            if (contrastWithWhite === 1) {
+                $(this).addClass("es-contrast-grid--bordered-swatch es-contrast-grid--dark-label");
+            } else if (contrastWithWhite < 4.0) {
                 $(this).addClass("es-contrast-grid--dark-label");
             }
         });
@@ -544,7 +566,9 @@ EightShapes.ContrastGrid = function() {
                     contrastRatio = getContrastRatioForHex(foregroundColor, backgroundColor),
                     contrastWithWhite = getContrastRatioForHex("#FFFFFF", backgroundColor);
                 $(this).find(".es-contrast-grid__contrast-ratio").text(contrastRatio);
-                if (contrastWithWhite < 4.0) {
+                if (contrastWithWhite === 1) {
+                    $(this).addClass("es-contrast-grid--bordered-swatch es-contrast-grid--dark-label");
+                } else if (contrastWithWhite < 4.0) {
                     $(this).addClass("es-contrast-grid--dark-label");
                 }
             }
@@ -577,9 +601,18 @@ EightShapes.ContrastGrid = function() {
         $grid.find(".es-contrast-grid__foreground-key-cell").remove();
     }
 
+    function setColumnLabelStatus() {
+        if (gridData.backgroundColors.length > 0) {
+            showLabelsOnColumnKeys = true;
+        } else {
+            showLabelsOnColumnKeys = false;
+        }
+    }
+
     function updateGrid(event, data) {
         setGridData(data);
         resetGrid();
+        setColumnLabelStatus();
         generateGrid();
     }
 
@@ -606,8 +639,6 @@ EightShapes.ContrastGrid = function() {
 
         initializeEventHandlers();
         setTemplateObjects();
-        // generateGrid();
-        $('.defaultTable').dragtable();
     };
 
 
@@ -627,7 +658,7 @@ Math.round = (function(){
     return function (number, decimals) {
         decimals = +decimals || 0;
 
-        var multiplier = Math.pow(10, decimals);
+        var multiplier = Math.pow(100, decimals);
 
         return round(number * multiplier) / multiplier;
     };

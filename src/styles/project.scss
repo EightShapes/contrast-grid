@@ -96,24 +96,20 @@ a {
     border-radius: $spacing-xs / 2;
     display: flex;
     font-weight: 300;
-    padding: $spacing-xs $spacing-default;
+    line-height: 1;
     text-decoration: none;
 
     &:hover {
-        background: white;
-        color: $color-gray-12;
+        color: $color-white;
+        text-decoration: underline;
     }
 }
 
 .es-web-tool__header-link-logo {
     fill: $color-white;
     height: 20px;
-    margin-right: $spacing-sm;
+    margin-right: $spacing-xs;
     width: 20px;
-
-    .es-contrast-grid__header-link:hover & {
-        fill: $color-gray-12;
-    }
 }
 
 .es-button {
