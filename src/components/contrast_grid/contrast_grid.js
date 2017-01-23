@@ -10,7 +10,6 @@ EightShapes.ContrastGrid = function() {
         $contentRowTemplate,
         $contentCellTemplate,
         $backgroundKey,
-        showInlineStylesAsHex = true,
         showLabelsOnColumnKeys = false,
         gridData = {
             foregroundColors: [
@@ -40,30 +39,6 @@ EightShapes.ContrastGrid = function() {
                 }
             ]
         };
-
-    function convertRgbInlineStylesToHex(string) {
-        const rgbRegex = /rgba?\((\d+),\s?(\d+),\s?(\d+)\)/gim;
-        let m;
-
-        function replaceWithHex(match, p1, p2, p3) {
-            return "#" +
-              ("0" + parseInt(p1,10).toString(16)).slice(-2) +
-              ("0" + parseInt(p2,10).toString(16)).slice(-2) +
-              ("0" + parseInt(p3,10).toString(16)).slice(-2)
-        }
-
-        string = string.replace(rgbRegex, replaceWithHex);
-        return string;
-    }
-
-    function getGridMarkup() {
-        var markup = $grid.prop('outerHTML');
-        if (showInlineStylesAsHex) {
-            markup = convertRgbInlineStylesToHex(markup);
-        }
-
-        return markup;
-    }
 
     function getForegroundColors() {
         return gridData.foregroundColors;
@@ -207,7 +182,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function broadcastGridUpdate() {
-        $(document).trigger("escg.contrastGridUpdated", [getGridMarkup()]);
+        $(document).trigger("escg.contrastGridUpdated");
     }
 
     function setKeyCellWidth() {

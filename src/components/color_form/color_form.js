@@ -191,6 +191,14 @@ EightShapes.ColorForm = function() {
         window.history.pushState(false, false, '/?' + $colorForm.serialize());
     }
 
+    function disableFormFields() {
+        $colorForm.find("textarea, input").prop("disabled", true);
+    }
+
+    function enableFormFields() {
+        $colorForm.find("textarea, input").prop("disabled", false);
+    }
+
     function initializeEventHandlers() {
         $foregroundColorsInput.typeWatch({
             wait: 500,
@@ -203,6 +211,8 @@ EightShapes.ColorForm = function() {
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
         $(document).on('escg.rowsSorted', sortBackgroundColors);
+        $(document).on('escg.show-tab-es-tabs__global-panel--copy-code', disableFormFields);
+        $(document).on('escg.show-tab-es-tabs__global-panel--analyze', enableFormFields);
         $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
         $("input[name='es-color-form__tile-size']").on("change", broadcastTileSizeChange);
         $(".es-color-form__view-code-toggle").on("click", broadcastCodeSnippetViewToggle);

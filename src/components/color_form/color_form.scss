@@ -15,6 +15,12 @@
     padding: $spacing-xs;
     margin-bottom: $spacing-sm;
     width: 100%;
+
+    &[disabled] {
+        color: $color-gray-53;
+        cursor: not-allowed;
+        font-style: italic;
+    }
 }
 
 .es-color-form__label {
@@ -35,6 +41,15 @@
     font-weight: 400;
     display: block;
     margin-bottom: $spacing-sm;
+
+    input[disabled] {
+        &,
+        + .es-color-form__radio-button-text {
+            color: $color-gray-53;
+            cursor: not-allowed;
+            font-style: italic;
+        }
+    }
 }
 
 .es-color-form__content {

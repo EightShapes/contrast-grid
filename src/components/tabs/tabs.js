@@ -16,6 +16,8 @@ EightShapes.Tabs = function() {
         hideVisibleGlobalTabs();
         $("body").addClass(tabId);
         $tabs.addClass("es-tabs__label--active");
+        console.log("escg.show-tab-" + tabId);
+        $(document).trigger("escg.show-tab-" + tabId);
     }
 
     function setEventHandlers() {

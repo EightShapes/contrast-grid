@@ -66,6 +66,41 @@
     border: solid 1px $color-gray-53;
     max-height: 60vh;
     overflow-y: scroll;
+    position: relative;
+}
+
+.es-code-snippet__code-loading-wrap {
+    align-items: center;
+    background: rgba($color-black, 0.8);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 0.4s, visibility 0s 0.4s;
+    visibility: hidden;
+
+    .es-code-snippet--loading & {
+        opacity: 1;
+        transition: opacity 0.4s, visibility 0s;
+        visibility: visible;
+    }
+}
+
+.es-code-snippet__code-loading-icon {
+    animation: spin 1s linear infinite;
+    display: block;
+    fill: $color-white;
+    height: 40px;
+    margin: 0 auto $spacing-xs;
+    width: 40px;
+}
+
+.es-code-snippet__code-loading-text {
+    color: $color-white;
 }
 
 #es-code-snippet__code {
@@ -77,6 +112,10 @@
     align-items: center;
     display: inline-flex;
     position: relative;
+}
+
+.es-code-snippet__code-loading-message {
+    text-align: center;
 }
 
 .es-code-snippet__copy-response {
@@ -110,6 +149,11 @@
     .es-code-snippet__copy-button--clicked & {
         animation: fade-in-out 3s;
     }
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
 
 @keyframes fade-in-out {

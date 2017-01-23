@@ -24,6 +24,12 @@
             
             <pre id="es-code-snippet__code"><code class="language-markup">
             </code></pre>
+            <div class="es-code-snippet__code-loading-wrap">
+                <div class="es-code-snippet__code-loading-message">
+                    {{ icon(icon_name="circle-o-notch", class="es-code-snippet__code-loading-icon") }}
+                    <label class="es-code-snippet__code-loading-text">Updating Code&hellip;</label>
+                </div>
+            </div>
         </div>
     </div>
 {% endmacro %}
@@ -58,15 +64,21 @@
                 <label class="es-color-form__label">Tiles</label>
                 <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
                     <input type="radio" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size">
-                    Compact (75&times;75)
+                    <span class="es-color-form__radio-button-text">
+                        Compact (75&times;75)
+                    </span>
                 </label>
                 <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
                     <input type="radio" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size" checked>
-                    Regular (100&times;100)
+                    <span class="es-color-form__radio-button-text">
+                        Regular (100&times;100)
+                    </span>
                 </label>
                 <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
                     <input type="radio" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
-                    Large (150&times;150)
+                    <span class="es-color-form__radio-button-text">
+                        Large (150&times;150)
+                    </span>
                 </label>
             </div>
 
