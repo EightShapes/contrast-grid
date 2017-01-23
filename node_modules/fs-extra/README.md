@@ -11,7 +11,7 @@ Node.js: fs-extra
 
 <a href="https://github.com/feross/standard"><img src="https://cdn.rawgit.com/feross/standard/master/sticker.svg" alt="Standard JavaScript" width="100"></a>
 
-**NOTE (2016-04-28):** Node v0.10 will be unsupported 2016-10-01. Node v0.12 will be unsupported on 2017-04-01.
+**NOTE (2016-11-01):**  Node v0.12 will be unsupported on 2016-12-31.
 
 
 Why?
@@ -111,6 +111,7 @@ Methods
 - [remove](#removedir-callback)
 - [removeSync](#removedir-callback)
 - [walk](#walk)
+- [walkSync](#walkSyncDir)
 - [writeJson](#writejsonfile-object-options-callback)
 - [writeJsonSync](#writejsonfile-object-options-callback)
 
@@ -126,10 +127,10 @@ Methods
 Copy a file or directory. The directory can have contents. Like `cp -r`.
 
 Options:
-- clobber (boolean): overwrite existing file or directory
-- dereference (boolean): dereference symlinks
+- clobber (boolean): overwrite existing file or directory, default is `true`.
+- dereference (boolean): dereference symlinks, default is `false`.
 - preserveTimestamps (boolean): will set last modification and access times to the ones of the original source files, default is `false`.
-- filter: Function or RegExp to filter copied files. If function, return true to include, false to exclude. If RegExp, same as function, where `filter` is `filter.test`.
+- filter: Function to filter copied files. Return `true` to include, `false` to exclude. This can also be a RegExp, however this is deprecated (See [issue #239](https://github.com/jprichardson/node-fs-extra/issues/239) for background). _Warning: `copySync` currently applies the filter only to files (see [#180](https://github.com/jprichardson/node-fs-extra/issues/180)). This will be fixed in a future release._
 
 Sync: `copySync()`
 
@@ -416,8 +417,9 @@ returns an object with two properties: `path` and `stats`. `path` is the full pa
 Streams 1 (push) example:
 
 ```js
+var fs = require('fs-extra')
 var items = [] // files, directories, symlinks, etc
-fse.walk(TEST_DIR)
+fs.walk(TEST_DIR)
   .on('data', function (item) {
     items.push(item.path)
   })
@@ -430,7 +432,8 @@ Streams 2 & 3 (pull) example:
 
 ```js
 var items = [] // files, directories, symlinks, etc
-fse.walk(TEST_DIR)
+var fs = require('fs-extra')
+fs.walk(TEST_DIR)
   .on('readable', function () {
     var item
     while ((item = this.read())) {
@@ -447,6 +450,18 @@ recommend this resource as a good starting point: https://strongloop.com/strongb
 
 **See [`klaw` documentation](https://github.com/jprichardson/node-klaw) for more detailed usage.**
 
+### walkSync(dir)
+
+Lists all files inside a directory recursively
+
+Examples:
+
+```js
+var fs = require('fs-extra')
+
+var files = fs.walkSync('/home/jprichardson')
+// files = ['/home/jprichardson/file1', '/home/jprichardson/dir1/file2']
+```
 
 ### writeJson(file, object, [options], callback)
 

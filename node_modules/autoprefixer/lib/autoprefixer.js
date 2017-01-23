@@ -26,7 +26,7 @@
     if (Object.keys(prefixes.add).length > 2) {
       return;
     }
-    return result.warn('Greetings, space traveller. ' + 'We are in the golden age of prefix-less CSS, ' + 'where Autoprefixer is no longer needed for your stylesheet.');
+    return result.warn('Greetings, time traveller. ' + 'We are in the golden age of prefix-less CSS, ' + 'where Autoprefixer is no longer needed for your stylesheet.');
   };
 
   module.exports = postcss.plugin('autoprefixer', function() {
@@ -44,6 +44,9 @@
       options = reqs.pop();
     }
     options || (options = {});
+    if (options.browser) {
+      throw new Error('Change `browser` option to `browsers` in Autoprefixer');
+    }
     if (options.browsers != null) {
       reqs = options.browsers;
     }
@@ -57,7 +60,8 @@
     plugin = function(css, result) {
       var prefixes, ref;
       prefixes = loadPrefixes({
-        from: (ref = css.source) != null ? ref.input.file : void 0
+        from: (ref = css.source) != null ? ref.input.file : void 0,
+        env: options.env
       });
       timeCapsule(result, prefixes);
       if (options.remove !== false) {

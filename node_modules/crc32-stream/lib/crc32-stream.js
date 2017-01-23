@@ -8,7 +8,7 @@
 var inherits = require('util').inherits;
 var Transform = require('readable-stream').Transform;
 
-var crc32 = require('buffer-crc32');
+var crc32 = require('crc').crc32;
 
 var CRC32Stream = module.exports = function CRC32Stream(options) {
   Transform.call(this, options);
@@ -30,7 +30,7 @@ CRC32Stream.prototype._transform = function(chunk, encoding, callback) {
 };
 
 CRC32Stream.prototype.digest = function() {
-  return crc32.unsigned(0, this.checksum);
+  return this.checksum >>> 0;
 };
 
 CRC32Stream.prototype.hex = function() {

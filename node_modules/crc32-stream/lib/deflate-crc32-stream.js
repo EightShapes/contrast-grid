@@ -8,7 +8,7 @@
 var zlib = require('zlib');
 var inherits = require('util').inherits;
 
-var crc32 = require('buffer-crc32');
+var crc32 = require('crc').crc32;
 
 var DeflateCRC32Stream = module.exports = function (options) {
   zlib.DeflateRaw.call(this, options);
@@ -49,7 +49,7 @@ DeflateCRC32Stream.prototype.write = function(chunk, enc, cb) {
 };
 
 DeflateCRC32Stream.prototype.digest = function() {
-  return crc32.unsigned(0, this.checksum);
+  return this.checksum >>> 0;
 };
 
 DeflateCRC32Stream.prototype.hex = function() {

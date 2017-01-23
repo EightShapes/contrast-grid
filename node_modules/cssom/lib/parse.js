@@ -24,10 +24,12 @@ CSSOM.parse = function parse(token) {
 
 	var index;
 	var buffer = "";
+	var valueParenthesisDepth = 0;
 
 	var SIGNIFICANT_WHITESPACE = {
 		"selector": true,
 		"value": true,
+		"value-parenthesis": true,
 		"atRule": true,
 		"importRule-begin": true,
 		"importRule": true,
@@ -43,7 +45,7 @@ CSSOM.parse = function parse(token) {
 	// @type CSSMediaRule|CSSKeyframesRule|CSSDocumentRule
 	var parentRule;
 
-	var name, priority="", styleRule, mediaRule, importRule, fontFaceRule, keyframesRule, documentRule;
+	var name, priority="", styleRule, mediaRule, importRule, fontFaceRule, keyframesRule, documentRule, hostRule;
 
 	var atKeyframesRegExp = /@(-(?:\w+-)+)?keyframes/g;
 
@@ -149,6 +151,13 @@ CSSOM.parse = function parse(token) {
 				i += "media".length;
 				buffer = "";
 				break;
+			} else if (token.indexOf("@host", i) === i) {
+				state = "hostRule-begin";
+				i += "host".length;
+				hostRule = new CSSOM.CSSHostRule();
+				hostRule.__starts = i;
+				buffer = "";
+				break;
 			} else if (token.indexOf("@import", i) === i) {
 				state = "importRule-begin";
 				i += "import".length;
@@ -189,6 +198,11 @@ CSSOM.parse = function parse(token) {
 				mediaRule.media.mediaText = buffer.trim();
 				currentScope = parentRule = mediaRule;
 				mediaRule.parentStyleSheet = styleSheet;
+				buffer = "";
+				state = "before-selector";
+			} else if (state === "hostRule-begin") {
+				currentScope = parentRule = hostRule;
+				hostRule.parentStyleSheet = styleSheet;
 				buffer = "";
 				state = "before-selector";
 			} else if (state === "fontFaceRule-begin") {
@@ -251,8 +265,14 @@ CSSOM.parse = function parse(token) {
 					}
 				} else {
 					state = 'value-parenthesis';
+					//always ensure this is reset to 1 on transition
+					//from value to value-parenthesis
+					valueParenthesisDepth = 1;
 					buffer += character;
 				}
+			} else if (state === 'value-parenthesis') {
+				valueParenthesisDepth++;
+				buffer += character;
 			} else {
 				buffer += character;
 			}
@@ -260,7 +280,8 @@ CSSOM.parse = function parse(token) {
 
 		case ")":
 			if (state === 'value-parenthesis') {
-				state = 'value';
+				valueParenthesisDepth--;
+				if (valueParenthesisDepth === 0) state = 'value';
 			}
 			buffer += character;
 			break;
@@ -373,6 +394,7 @@ CSSOM.CSSStyleRule = require("./CSSStyleRule").CSSStyleRule;
 CSSOM.CSSImportRule = require("./CSSImportRule").CSSImportRule;
 CSSOM.CSSMediaRule = require("./CSSMediaRule").CSSMediaRule;
 CSSOM.CSSFontFaceRule = require("./CSSFontFaceRule").CSSFontFaceRule;
+CSSOM.CSSHostRule = require("./CSSHostRule").CSSHostRule;
 CSSOM.CSSStyleDeclaration = require('./CSSStyleDeclaration').CSSStyleDeclaration;
 CSSOM.CSSKeyframeRule = require('./CSSKeyframeRule').CSSKeyframeRule;
 CSSOM.CSSKeyframesRule = require('./CSSKeyframesRule').CSSKeyframesRule;

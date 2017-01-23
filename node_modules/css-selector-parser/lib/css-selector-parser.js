@@ -21,6 +21,22 @@ CssSelectorParser.prototype.unregisterSelectorPseudos = function(name) {
   return this;
 };
 
+CssSelectorParser.prototype.registerNumericPseudos = function(name) {
+    for (var j = 0, len = arguments.length; j < len; j++) {
+        name = arguments[j];
+        this.pseudos[name] = 'numeric';
+    }
+    return this;
+};
+
+CssSelectorParser.prototype.unregisterNumericPseudos = function(name) {
+    for (var j = 0, len = arguments.length; j < len; j++) {
+        name = arguments[j];
+        delete this.pseudos[name];
+    }
+    return this;
+};
+
 CssSelectorParser.prototype.registerNestingOperators = function(operator) {
   for (var j = 0, len = arguments.length; j < len; j++) {
     operator = arguments[j];
@@ -392,7 +408,7 @@ function ParseContext(str, pos, pseudos, attrEqualityMods, ruleNestingOperators,
             pseudo.valueType = 'selector';
             value = this.parseSelector();
           } else {
-            pseudo.valueType = 'string';
+            pseudo.valueType = pseudos[pseudoName] || 'string';
             if (chr === '"') {
               value = getStr('"', doubleQuotesEscapeChars);
             } else if (chr === '\'') {
@@ -560,8 +576,10 @@ CssSelectorParser.prototype._renderEntity = function(entity) {
               return ":" + this.escapeIdentifier(pseudo.name) + "(" + this._renderEntity(pseudo.value) + ")";
             } else if (pseudo.valueType === 'substitute') {
               return ":" + this.escapeIdentifier(pseudo.name) + "($" + pseudo.value + ")";
+            } else if (pseudo.valueType === 'numeric') {
+              return ":" + this.escapeIdentifier(pseudo.name) + "(" + pseudo.value + ")";
             } else {
-              return ":" + this.escapeIdentifier(pseudo.name) + "(" + this.escapeStr(pseudo.value) + ")";
+              return ":" + this.escapeIdentifier(pseudo.name) + "(" + this.escapeIdentifier(pseudo.value) + ")";
             }
           } else {
             return ":" + this.escapeIdentifier(pseudo.name);

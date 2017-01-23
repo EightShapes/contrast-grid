@@ -42,7 +42,6 @@
     "jquery-ui-dist": "^1.12.1",
     "jquery.typewatch": "^2.1.0",
     "js-beautify": "^1.6.8",
-    "prismjs": "^1.6.0",
     "svg4everybody": "^2.1.4"
   }
 }
