@@ -207,6 +207,9 @@ EightShapes.ContrastGrid = function() {
     function truncateContrastDisplayValues() {
         $(".es-contrast-grid__contrast-ratio").each(function(){
             $(this).text($(this).text().slice(0, -1));
+            if ($(this).text().endsWith('.')) {
+                $(this).text($(this).text().slice(0, -1));
+            }
         });
     }
 
