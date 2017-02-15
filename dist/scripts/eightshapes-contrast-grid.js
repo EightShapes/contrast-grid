@@ -548,6 +548,24 @@ EightShapes.ContrastGrid = function() {
         $(".es-contrast-grid__key-cell").attr("colspan", columnCount);
     }
 
+    function disableRowAndColumnRemoval() {
+        $grid.addClass("es-contrast-grid--row-and-column-removal-disabled");
+    }
+
+    function enableRowAndColumnRemoval() {
+        $grid.removeClass("es-contrast-grid--row-and-column-removal-disabled");
+    }
+
+    function setGridUiStatus() {
+        console.log(gridData.foregroundColors.length);
+        console.log(gridData.backgroundColors.length);
+        if (gridData.foregroundColors.length <= 1 && gridData.backgroundColors.length <= 1) {
+            disableRowAndColumnRemoval();
+        } else {
+            enableRowAndColumnRemoval();
+        }
+    }
+
     function generateGrid() {
         generateForegroundKey();
         generateContentRows();
@@ -560,6 +578,7 @@ EightShapes.ContrastGrid = function() {
         enableDragUi();
         svg4everybody(); // render icons on IE
         broadcastGridUpdate();
+        setGridUiStatus();
     }
 
     function truncateContrastDisplayValues() {

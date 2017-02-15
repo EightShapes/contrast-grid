@@ -149,3 +149,7 @@
         fill: $color-black;
     }
 }
+
+.es-contrast-grid--row-and-column-removal-disabled *:hover .es-contrast-grid__key-swatch-controls {
+    display: none;
+}

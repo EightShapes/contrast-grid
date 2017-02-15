@@ -358,6 +358,9 @@
   .es-contrast-grid--dark-label .es-contrast-grid__key-swatch-drag-handle-icon {
     fill: #000000; }
 
+.es-contrast-grid--row-and-column-removal-disabled *:hover .es-contrast-grid__key-swatch-controls {
+  display: none; }
+
 html,
 body {
   box-sizing: border-box;
