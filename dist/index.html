@@ -39,16 +39,15 @@
             <p class="es-color-form__copy">
                 Test many foreground and background color combos for compliance with <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG 2.0 minimum contrast</a>.
             </p>
-            <h2 class="es-color-form__title">Colors</h2>
             <p class="es-color-form__copy">
                 Add one color per line, separating hex value and optional label by commas.
             </p>
             <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
-                <label for="es-color-form__background-colors" class="es-color-form__label">Rows</label>
+                <label for="es-color-form__background-colors" class="es-color-form__label">Row Colors</label>
                 <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" placeholder="Defaults to inverse of Foreground Colors" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
             </div>
             <div class="es-color-form__field-wrapper">
-                <label for="es-color-form__foreground-colors" class="es-color-form__label">Rows &amp; Columns</label>
+                <label for="es-color-form__foreground-colors" class="es-color-form__label">Row &amp; Column Colors</label>
                 <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 #FFFFFF, Brand White
 #EDEDEF
@@ -82,14 +81,13 @@
                     </label>
                 </div>
             </div>
-
         </div>
     </form>
 
                         <div class="es-web-tool__sidebar-actions">
                             <div class="es-web-tool__sidebar-ctas">
                                 <button class="es-code-toggle es-button">Show Code</button>
-                                <a class="es-web-tool__external-link es-button es-web-tool__external-link--twitter" href="http://twitter.com/home?status=Test%20your%20entire%20color%20palette%20for%20accessibility.%20http://contrast-grid.eightshapes.com%20@eightshapes&amp;source=webclient">
+                                <a class="es-button es-web-tool__external-link--twitter" id="es-share-on-twitter-link" href="http://twitter.com/home?status=Test%20your%20entire%20color%20palette%20for%20accessibility.%20http://contrast-grid.eightshapes.com%20@eightshapes&amp;source=webclient">
                                     
   <svg class="icon-twitter es-web-tool__external-link-logo es-button__icon">
     <use xlink:href="svg/contrast-grid.svg#twitter"></use>
@@ -100,17 +98,30 @@
                                     </span>
                                 </a>
                             </div>
+                            
+                            
+                            <div class="es-web-tool__external-links-wrap">
+                                <a class="es-web-tool__external-link es-web-tool__external-link--github" href="http://eightshapes.com">
+                                    <span class="es-web-tool__external-link-text">
+                                        By Eightshapes
+                                    </span>
+                                </a>                      
 
-                            <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
-                                
+                                <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
+                                    
   <svg class="icon-github es-web-tool__external-link-logo">
     <use xlink:href="svg/contrast-grid.svg#github"></use>
   </svg>
 
-                                <span class="es-web-tool__external-link-text">
-                                    On Github
-                                </span>
-                            </a>
+                                    <span class="es-web-tool__external-link-text">
+                                        On Github
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            <p class="es-web-tool__legal">
+                                &copy; Copyright Eightshapes, LLC 2017
+                            </p>
                         </div>
                     </div>
                     <div class="es-web-tool__results">

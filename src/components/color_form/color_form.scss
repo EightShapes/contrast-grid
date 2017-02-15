@@ -55,17 +55,28 @@
 }
 
 .es-color-form__radio-button-text {
-    background-color: $color-link;
-    color: $color-white;
+    background-color: darken($color-gray-95, 10%);
+    border-right: solid 1px $color-gray-53;
+    color: $color-black;
     cursor: pointer;
     display: block;
+    font-size: $font-size-sm;
     padding: $spacing-xs;
     width: 100%;
 
     .es-color-form__radio-button-input:checked + & {
-        background-color: $color-gray-53;
+        background-color: darken($color-gray-95, 20%);
         box-shadow: inset 0 0 5px rgba($color-black, 0.5);
         color: $color-black;
+    }
+
+    .es-color-form__radio-button:last-child & {
+        border-radius: 0 $border-radius-default $border-radius-default 0;
+        border-right: 0;
+    }
+
+    .es-color-form__radio-button:first-child & {
+        border-radius: $border-radius-default 0 0 $border-radius-default;
     }
 }
 

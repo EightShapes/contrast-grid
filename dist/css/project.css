@@ -206,16 +206,23 @@
     font-style: italic; }
 
 .es-color-form__radio-button-text {
-  background-color: #4278B2;
-  color: #FFFFFF;
+  background-color: #dbd6d6;
+  border-right: solid 1px #888888;
+  color: #000000;
   cursor: pointer;
   display: block;
+  font-size: 14px;
   padding: 8px;
   width: 100%; }
   .es-color-form__radio-button-input:checked + .es-color-form__radio-button-text {
-    background-color: #888888;
+    background-color: #c4baba;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
     color: #000000; }
+  .es-color-form__radio-button:last-child .es-color-form__radio-button-text {
+    border-radius: 0 4px 4px 0;
+    border-right: 0; }
+  .es-color-form__radio-button:first-child .es-color-form__radio-button-text {
+    border-radius: 4px 0 0 4px; }
 
 .es-color-form__content {
   margin-bottom: 32px; }
@@ -442,10 +449,10 @@ a {
   align-items: center;
   color: #4278B2;
   border-radius: 4px;
-  display: flex;
+  display: inline-flex;
   font-weight: 300;
   line-height: 1;
-  margin-right: 32px;
+  margin-bottom: 15px;
   text-decoration: none; }
   .es-web-tool__external-link:hover {
     text-decoration: underline; }
@@ -467,7 +474,6 @@ a {
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   padding: 8px 15px;
-  margin: 0 15px 32px 0;
   text-decoration: none;
   max-height: 35px; }
   .es-button:hover {
@@ -490,4 +496,17 @@ a {
 .es-web-tool__sidebar-ctas {
   align-items: center;
   display: flex;
-  justify-content: flex-start; }
+  justify-content: space-between;
+  margin-bottom: 32px; }
+
+.es-web-tool__external-links-wrap {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 32px; }
+
+.es-web-tool__legal {
+  font-size: 14px;
+  margin: 0;
+  text-align: center; }
