@@ -1,8 +1,10 @@
 .es-code-snippet {
     // background: $color-gray-95;
-    // display: none;
+    display: none;
     flex: 0 0 0;
     overflow: hidden;
+    padding: $spacing-lg $spacing-md $spacing-md;
+    position: relative;
     visibility: hidden;
     // flex: 1;
     // padding: $spacing-md;
@@ -10,17 +12,41 @@
     // .es-contrast-grid__outer-wrap--code-snippet-visible & {
     //     display: block;
     // }
-    .es-tabs__global-panel--copy-code & {
+    .es-code-toggle--visible & {
+        display: block;
         visibility: visible;
-        flex: 1;
     }
+}
+
+.es-code-snippet__hide-button {
+    align-items: center;
+    // background: $color-black;
+    border: 0;
+    box-shadow: $drop-shadow-default;
+    // color: $color-white;
+    cursor: pointer;
+    display: flex;
+    left: $spacing-xs;
+    margin: 0;
+    // padding: $spacing-sm;
+    position: fixed;
+    top: $spacing-xs;
+}
+
+.es-code-snippet__hide-button-icon {
+    fill: $color-white;
+    height: $font-size-sm;
+    margin-right: $spacing-xs;
+    position: relative;
+    top: 2px;
+    width: $font-size-sm;
 }
 
 .es-code-snippet__persistent-url {
     font-family: 'Lato', sans-serif; 
     font-size: $font-size-default;
-    padding: $spacing-xs;
     margin-bottom: $spacing-lg;
+    padding: $spacing-xs;
     width: 100%;
 }
 

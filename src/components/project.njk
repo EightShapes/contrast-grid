@@ -1,6 +1,10 @@
 {# DO NOT EDIT: The contents of this file are dynamically generated and will be overwritten #}
 {% macro code_snippet() %}
     <div class="es-code-snippet">
+        <button class="es-code-snippet__hide-button es-button">
+            {{ icon(icon_name="close", class="es-code-snippet__hide-button-icon") }} 
+            <span class="es-code-snippet__hide-button-text">Hide Code</span>
+        </button>
         <div class="es-code-snippet__copy-header">
             <label class="es-code-snippet__label">Persistent URL</label>        
             <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__persistent-url">
@@ -61,25 +65,27 @@
             </div>
 
             <div class="es-color-form__field-wrapper">
-                <label class="es-color-form__label">Tiles</label>
-                <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
-                    <input type="radio" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size">
-                    <span class="es-color-form__radio-button-text">
-                        Compact (75&times;75)
-                    </span>
-                </label>
-                <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
-                    <input type="radio" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size" checked>
-                    <span class="es-color-form__radio-button-text">
-                        Regular (100&times;100)
-                    </span>
-                </label>
-                <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
-                    <input type="radio" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
-                    <span class="es-color-form__radio-button-text">
-                        Large (150&times;150)
-                    </span>
-                </label>
+                <label class="es-color-form__label">Tile Size</label>
+                <div class="es-color-form__radio-button-group">
+                    <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size">
+                        <span class="es-color-form__radio-button-text">
+                            S<span class="es-color-form__radio-button-subtext">(75&times;75)</span>
+                        </span>
+                    </label>
+                    <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size" checked>
+                        <span class="es-color-form__radio-button-text">
+                            M<span class="es-color-form__radio-button-subtext">(100&times;100)</span>
+                        </span>
+                    </label>
+                    <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
+                        <span class="es-color-form__radio-button-text">
+                            L<span class="es-color-form__radio-button-subtext">(150&times;150)</span>
+                        </span>
+                    </label>
+                </div>
             </div>
 
         </div>
@@ -190,24 +196,4 @@
   <svg class="icon-{{icon_name}}{{ ' ' + class if class }}">
     <use xlink:href="svg/contrast-grid.svg#{{icon_name}}"></use>
   </svg>
-{% endmacro %}
-
-{% macro tabs(labels=[
-                {
-                    name: "First",
-                    active: true
-                }, 
-                {
-                    name: "Second"
-                }]) %}
-    <div class="es-tabs">
-        {% for label in labels %}
-            {% if label.id %}
-                {% set id = label.id %}
-            {% else %}
-                {% set id = "es-tabs__global-panel--" + label.name | lower | replace(' ', '-') | replace(r/[~!@\$%\^&\*\(\)\+=,\.\/\;:\?><\[\]\{}\|`#''""]/g, '') %}
-            {% endif %}
-            <label class="es-tabs__label{{ ' es-tabs__label--active' if label.active }}" for="{{ id }}"><span class="es-tabs__label-text">{{ label.name }}</span></label>
-        {% endfor %}
-    </div>
 {% endmacro %}

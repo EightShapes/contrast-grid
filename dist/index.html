@@ -20,44 +20,20 @@
 <body>
     <div class="es-web-tool__flex-container">
         <div class="es-web-tool__outer-wrap">
-            <div class="es-web-tool__header">
-                <h1 class="es-web-tool__title">
-                    
-  <svg class="icon-eightshapes-logo es-web-tool__title-logo">
-    <use xlink:href="svg/contrast-grid.svg#eightshapes-logo"></use>
-  </svg>
-
-                    <span class="es-web-tool__title-text">Contrast Grid</span>
-                </h1>
-                <a class="es-web-tool__header-link" href="https://github.com/EightShapes/contrast-grid">
-                    
-  <svg class="icon-github es-web-tool__header-link-logo">
-    <use xlink:href="svg/contrast-grid.svg#github"></use>
-  </svg>
-
-                    <span class="es-web-tool__header-link-text">
-                        On Github
-                    </span>
-                </a>
-            </div>
             <div class="es-web-tool__body">
-                <div class="es-web-tool__sidebar">
-                    
-    <div class="es-tabs">
-        
-            
-                
-            
-            <label class="es-tabs__label es-tabs__label--active" for="es-tabs__global-panel--analyze"><span class="es-tabs__label-text">Analyze</span></label>
-        
-            
-                
-            
-            <label class="es-tabs__label" for="es-tabs__global-panel--copy-code"><span class="es-tabs__label-text">Copy Code</span></label>
-        
-    </div>
+                <div class="es-web-tool__configurator">
+                    <div class="es-web-tool__sidebar">
+                        <h1 class="es-web-tool__title">
+                            <a href="http://eightshapes.com">
+                                
+  <svg class="icon-eightshapes-mark es-web-tool__title-logo">
+    <use xlink:href="svg/contrast-grid.svg#eightshapes-mark"></use>
+  </svg>
 
-                    
+                            </a>
+                            <span class="es-web-tool__title-text">Contrast Grid</span>
+                        </h1>
+                        
     <form method="GET" class="es-color-form">
         <div class="es-color-form__content">
             <p class="es-color-form__copy">
@@ -84,33 +60,61 @@
             </div>
 
             <div class="es-color-form__field-wrapper">
-                <label class="es-color-form__label">Tiles</label>
-                <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
-                    <input type="radio" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size">
-                    <span class="es-color-form__radio-button-text">
-                        Compact (75&times;75)
-                    </span>
-                </label>
-                <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
-                    <input type="radio" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size" checked>
-                    <span class="es-color-form__radio-button-text">
-                        Regular (100&times;100)
-                    </span>
-                </label>
-                <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
-                    <input type="radio" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
-                    <span class="es-color-form__radio-button-text">
-                        Large (150&times;150)
-                    </span>
-                </label>
+                <label class="es-color-form__label">Tile Size</label>
+                <div class="es-color-form__radio-button-group">
+                    <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size">
+                        <span class="es-color-form__radio-button-text">
+                            S<span class="es-color-form__radio-button-subtext">(75&times;75)</span>
+                        </span>
+                    </label>
+                    <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size" checked>
+                        <span class="es-color-form__radio-button-text">
+                            M<span class="es-color-form__radio-button-subtext">(100&times;100)</span>
+                        </span>
+                    </label>
+                    <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
+                        <span class="es-color-form__radio-button-text">
+                            L<span class="es-color-form__radio-button-subtext">(150&times;150)</span>
+                        </span>
+                    </label>
+                </div>
             </div>
 
         </div>
     </form>
 
-                </div>
-                <div class="es-web-tool__results">
-                    
+                        <div class="es-web-tool__sidebar-actions">
+                            <div class="es-web-tool__sidebar-ctas">
+                                <button class="es-code-toggle es-button">Show Code</button>
+                                <a class="es-web-tool__external-link es-button es-web-tool__external-link--twitter" href="http://twitter.com/home?status=Test%20your%20entire%20color%20palette%20for%20accessibility.%20http://contrast-grid.eightshapes.com%20@eightshapes&amp;source=webclient">
+                                    
+  <svg class="icon-twitter es-web-tool__external-link-logo es-button__icon">
+    <use xlink:href="svg/contrast-grid.svg#twitter"></use>
+  </svg>
+
+                                    <span class="es-web-tool__external-link-text">
+                                        Tweet
+                                    </span>
+                                </a>
+                            </div>
+
+                            <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
+                                
+  <svg class="icon-github es-web-tool__external-link-logo">
+    <use xlink:href="svg/contrast-grid.svg#github"></use>
+  </svg>
+
+                                <span class="es-web-tool__external-link-text">
+                                    On Github
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="es-web-tool__results">
+                        
     <div class="es-contrast-grid">
         <div class="es-contrast-grid__inner">
             <table class="es-contrast-grid__table">
@@ -408,8 +412,18 @@ td.es-contrast-grid__key-cell {
         </style>
     </div>
     
-                    
+                    </div>
+                </div>
+                
     <div class="es-code-snippet">
+        <button class="es-code-snippet__hide-button es-button">
+            
+  <svg class="icon-close es-code-snippet__hide-button-icon">
+    <use xlink:href="svg/contrast-grid.svg#close"></use>
+  </svg>
+ 
+            <span class="es-code-snippet__hide-button-text">Hide Code</span>
+        </button>
         <div class="es-code-snippet__copy-header">
             <label class="es-code-snippet__label">Persistent URL</label>        
             <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__persistent-url">
@@ -454,7 +468,6 @@ td.es-contrast-grid__key-cell {
         </div>
     </div>
 
-                </div>
             </div>
         </div>
     </div>

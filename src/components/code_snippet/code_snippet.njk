@@ -1,5 +1,9 @@
 {% macro code_snippet() %}
     <div class="es-code-snippet">
+        <button class="es-code-snippet__hide-button es-button">
+            {{ icon(icon_name="close", class="es-code-snippet__hide-button-icon") }} 
+            <span class="es-code-snippet__hide-button-text">Hide Code</span>
+        </button>
         <div class="es-code-snippet__copy-header">
             <label class="es-code-snippet__label">Persistent URL</label>        
             <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__persistent-url">

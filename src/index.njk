@@ -22,34 +22,40 @@
 <body>
     <div class="es-web-tool__flex-container">
         <div class="es-web-tool__outer-wrap">
-            <div class="es-web-tool__header">
-                <h1 class="es-web-tool__title">
-                    {{ components.icon(icon_name="eightshapes-logo", class="es-web-tool__title-logo") }}
-                    <span class="es-web-tool__title-text">Contrast Grid</span>
-                </h1>
-                <a class="es-web-tool__header-link" href="https://github.com/EightShapes/contrast-grid">
-                    {{ components.icon(icon_name="github", class="es-web-tool__header-link-logo") }}
-                    <span class="es-web-tool__header-link-text">
-                        On Github
-                    </span>
-                </a>
-            </div>
             <div class="es-web-tool__body">
-                <div class="es-web-tool__sidebar">
-                    {{ components.tabs(labels=[
-                        {
-                            name: "Analyze",
-                            active: true
-                        },
-                        {
-                            name: "Copy Code"
-                        }]) }}
-                    {{ components.color_form() }}
+                <div class="es-web-tool__configurator">
+                    <div class="es-web-tool__sidebar">
+                        <h1 class="es-web-tool__title">
+                            <a href="http://eightshapes.com">
+                                {{ components.icon(icon_name="eightshapes-mark", class="es-web-tool__title-logo") }}
+                            </a>
+                            <span class="es-web-tool__title-text">Contrast Grid</span>
+                        </h1>
+                        {{ components.color_form() }}
+                        <div class="es-web-tool__sidebar-actions">
+                            <div class="es-web-tool__sidebar-ctas">
+                                <button class="es-code-toggle es-button">Show Code</button>
+                                <a class="es-web-tool__external-link es-button es-web-tool__external-link--twitter" href="http://twitter.com/home?status=Test%20your%20entire%20color%20palette%20for%20accessibility.%20http://contrast-grid.eightshapes.com%20@eightshapes&amp;source=webclient">
+                                    {{ components.icon(icon_name="twitter", class="es-web-tool__external-link-logo es-button__icon") }}
+                                    <span class="es-web-tool__external-link-text">
+                                        Tweet
+                                    </span>
+                                </a>
+                            </div>
+
+                            <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
+                                {{ components.icon(icon_name="github", class="es-web-tool__external-link-logo") }}
+                                <span class="es-web-tool__external-link-text">
+                                    On Github
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="es-web-tool__results">
+                        {{ components.contrast_grid() }}    
+                    </div>
                 </div>
-                <div class="es-web-tool__results">
-                    {{ components.contrast_grid() }}    
-                    {{ components.code_snippet() }}
-                </div>
+                {{ components.code_snippet() }}
             </div>
         </div>
     </div>

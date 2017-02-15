@@ -1,5 +1,5 @@
 .es-color-form {
-    padding: $spacing-md;
+    padding: $spacing-md $spacing-md 0;
 }
 
 .es-color-form__title {
@@ -38,9 +38,11 @@
 }
 
 .es-color-form__radio-button {
-    font-weight: 400;
     display: block;
+    font-weight: 400;
     margin-bottom: $spacing-sm;
+    text-align: center;
+    width: 33.3333333%;
 
     input[disabled] {
         &,
@@ -49,6 +51,21 @@
             cursor: not-allowed;
             font-style: italic;
         }
+    }
+}
+
+.es-color-form__radio-button-text {
+    background-color: $color-link;
+    color: $color-white;
+    cursor: pointer;
+    display: block;
+    padding: $spacing-xs;
+    width: 100%;
+
+    .es-color-form__radio-button-input:checked + & {
+        background-color: $color-gray-53;
+        box-shadow: inset 0 0 5px rgba($color-black, 0.5);
+        color: $color-black;
     }
 }
 
@@ -74,4 +91,20 @@
     .es-color-form--show-background-colors-input & {
         display: block;
     }
+}
+
+.es-color-form__radio-button-group {
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.es-color-form__radio-button-subtext {
+    display: block;
+    font-size: $font-size-xs;
+}
+
+.es-color-form__radio-button-input {
+    position: absolute;
+    visibility: hidden;
 }

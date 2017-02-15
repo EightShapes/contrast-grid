@@ -301,13 +301,13 @@ EightShapes.ColorForm = function() {
         window.history.pushState(false, false, '/?' + $colorForm.serialize());
     }
 
-    function disableFormFields() {
-        $colorForm.find("textarea, input").prop("disabled", true);
-    }
+    // function disableFormFields() {
+    //     $colorForm.find("textarea, input").prop("disabled", true);
+    // }
 
-    function enableFormFields() {
-        $colorForm.find("textarea, input").prop("disabled", false);
-    }
+    // function enableFormFields() {
+    //     $colorForm.find("textarea, input").prop("disabled", false);
+    // }
 
     function initializeEventHandlers() {
         $foregroundColorsInput.typeWatch({
@@ -321,8 +321,8 @@ EightShapes.ColorForm = function() {
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
         $(document).on('escg.rowsSorted', sortBackgroundColors);
-        $(document).on('escg.show-tab-es-tabs__global-panel--copy-code', disableFormFields);
-        $(document).on('escg.show-tab-es-tabs__global-panel--analyze', enableFormFields);
+        // $(document).on('escg.show-tab-es-tabs__global-panel--copy-code', disableFormFields);
+        // $(document).on('escg.show-tab-es-tabs__global-panel--analyze', enableFormFields);
         $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
         $("input[name='es-color-form__tile-size']").on("change", broadcastTileSizeChange);
         $(".es-color-form__view-code-toggle").on("click", broadcastCodeSnippetViewToggle);
@@ -819,47 +819,18 @@ function rgb2hex(rgb) {
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
 
-var EightShapes = EightShapes || {};
-
-EightShapes.Tabs = function() {
-    'use strict';
-
-    function hideVisibleGlobalTabs() {
-        $(".es-tabs__label--active").removeClass("es-tabs__label--active");
-        $("body").removeClass( function(index, className) {
-            return (className.match (/(^|\s)es-tabs__global-panel--\S+/g) || []).join(' ');
-        });
-    }
-
-    function showGlobalTab(e) {
-        var $tabs = $(e.target).closest(".es-tabs__label"),
-            tabId = $tabs.attr("for");
-        hideVisibleGlobalTabs();
-        $("body").addClass(tabId);
-        $tabs.addClass("es-tabs__label--active");
-        console.log("escg.show-tab-" + tabId);
-        $(document).trigger("escg.show-tab-" + tabId);
-    }
-
-    function setEventHandlers() {
-        $(".es-tabs__label").on("click", showGlobalTab);
-    }
-
-    var initialize = function initialize() {
-        setEventHandlers();
-    };
-
-    var public_vars = {
-        'initialize': initialize
-    };
-
-    return public_vars;
-}();
-
 $(document).ready(function(){
     // Initialize the various components in the correct order
     EightShapes.ContrastGrid.initialize();
     EightShapes.CodeSnippet.initialize();
     EightShapes.ColorForm.initialize();
-    EightShapes.Tabs.initialize();
+
+    $(".es-code-toggle").on("click", function(){
+        $("body").addClass("es-code-toggle--visible");
+        $(document).trigger("escg.show-tab-es-tabs__global-panel--copy-code");
+    });
+
+    $(".es-code-snippet__hide-button").on("click", function(){
+        $("body").removeClass("es-code-toggle--visible");
+    });
 });
