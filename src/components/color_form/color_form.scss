@@ -1,11 +1,5 @@
 .es-color-form {
-    background: $color-gray-95;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0;
-    flex: 0 0 320px;
-    padding: $spacing-md;
+    padding: $spacing-md $spacing-md 0;
 }
 
 .es-color-form__title {
@@ -19,25 +13,71 @@
     font-size: $font-size-default;
     height: 200px;
     padding: $spacing-xs;
-    margin-bottom: $spacing-xs;
+    margin-bottom: $spacing-sm;
     width: 100%;
+
+    &[disabled] {
+        color: $color-gray-53;
+        cursor: not-allowed;
+        font-style: italic;
+    }
 }
 
 .es-color-form__label {
     display: block;
     font-weight: bold;
-    margin-bottom: $spacing-xs;
+    margin-bottom: $spacing-sm;
 }
 
 .es-color-form__field-wrapper {
     margin-bottom: $spacing-md;
 }
 
+.es-color-form__copy {
+    margin: 0 0 $spacing-default;
+}
 
 .es-color-form__radio-button {
-    font-weight: 400;
     display: block;
-    margin-bottom: $spacing-xs;
+    font-weight: 400;
+    margin-bottom: $spacing-sm;
+    text-align: center;
+    width: 33.3333333%;
+
+    input[disabled] {
+        &,
+        + .es-color-form__radio-button-text {
+            color: $color-gray-53;
+            cursor: not-allowed;
+            font-style: italic;
+        }
+    }
+}
+
+.es-color-form__radio-button-text {
+    background-color: darken($color-gray-95, 10%);
+    border-right: solid 1px $color-gray-53;
+    color: $color-black;
+    cursor: pointer;
+    display: block;
+    font-size: $font-size-sm;
+    padding: $spacing-xs;
+    width: 100%;
+
+    .es-color-form__radio-button-input:checked + & {
+        background-color: darken($color-gray-95, 20%);
+        box-shadow: inset 0 0 5px rgba($color-black, 0.5);
+        color: $color-black;
+    }
+
+    .es-color-form__radio-button:last-child & {
+        border-radius: 0 $border-radius-default $border-radius-default 0;
+        border-right: 0;
+    }
+
+    .es-color-form__radio-button:first-child & {
+        border-radius: $border-radius-default 0 0 $border-radius-default;
+    }
 }
 
 .es-color-form__content {
@@ -62,4 +102,20 @@
     .es-color-form--show-background-colors-input & {
         display: block;
     }
+}
+
+.es-color-form__radio-button-group {
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.es-color-form__radio-button-subtext {
+    display: block;
+    font-size: $font-size-xs;
+}
+
+.es-color-form__radio-button-input {
+    position: absolute;
+    visibility: hidden;
 }

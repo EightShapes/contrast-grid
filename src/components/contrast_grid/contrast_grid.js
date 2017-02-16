@@ -10,7 +10,6 @@ EightShapes.ContrastGrid = function() {
         $contentRowTemplate,
         $contentCellTemplate,
         $backgroundKey,
-        showInlineStylesAsHex = true,
         showLabelsOnColumnKeys = false,
         gridData = {
             foregroundColors: [
@@ -40,30 +39,6 @@ EightShapes.ContrastGrid = function() {
                 }
             ]
         };
-
-    function convertRgbInlineStylesToHex(string) {
-        const rgbRegex = /rgba?\((\d+),\s?(\d+),\s?(\d+)\)/gim;
-        let m;
-
-        function replaceWithHex(match, p1, p2, p3) {
-            return "#" +
-              ("0" + parseInt(p1,10).toString(16)).slice(-2) +
-              ("0" + parseInt(p2,10).toString(16)).slice(-2) +
-              ("0" + parseInt(p3,10).toString(16)).slice(-2)
-        }
-
-        string = string.replace(rgbRegex, replaceWithHex);
-        return string;
-    }
-
-    function getGridMarkup() {
-        var markup = $grid.prop('outerHTML');
-        if (showInlineStylesAsHex) {
-            markup = convertRgbInlineStylesToHex(markup);
-        }
-
-        return markup;
-    }
 
     function getForegroundColors() {
         return gridData.foregroundColors;
@@ -155,9 +130,12 @@ EightShapes.ContrastGrid = function() {
             placeholder: 'es-contrast-grid__row-placeholder',
             handle: '.es-contrast-grid__key-swatch-drag-handle--row',
             tolerance: 'pointer',
-            start: function() {
+            start: function(event, ui) {
                 var columnCount = $(".es-contrast-grid__row-placeholder td").length;
-                $(".es-contrast-grid__row-placeholder").html("").append("<td colspan='" + columnCount + "'></td>");
+                ui.placeholder.html("").append("<td colspan='" + columnCount + "'></td>");
+                $(".es-contrast-grid__foreground-key").find("th").each(function(index){
+                    ui.helper.find("td:nth-child(" + (index + 1) + ")").width($(this).outerWidth() + "px");
+                });
             },
             update: function(table) {
                 var sortedColors = extractBackgroundColorsFromGrid();
@@ -204,19 +182,54 @@ EightShapes.ContrastGrid = function() {
     }
 
     function broadcastGridUpdate() {
-        $(document).trigger("escg.contrastGridUpdated", [getGridMarkup()]);
+        $(document).trigger("escg.contrastGridUpdated");
+    }
+
+    function setKeyCellWidth() {
+        var columnCount = $(".es-contrast-grid__table tr:first-child td").length;
+        $(".es-contrast-grid__key-cell").attr("colspan", columnCount);
+    }
+
+    function disableRowAndColumnRemoval() {
+        $grid.addClass("es-contrast-grid--row-and-column-removal-disabled");
+    }
+
+    function enableRowAndColumnRemoval() {
+        $grid.removeClass("es-contrast-grid--row-and-column-removal-disabled");
+    }
+
+    function setGridUiStatus() {
+        console.log(gridData.foregroundColors.length);
+        console.log(gridData.backgroundColors.length);
+        if (gridData.foregroundColors.length <= 1 && gridData.backgroundColors.length <= 1) {
+            disableRowAndColumnRemoval();
+        } else {
+            enableRowAndColumnRemoval();
+        }
     }
 
     function generateGrid() {
         generateForegroundKey();
         generateContentRows();
+        setKeyCellWidth();
         addContrastToSwatches();
         addAccessibilityToSwatches();
         setKeySwatchLabelColors();
+        truncateContrastDisplayValues();
         disableDragUi();
         enableDragUi();
         svg4everybody(); // render icons on IE
         broadcastGridUpdate();
+        setGridUiStatus();
+    }
+
+    function truncateContrastDisplayValues() {
+        $(".es-contrast-grid__contrast-ratio").each(function(){
+            $(this).text($(this).text().slice(0, -1));
+            if ($(this).text().endsWith('.')) {
+                $(this).text($(this).text().slice(0, -1));
+            }
+        });
     }
 
     function addAccessibilityToSwatches() {
@@ -244,7 +257,9 @@ EightShapes.ContrastGrid = function() {
             var backgroundColor = rgb2hex($(this).css("backgroundColor")),
                 contrastWithWhite = getContrastRatioForHex("#FFFFFF", backgroundColor);
 
-            if (contrastWithWhite < 4.0) {
+            if (contrastWithWhite === 1) {
+                $(this).addClass("es-contrast-grid--bordered-swatch es-contrast-grid--dark-label");
+            } else if (contrastWithWhite < 4.0) {
                 $(this).addClass("es-contrast-grid--dark-label");
             }
         });
@@ -260,7 +275,9 @@ EightShapes.ContrastGrid = function() {
                     contrastRatio = getContrastRatioForHex(foregroundColor, backgroundColor),
                     contrastWithWhite = getContrastRatioForHex("#FFFFFF", backgroundColor);
                 $(this).find(".es-contrast-grid__contrast-ratio").text(contrastRatio);
-                if (contrastWithWhite < 4.0) {
+                if (contrastWithWhite === 1) {
+                    $(this).addClass("es-contrast-grid--bordered-swatch es-contrast-grid--dark-label");
+                } else if (contrastWithWhite < 4.0) {
                     $(this).addClass("es-contrast-grid--dark-label");
                 }
             }
@@ -293,9 +310,18 @@ EightShapes.ContrastGrid = function() {
         $grid.find(".es-contrast-grid__foreground-key-cell").remove();
     }
 
+    function setColumnLabelStatus() {
+        if (gridData.backgroundColors.length > 0) {
+            showLabelsOnColumnKeys = true;
+        } else {
+            showLabelsOnColumnKeys = false;
+        }
+    }
+
     function updateGrid(event, data) {
         setGridData(data);
         resetGrid();
+        setColumnLabelStatus();
         generateGrid();
     }
 
@@ -307,7 +333,7 @@ EightShapes.ContrastGrid = function() {
     }
 
     function initializeEventHandlers() {
-        $(document).on("escg.updateGrid", updateGrid);
+        $(document).on("escg.colorFormValuesChanged", updateGrid);
         $(document).on("escg.tileSizeChanged", changeTileSize);
         $(document).on('click', '.es-contrast-grid__key-swatch-remove', function(e){
             e.preventDefault();
@@ -322,8 +348,6 @@ EightShapes.ContrastGrid = function() {
 
         initializeEventHandlers();
         setTemplateObjects();
-        // generateGrid();
-        $('.defaultTable').dragtable();
     };
 
 
@@ -343,7 +367,7 @@ Math.round = (function(){
     return function (number, decimals) {
         decimals = +decimals || 0;
 
-        var multiplier = Math.pow(10, decimals);
+        var multiplier = Math.pow(100, decimals);
 
         return round(number * multiplier) / multiplier;
     };

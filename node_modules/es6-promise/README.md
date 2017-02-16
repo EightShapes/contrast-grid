@@ -1,4 +1,4 @@
-# ES6-Promise (subset of [rsvp.js](https://github.com/tildeio/rsvp.js))
+# ES6-Promise (subset of [rsvp.js](https://github.com/tildeio/rsvp.js)) [![Build Status](https://travis-ci.org/stefanpenner/es6-promise.svg?branch=master)](https://travis-ci.org/stefanpenner/es6-promise)
 
 This is a polyfill of the [ES6 Promise](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-constructor). The implementation is a subset of [rsvp.js](https://github.com/tildeio/rsvp.js) extracted by @jakearchibald, if you're wanting extra features and more debugging options, check out the [full library](https://github.com/tildeio/rsvp.js).
 
@@ -6,8 +6,10 @@ For API details and how to use promises, see the <a href="http://www.html5rocks.
 
 ## Downloads
 
-* [es6-promise](https://raw.githubusercontent.com/stefanpenner/es6-promise/master/dist/es6-promise.js)
-* [es6-promise-min](https://raw.githubusercontent.com/stefanpenner/es6-promise/master/dist/es6-promise.min.js)
+* [es6-promise 27.86 KB (7.33 KB gzipped)](https://raw.githubusercontent.com/stefanpenner/es6-promise/master/dist/es6-promise.js)
+* [es6-promise-auto 27.78 KB (7.3 KB gzipped)](https://raw.githubusercontent.com/stefanpenner/es6-promise/master/dist/es6-promise.auto.js) - Automatically provides/replaces `Promise` if missing or broken.
+* [es6-promise-min 6.17 KB (2.4 KB gzipped)](https://raw.githubusercontent.com/stefanpenner/es6-promise/master/dist/es6-promise.min.js)
+* [es6-promise-auto-min 6.19 KB (2.4 KB gzipped)](https://raw.githubusercontent.com/stefanpenner/es6-promise/master/dist/es6-promise.auto.min.js) - Minified version of `es6-promise-auto` above.
 
 ## Node.js
 
@@ -58,6 +60,12 @@ To polyfill the global environment (either in Node or in the browser via CommonJ
 
 ```js
 require('es6-promise').polyfill();
+```
+
+Alternatively
+
+```js
+require('es6-promise/auto');
 ```
 
 Notice that we don't assign the result of `polyfill()` to any variable. The `polyfill()` method will patch the global environment (in this case to the `Promise` name) when called.

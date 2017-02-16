@@ -1,5 +1,10 @@
 @import '../../styles/variables';
 
+/* Override Contrast Grid Styles to make color and font changes */
+.es-contrast-grid {
+    font-family: 'Lato', sans-serif;
+}
+
 .es-contrast-grid {
     box-sizing: border-box;
     overflow: auto;
@@ -12,14 +17,18 @@
     }
 }
 
+.es-contrast-grid__table-wrap {
+    width: auto;
+}
+
 .es-contrast-grid__table {
     border-collapse: collapse;
     color: #fff;
 
     td, th {
-        border: 0;
+        border: solid 1px transparent;
         font-size: 16px;
-        padding: 1px;
+        padding: 0;
         margin: 0;
     }
 }
@@ -31,17 +40,12 @@
 .es-contrast-grid__accessibility-label {
     background: #ccc;
     border-radius: 4px;
+    display: inline-block;
     color: #000;
     font-size: $font-size-xs;
     padding: 2px 4px;
-
-    .es-contrast-grid--large & {
-        font-size: $font-size-lg;
-    }
-
-    .es-contrast-grid--compact & {
-        font-size: $font-size-xs * .9;
-    }
+    text-align: center;
+    width: 36px;
 }
 
 .es-contrast-grid__accessibility-label--dnp {
@@ -50,7 +54,7 @@
 }
 
 .es-contrast-grid__accessibility-label--aa18 {
-    background: goldenrod;
+    background: #CFB317;
 }
 
 .es-contrast-grid__swatch {
@@ -59,26 +63,22 @@
     height: $default-swatch-size;
     justify-content: space-between;
     padding: $spacing-xs;
-    width: $default-swatch-size;
+    min-width: $default-swatch-size;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
-        width: $compact-swatch-size;        
+        min-width: $compact-swatch-size;        
     }
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
         padding: $spacing-sm;
-        width: $large-swatch-size;
+        min-width: $large-swatch-size;
     }
 }
 
 .es-contrast-grid__swatch-demo-text {
-    font-size: 18px;
-
-    .es-contrast-grid--large & {
-        font-size: $font-size-xl;
-    }
+    font-size: $font-size-default;
 }
 
 .es-contrast-grid__swatch-stats {
@@ -91,22 +91,27 @@
     color: $color-white;
     font-size: $font-size-sm;
 
-    .es-contrast-grid--large & {
-        font-size: $font-size-lg;
-    }
-
-    .es-contrast-grid--compact & {
-        font-size: $font-size-xs;
-    }
-
     .es-contrast-grid--dark-label & {
         color: $color-black;
     }
 }
 
 .es-contrast-grid__key-swatch-spacer {
+    align-items: center;
+    background: 
+         linear-gradient(to top right,
+             rgba($color-gray-95,0) 0%,
+             rgba($color-gray-95,0) calc(50% - 1px),
+             rgba($color-gray-95,1) 50%,
+             rgba($color-gray-95,0) calc(50% + 1px),
+             rgba($color-gray-95,0) 100%);
+    background-color: $color-white;
     border: solid 1px $color-gray-95;
+    color: $color-black;
+    display: flex;
     height: $default-swatch-size;
+    justify-content: space-between;
+    padding: $spacing-xs;
     width: 320px;
 
     .es-contrast-grid--compact & {
@@ -118,20 +123,24 @@
     }
 }
 
+.es-contrast-grid__key-swatch-label--background {
+    align-self: flex-end;
+}
+
 .es-contrast-grid__swatch-spacer {
-    background: $color-white;
+    background-color: $color-white;
     border: solid 1px $color-gray-95;
     height: $default-swatch-size;
-    width: $default-swatch-size;
+    width: 100%;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
-        width: $compact-swatch-size;
+        width: 100%;
     }
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
-        width: $large-swatch-size;
+        width: 100%;
     }
 }
 
@@ -143,20 +152,30 @@
     height: $default-swatch-size;
     justify-content: center;
     padding: $spacing-xs;
-    // position: relative;
     text-align: left;
-    width: $default-swatch-size;
+    // width: $default-swatch-size;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
-        width: $compact-swatch-size;
+        // width: $compact-swatch-size;
     }
 
     .es-contrast-grid--large & {
         height: $large-swatch-size;
         padding: $spacing-sm;
-        width: $large-swatch-size;
+        // width: $large-swatch-size;
     }
+
+    .es-contrast-grid__key-swatch-label-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 220px;
+        white-space: nowrap;
+    }
+}
+
+.es-contrast-grid--bordered-swatch {
+    border: solid 1px $color-gray-95;
 }
 
 .es-contrast-grid__key-swatch--background {
@@ -179,17 +198,55 @@
 
 .es-contrast-grid__key-swatch-label-text {
     font-weight: bold;
-
-    .es-contrast-grid--large & {
-        font-size: $font-size-lg;
-    }
 }
 
 .es-contrast-grid__key-swatch-label-hex {
     font-weight: normal;
     font-size: $font-size-sm;
+}
 
-    .es-contrast-grid--large & {
-        font-size: $font-size-default;
+td.es-contrast-grid__key-cell {
+    padding-top: $spacing-md;
+}
+
+.es-contrast-grid-key {
+    align-items: center;
+    border: solid 1px $color-gray-95;
+    color: $color-black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: $spacing-sm;
+}
+
+.es-contrast-grid__key-cell[colspan="1"],
+.es-contrast-grid__key-cell[colspan="2"],
+.es-contrast-grid__key-cell[colspan="3"] {
+    .es-contrast-grid-key {
+        display: block;
     }
+
+    .es-contrast-grid-key__column {
+        margin-bottom: $spacing-xs;
+        width: 100%;
+    }
+}
+
+.es-contrast-grid-key__label {
+    align-items: center;
+    display: flex;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-xs;
+
+    .es-contrast-grid__accessibility-label {
+        margin-right: $spacing-xs;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.es-contrast-grid-key__link {
+    font-size: $font-size-sm;
 }

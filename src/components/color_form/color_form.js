@@ -81,7 +81,7 @@ EightShapes.ColorForm = function() {
         colors = removeColorFromData(hex, colors);
         gridDataText = convertGridDataToText(colors);
         updateInputText(colorset, gridDataText);
-        triggerGridUpdate();
+        broadcastFormValueChange();
     }
 
     function getCurrentGridData() {
@@ -97,9 +97,10 @@ EightShapes.ColorForm = function() {
         return gridData;
     }
 
-    function triggerGridUpdate() {
+    function broadcastFormValueChange() {
         var gridData = getCurrentGridData();
-        $(document).trigger('escg.updateGrid', [gridData]);
+        $(document).trigger('escg.colorFormValuesChanged', [gridData]);
+        updateUrl();
     }
 
     function sortForegroundColors(e, sortedColorsKey) {
@@ -114,7 +115,7 @@ EightShapes.ColorForm = function() {
         });
         gridDataText = convertGridDataToText(sortedForegroundColors);
         updateInputText('foreground', gridDataText);
-        triggerGridUpdate();
+        broadcastFormValueChange();
     }
 
     function sortBackgroundColors(e, sortedColorsKey) {
@@ -141,28 +142,44 @@ EightShapes.ColorForm = function() {
         });
         gridDataText = convertGridDataToText(sortedBackgroundColors);
         updateInputText(inputField, gridDataText);
-        triggerGridUpdate();
+        broadcastFormValueChange();
     }
 
     function toggleBackgroundColorsInput(e) {
-        e.preventDefault();
+        if (typeof e !== 'undefined') {
+            e.preventDefault();
+        }
+        var $backgroundColors = $("#es-color-form__background-colors"),
+            $foregroundColors = $("#es-color-form__foreground-colors");
         if ($(".es-color-form").hasClass("es-color-form--show-background-colors-input")) {
             // hide the background Colors Input
             $(".es-color-form").removeClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Rows & Columns");
-            $("#es-color-form__background-colors").val("");
-            triggerGridUpdate();
+            $("label[for='es-color-form__foreground-colors']").text("Row & Column Colors");
+            $foregroundColors.attr("data-persisted-text", $foregroundColors.val());
+            $foregroundColors.val($backgroundColors.val());
+            $backgroundColors.val("");
+            broadcastFormValueChange();
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Columns");
-            $("#es-color-form__background-colors").val($("#es-color-form__foreground-colors").val());
-            triggerGridUpdate();
+            $("label[for='es-color-form__foreground-colors']").text("Column Colors");
+
+            if ($backgroundColors.val().length == 0) {
+                // $backgroundColors will already have a value when loading from the url
+                $backgroundColors.val($foregroundColors.val());
+            }
+            
+            if (typeof $foregroundColors.attr("data-persisted-text") !== 'undefined') {
+                $foregroundColors.val($foregroundColors.attr("data-persisted-text"));
+            }
+            broadcastFormValueChange();
         }
     }
 
     function broadcastTileSizeChange(e) {
-        $(document).trigger("escg.tileSizeChanged", [$(e.target).val()]);
+        var tileSize = $colorForm.find("input[name='es-color-form__tile-size']:checked").val();
+        $(document).trigger("escg.tileSizeChanged", [tileSize]);
+        updateUrl();
     }
 
     function broadcastCodeSnippetViewToggle(e) {
@@ -170,23 +187,55 @@ EightShapes.ColorForm = function() {
         $(document).trigger("escg.showCodeSnippet");
     }
 
+    function updateUrl() {
+        window.history.pushState(false, false, '/?' + $colorForm.serialize());
+    }
+
+    // function disableFormFields() {
+    //     $colorForm.find("textarea, input").prop("disabled", true);
+    // }
+
+    // function enableFormFields() {
+    //     $colorForm.find("textarea, input").prop("disabled", false);
+    // }
+
     function initializeEventHandlers() {
-        $foregroundColorsInput.on('keyup', triggerGridUpdate);
-        $backgroundColorsInput.on('keyup', triggerGridUpdate);
+        $foregroundColorsInput.typeWatch({
+            wait: 500,
+            callback: broadcastFormValueChange
+        });
+        $backgroundColorsInput.typeWatch({
+            wait: 500,
+            callback: broadcastFormValueChange
+        });
         $(document).on('escg.removeColor', removeColor);
         $(document).on('escg.columnsSorted', sortForegroundColors);
         $(document).on('escg.rowsSorted', sortBackgroundColors);
+        // $(document).on('escg.show-tab-es-tabs__global-panel--copy-code', disableFormFields);
+        // $(document).on('escg.show-tab-es-tabs__global-panel--analyze', enableFormFields);
         $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
         $("input[name='es-color-form__tile-size']").on("change", broadcastTileSizeChange);
         $(".es-color-form__view-code-toggle").on("click", broadcastCodeSnippetViewToggle);
     }
 
+    function loadFormDataFromUrl() {
+        if (location.search.substr( 1 ).length > 0) {
+            $colorForm.deserialize( location.search.substr( 1 ) );
+        }
+
+        if ($backgroundColorsInput.val().length > 0) {
+            toggleBackgroundColorsInput();
+        }
+    }
+
     var initialize = function initialize() {
         $colorForm = $(".es-color-form"); 
         $foregroundColorsInput = $("#es-color-form__foreground-colors");   
-        $backgroundColorsInput = $("#es-color-form__background-colors");   
+        $backgroundColorsInput = $("#es-color-form__background-colors");
+        loadFormDataFromUrl(); 
         initializeEventHandlers();
-        triggerGridUpdate();
+        broadcastFormValueChange();
+        broadcastTileSizeChange();
     };
 
     var public_vars = {

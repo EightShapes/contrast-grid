@@ -111,6 +111,25 @@ var output = Mustache.render("{{title}} spends {{calc}}", view);
 
 In this example, the `Mustache.render` function takes two parameters: 1) the [mustache](http://mustache.github.com/) template and 2) a `view` object that contains the data and code needed to render the template.
 
+## API
+
+Following is an [rtype](https://git.io/rtype) signature of the most commonly used functions.
+
+```js
+Mustache.render(
+  template  : String,
+  view      : Object,
+  partials? : Object,
+) => String
+
+Mustache.parse(
+  template              : String,
+  tags = ['{{', '}}']   : Tags,
+) => String
+
+interface Tags [String, String]
+```
+
 ## Templates
 
 A [mustache](http://mustache.github.com/) template is a string that contains any number of mustache tags. Tags are indicated by the double mustaches that surround them. `{{person}}` is a tag, as is `{{#person}}`. In both examples we refer to `person` as the tag's key. There are several types of tags available in mustache.js, described below.
@@ -122,8 +141,9 @@ There are several techniques that can be used to load templates and hand them to
 If you need a template for a dynamic part in a static website, you can consider including the template in the static HTML file to avoid loading templates separately. Here's a small example using `jQuery`:
 
 ```html
+<!DOCTYPE HTML>
 <html>
-<body onload="loadUser">
+<body onload="loadUser()">
 <div id="target">Loading...</div>
 <script id="template" type="x-tmpl-mustache">
 Hello {{ name }}!
@@ -160,7 +180,7 @@ The most basic tag type is a simple variable. A `{{name}}` tag renders the value
 
 All variables are HTML-escaped by default. If you want to render unescaped HTML, use the triple mustache: `{{{name}}}`. You can also use `&` to unescape a variable.
 
-If you want `{{name}}` _not_ to be interpreted as a mustache tag, but rather to appear exactly as `{{name}}` in the output, you must change and then restore the default delimiter. See the ["Set Delimiter"](https://github.com/janl/mustache.js#set-delimiter) section for more information about custom delimiters.
+If you want `{{name}}` _not_ to be interpreted as a mustache tag, but rather to appear exactly as `{{name}}` in the output, you must change and then restore the default delimiter. See the [Custom Delimiters](#custom-delimiters) section for more information.
 
 View:
 
@@ -473,13 +493,36 @@ Mustache.render(template, view, {
 });
 ```
 
-### Set Delimiter
+### Custom Delimiters
+
+Custom delimiters can be used in place of `{{` and `}}` by setting the new values in JavaScript or in templates.
+
+#### Setting in JavaScript
+
+The `Mustache.tags` property holds an array consisting of the opening and closing tag values. Set custom values by passing a new array of tags to `parse()`, which gets honored over the default values, or by overriding the `tags` property itself:
+
+```js
+var customTags = [ '<%', '%>' ];
+```
+
+##### Pass Value into Parse Method
+```js
+Mustache.parse(template, customTags);
+```
+
+##### Override Tags Property
+```js
+Mustache.tags = customTags;
+// Subsequent parse() and render() calls will use customTags
+```
+
+#### Setting in Templates
 
 Set Delimiter tags start with an equals sign and change the tag delimiters from `{{` and `}}` to custom strings.
 
 Consider the following contrived example:
 
-```
+```html+erb
 * {{ default_tags }}
 {{=<% %>=}}
 * <% erb_style_tags %>
@@ -489,7 +532,7 @@ Consider the following contrived example:
 
 Here we have a list with three items. The first item uses the default tag style, the second uses ERB style as defined by the Set Delimiter tag, and the third returns to the default style after yet another Set Delimiter declaration.
 
-According to [ctemplates](http://google-ctemplate.googlecode.com/svn/trunk/doc/howto.html), this "is useful for languages like TeX, where double-braces may occur in the text and are awkward to use for markup."
+According to [ctemplates](https://htmlpreview.github.io/?https://raw.githubusercontent.com/OlafvdSpek/ctemplate/master/doc/howto.html), this "is useful for languages like TeX, where double-braces may occur in the text and are awkward to use for markup."
 
 Custom delimiters may not contain whitespace or the equals sign.
 
@@ -515,30 +558,30 @@ mustache.js may be built specifically for several different client libraries, in
   - [qooxdoo](http://qooxdoo.org/)
 
 These may be built using [Rake](http://rake.rubyforge.org/) and one of the following commands:
-
-    $ rake jquery
-    $ rake mootools
-    $ rake dojo
-    $ rake yui3
-    $ rake qooxdoo
-
+```bash
+$ rake jquery
+$ rake mootools
+$ rake dojo
+$ rake yui3
+$ rake qooxdoo
+```
 ## Testing
 
 In order to run the tests you'll need to install [node](http://nodejs.org/).
 
 You also need to install the sub module containing [Mustache specifications](http://github.com/mustache/spec) in the project root.
-
-    $ git submodule init
-    $ git submodule update
-
+```bash
+$ git submodule init
+$ git submodule update
+```
 Install dependencies.
-
-    $ npm install
-
+```bash
+$ npm install
+```
 Then run the tests.
-
-    $ npm test
-
+```bash
+$ npm test
+```
 The test suite consists of both unit and integration tests. If a template isn't rendering correctly for you, you can make a test for it by doing the following:
 
   1. Create a template file named `mytest.mustache` in the `test/_files`
@@ -550,15 +593,15 @@ The test suite consists of both unit and integration tests. If a template isn't 
      directory.
 
 Then, you can run the test with:
-
-    $ TEST=mytest npm run test-render
-
+```bash
+$ TEST=mytest npm run test-render
+```
 ### Browser tests
 
 Browser tests are not included in `npm test` as they run for too long, although they are ran automatically on Travis when merged into master. Run browser tests locally in any browser:
-
-    $ npm run test-browser-local
-
+```bash
+$ npm run test-browser-local
+```
 then point your browser to `http://localhost:8080/__zuul`
 
 ### Troubleshooting
@@ -566,9 +609,9 @@ then point your browser to `http://localhost:8080/__zuul`
 #### npm install fails
 
 Ensure to have a recent version of npm installed. While developing this project requires npm with support for `^` version ranges.
-
-    $ npm install -g npm
-
+```bash
+$ npm install -g npm
+```
 ## Thanks
 
 mustache.js wouldn't kick ass if it weren't for these fine souls:

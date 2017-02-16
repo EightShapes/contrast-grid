@@ -18,14 +18,22 @@ function copySync (src, dest, options) {
 
   options.filter = options.filter || function () { return true }
 
+  // Warn about using preserveTimestamps on 32-bit node:
+  if (options.preserveTimestamps && process.arch === 'ia32') {
+    console.warn('fs-extra: Using the preserveTimestamps option in 32-bit node is not recommended;\n' +
+    'see https://github.com/jprichardson/node-fs-extra/issues/269')
+  }
+
   var stats = (options.recursive && !options.dereference) ? fs.lstatSync(src) : fs.statSync(src)
   var destFolder = path.dirname(dest)
   var destFolderExists = fs.existsSync(destFolder)
   var performCopy = false
 
   if (stats.isFile()) {
-    if (options.filter instanceof RegExp) performCopy = options.filter.test(src)
-    else if (typeof options.filter === 'function') performCopy = options.filter(src)
+    if (options.filter instanceof RegExp) {
+      console.warn('Warning: fs-extra: Passing a RegExp filter is deprecated, use a function')
+      performCopy = options.filter.test(src)
+    } else if (typeof options.filter === 'function') performCopy = options.filter(src)
 
     if (performCopy) {
       if (!destFolderExists) mkdir.mkdirsSync(destFolder)

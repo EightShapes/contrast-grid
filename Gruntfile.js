@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             options: {
             map: true, // inline sourcemaps
             processors: [
-                require('autoprefixer')({browsers: ['last 2 versions', 'iOS 8']}) // add vendor prefixes
+                require('autoprefixer')({browsers: ['last 2 versions', 'IE 11', 'iOS 8']}) // add vendor prefixes
                 ]
             },
             project: {
@@ -105,12 +105,9 @@ module.exports = function(grunt) {
                 src: [
                     'node_modules/jquery/dist/jquery.min.js',
                     'node_modules/jquery-ui-dist/jquery-ui.min.js',
+                    'node_modules/jquery-deserialize/dist/jquery.deserialize.min.js',
+                    'node_modules/jquery.typewatch/jquery.typewatch.js',
                     'node_modules/clipboard/dist/clipboard.min.js',
-                    'node_modules/prismjs/prism.js',
-                    'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js',
-                    'node_modules/prismjs/plugins/keep-markup/prism-keep-markup.min.js',
-                    'node_modules/prismjs/plugins/-whitespace/prism-normalize-whitespace.min.js',
-                    'node_modules/prismjs/themes/prism.css',
                     'node_modules/js-beautify/js/lib/beautify.js',
                     'node_modules/js-beautify/js/lib/beautify-html.js',
                     'node_modules/js-beautify/js/lib/beautify-css.js',
@@ -224,17 +221,9 @@ module.exports = function(grunt) {
     });
     grunt.registerTask('styles', ['sasslint', 'sass', 'postcss']);
     grunt.registerTask('markup', ['concat:component_macros', 'nunjucks']);
-    grunt.registerTask('build-dist', ['copy:vendor_assets', 'concat:component_scripts', 'styles', 'markup']);
-    grunt.registerTask('dev', ['build-dist', 'browserSync', 'watch']);
-
-    /* svg ********************************************************/
-    /* Minify/Optimize individual SVG files (Comet Components AND 
-    /* DOC-ONLY compoents), generate SVG sprite, add a version stamp 
-    /* to the sprite, copy the icon file names to icons.json,
-    /* format icons.json with propert indentation
-    /*
-    /******************************************************************/
     grunt.registerTask('svg', ['svgmin', 'svg_sprite']);
+    grunt.registerTask('build-dist', ['copy:vendor_assets', 'concat:component_scripts', 'styles', 'markup', 'svg']);
+    grunt.registerTask('dev', ['build-dist', 'browserSync', 'watch']);
 
     grunt.registerTask('default', ['dev']);
 };

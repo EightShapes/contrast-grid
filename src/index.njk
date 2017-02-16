@@ -4,45 +4,72 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="css/project.css">
-    <link rel="stylesheet" href="scripts/prism.css">
-    <script src="scripts/prism.js"></script>
-    <script src="scripts/prism-normalize-whitespace.min.js"></script>
-    <script src="scripts/prism-keep-markup.min.js"></script>
     <script src="scripts/clipboard.min.js"></script>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/jquery.deserialize.min.js"></script>
+    <script src="scripts/jquery.typewatch.js"></script>
     <script src="scripts/dragtable.js"></script>
-    <script src="scripts/eightshapes-contrast-grid.js"></script>
     <script src="scripts/beautify.js"></script>
     <script src="scripts/beautify-html.js"></script>
     <script src="scripts/beautify-css.js"></script>
     <script src="scripts/svg4everybody.min.js"></script>
+    <script src="scripts/eightshapes-contrast-grid.js"></script>
 {#     <script>
         svg4everybody();
     </script> #}
 </head>
 <body>
-    <div class="es-contrast-grid__flex-container">
-        <div class="es-contrast-grid__outer-wrap">
-            <div class="es-contrast-grid__header">
-                <h1 class="es-contrast-grid__title">
-                    {{ components.icon(icon_name="eightshapes-logo", class="es-contrast-grid__title-logo") }}
-                    <span class="es-contrast-grid__title-text">Contrast Grid</span>
-                </h1>
-                <a class="es-contrast-grid__header-link" href="https://github.com/EightShapes/contrast-grid">
-                    {{ components.icon(icon_name="github", class="es-contrast-grid__header-link-logo") }}
-                    <span class="es-contrast-grid__header-link-text">
-                        On Github
-                    </span>
-                </a>
-            </div>
-            <div class="es-contrast-grid-generator">
-                {{ components.color_form() }}
-                <div class="es-contrast-grid-generator__content-wrap">
-                    {{ components.contrast_grid() }}    
+    <div class="es-web-tool__flex-container">
+        <div class="es-web-tool__outer-wrap">
+            <div class="es-web-tool__body">
+                <div class="es-web-tool__configurator">
+                    <div class="es-web-tool__sidebar">
+                        <h1 class="es-web-tool__title">
+                            <a href="http://eightshapes.com">
+                                {{ components.icon(icon_name="eightshapes-mark", class="es-web-tool__title-logo") }}
+                            </a>
+                            <span class="es-web-tool__title-text">Contrast Grid</span>
+                        </h1>
+                        {{ components.color_form() }}
+                        <div class="es-web-tool__sidebar-actions">
+                            <div class="es-web-tool__sidebar-ctas">
+                                <button class="es-code-toggle es-button">Show Code</button>
+                                <a class="es-button es-web-tool__external-link--twitter" id="es-share-on-twitter-link" href="http://twitter.com/home?status=Test%20your%20entire%20color%20palette%20for%20accessibility.%20http://contrast-grid.eightshapes.com%20@eightshapes&amp;source=webclient">
+                                    {{ components.icon(icon_name="twitter", class="es-web-tool__external-link-logo es-button__icon") }}
+                                    <span class="es-web-tool__external-link-text">
+                                        Tweet
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            
+                            <div class="es-web-tool__external-links-wrap">
+                                <a class="es-web-tool__external-link es-web-tool__external-link--github" href="http://eightshapes.com">
+                                    <span class="es-web-tool__external-link-text">
+                                        By Eightshapes
+                                    </span>
+                                </a>                      
+
+                                <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
+                                    {{ components.icon(icon_name="github", class="es-web-tool__external-link-logo") }}
+                                    <span class="es-web-tool__external-link-text">
+                                        On Github
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            <p class="es-web-tool__legal">
+                                &copy; Copyright Eightshapes, LLC 2017
+                            </p>
+                        </div>
+                    </div>
+                    <div class="es-web-tool__results">
+                        {{ components.contrast_grid() }}    
+                    </div>
                 </div>
+                {{ components.code_snippet() }}
             </div>
-            {{ components.code_snippet() }}
         </div>
     </div>
 </body>

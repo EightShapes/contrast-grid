@@ -1,22 +1,38 @@
 {% macro code_snippet() %}
     <div class="es-code-snippet">
-        <div class="es-code-snippet__header">
-            <a href="#" class="es-code-snippet__hide-snippet">
-                {{ icon(icon_name="angle-left", class="es-code-snippet__hide-snippet-icon") }}
-                <span class="es-code-snippet__hide-snippet-text">Return to Grid</span>
+        <button class="es-code-snippet__hide-button es-button">
+            {{ icon(icon_name="close", class="es-code-snippet__hide-button-icon") }} 
+            <span class="es-code-snippet__hide-button-text">Hide Code</span>
+        </button>
+        <div class="es-code-snippet__copy-header">
+            <label class="es-code-snippet__label">Persistent URL</label>        
+            <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__persistent-url">
+                {{ icon(icon_name="clipboard", class="es-code-snippet__copy-button-icon") }}
+                <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
+                <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
             </a>
-            <div class="es-code-snippet__actions-wrap">
-                <a href="#" class="es-button es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
-                    <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
-                    <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
-                </a>
-            </div>
+        </div>
+        <input id="es-code-snippet__persistent-url" type="text" class="es-code-snippet__persistent-url" readonly="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+
+        <div class="es-code-snippet__copy-header">
+            <label class="es-code-snippet__label">Grid Code</label>
+            <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
+                {{ icon(icon_name="clipboard", class="es-code-snippet__copy-button-icon") }}
+                <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
+                <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
+            </a>
         </div>
         <div class="es-code-snippet__code-wrap">
             
             <pre id="es-code-snippet__code"><code class="language-markup">
-        &lt;h1&gt;Fuzzballs&lt;/h1&gt;
             </code></pre>
+            <div class="es-code-snippet__code-loading-wrap">
+                <div class="es-code-snippet__code-loading-message">
+                    {{ icon(icon_name="circle-o-notch", class="es-code-snippet__code-loading-icon") }}
+                    <label class="es-code-snippet__code-loading-text">Updating Code&hellip;</label>
+                </div>
+            </div>
         </div>
     </div>
 {% endmacro %}

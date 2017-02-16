@@ -1,3 +1,18 @@
+## v2.3.1 / 2017-01-20
+### WELCOME TO THE APOCALYPSE EDITION
+
+- [#868](https://github.com/winstonjs/winston/pull/868), Fix 'Maximum call stack size exceeded' error with custom formatter.
+
+## v2.3.0 / 2016-11-02
+### ZOMG WHY WOULD YOU ASK EDITION
+
+- Full `CHANGELOG.md` entry forthcoming. See [the `git` diff for `2.3.0`](https://github.com/winstonjs/winston/compare/2.2.0...2.3.0) for now.
+
+## v2.2.0 / 2016-02-25
+### LEAVING CALIFORNIA EDITION
+
+- Full `CHANGELOG.md` entry forthcoming. See [the `git` diff for `2.2.0`](https://github.com/winstonjs/winston/compare/2.1.1...2.2.0) for now.
+
 ## v2.1.1 / 2015-11-18
 ### COLOR ME IMPRESSED EDITION
 
