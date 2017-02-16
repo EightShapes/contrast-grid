@@ -76,7 +76,7 @@
   align-items: center;
   background: linear-gradient(to top right, rgba(243, 241, 241, 0) 0%, rgba(243, 241, 241, 0) calc(50% - 1px), #f3f1f1 50%, rgba(243, 241, 241, 0) calc(50% + 1px), rgba(243, 241, 241, 0) 100%);
   background-color: #FFFFFF;
-  border: solid 1px #f3f1f1;
+  border: solid 1px #F3F1F1;
   color: #000000;
   display: flex;
   height: 100px;
@@ -93,7 +93,7 @@
 
 .es-contrast-grid__swatch-spacer {
   background-color: #FFFFFF;
-  border: solid 1px #f3f1f1;
+  border: solid 1px #F3F1F1;
   height: 100px;
   width: 100%; }
   .es-contrast-grid--compact .es-contrast-grid__swatch-spacer {
@@ -124,7 +124,7 @@
     white-space: nowrap; }
 
 .es-contrast-grid--bordered-swatch {
-  border: solid 1px #f3f1f1; }
+  border: solid 1px #F3F1F1; }
 
 .es-contrast-grid__key-swatch--background {
   align-items: center;
@@ -151,7 +151,7 @@ td.es-contrast-grid__key-cell {
 
 .es-contrast-grid-key {
   align-items: center;
-  border: solid 1px #f3f1f1;
+  border: solid 1px #F3F1F1;
   color: #000000;
   display: flex;
   flex-wrap: wrap;
