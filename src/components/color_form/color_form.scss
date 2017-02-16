@@ -34,7 +34,8 @@
 }
 
 .es-color-form__copy {
-    margin: 0 0 $spacing-default;
+    font-size: $font-size-default;
+    margin: 0 0 $spacing-stack-default;
 }
 
 .es-color-form__radio-button {
@@ -60,14 +61,14 @@
     color: $color-black;
     cursor: pointer;
     display: block;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     padding: $spacing-xs;
     width: 100%;
 
     .es-color-form__radio-button-input:checked + & {
-        background-color: darken($color-gray-95, 20%);
+        background-color: $color-gray-30;
         box-shadow: inset 0 0 5px rgba($color-black, 0.5);
-        color: $color-black;
+        color: $color-white;
     }
 
     .es-color-form__radio-button:last-child & {

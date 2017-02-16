@@ -154,7 +154,7 @@ EightShapes.ColorForm = function() {
         if ($(".es-color-form").hasClass("es-color-form--show-background-colors-input")) {
             // hide the background Colors Input
             $(".es-color-form").removeClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Row & Column Colors");
+            $("label[for='es-color-form__foreground-colors']").text("Rows & Columns");
             $foregroundColors.attr("data-persisted-text", $foregroundColors.val());
             $foregroundColors.val($backgroundColors.val());
             $backgroundColors.val("");
@@ -162,7 +162,7 @@ EightShapes.ColorForm = function() {
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Column Colors");
+            $("label[for='es-color-form__foreground-colors']").text("Columns");
 
             if ($backgroundColors.val().length == 0) {
                 // $backgroundColors will already have a value when loading from the url

@@ -30,6 +30,7 @@ $spacing-xl: round($spacing-default * 4);
 $spacing-md: 26px;
 $spacing-default: 32px;
 $spacing-lg: $spacing-default * 2;
+$spacing-stack-default: 16px;
 
 $color-white:           #FFFFFF;
 $color-black:           #000000;
@@ -43,7 +44,7 @@ $color-gray-53:         #888888;
 $color-gray-95:         #F3F1F1;
 $color-orange:          #E76822;
 $color-orange-light:    #F57026;
-$color-blue:            #4278B2;
+$color-blue:            #1E62AB;
 
 $color-text-default:    $color-gray-20;
 
@@ -130,6 +131,6 @@ $container-lg:                 $container-large-desktop !default;
 
 
 // CONTRAST GRID
-$compact-swatch-size: 75px;
+$compact-swatch-size: 80px;
 $default-swatch-size: 100px;
 $large-swatch-size: 150px;
