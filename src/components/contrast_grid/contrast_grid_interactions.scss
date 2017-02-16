@@ -75,12 +75,14 @@
 
     .es-contrast-grid__key-swatch-controls {
         align-items: center;
-        background: inherit;
+        // background: inherit;
         display: flex;
         order: 1;
         justify-content: space-between;
         left: 0;
         padding: $spacing-xs;
+        padding-bottom: 0;
+        padding-top: $spacing-xs / 2;
         position: absolute;
         top: 0;
         width: 100%;
