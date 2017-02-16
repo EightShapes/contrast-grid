@@ -1,8 +1,486 @@
+
+<!DOCTYPE html>
 <html>
-    <head>
-        
-    </head>
-    <body>
-        <h1>Testing. Coming Soon.</h1>
-    </body>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/project.css">
+    <script src="scripts/clipboard.min.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/jquery.deserialize.min.js"></script>
+    <script src="scripts/jquery.typewatch.js"></script>
+    <script src="scripts/dragtable.js"></script>
+    <script src="scripts/beautify.js"></script>
+    <script src="scripts/beautify-html.js"></script>
+    <script src="scripts/beautify-css.js"></script>
+    <script src="scripts/svg4everybody.min.js"></script>
+    <script src="scripts/eightshapes-contrast-grid.js"></script>
+
+</head>
+<body>
+    <div class="es-web-tool__flex-container">
+        <div class="es-web-tool__outer-wrap">
+            <div class="es-web-tool__body">
+                <div class="es-web-tool__configurator">
+                    <div class="es-web-tool__sidebar">
+                        <h1 class="es-web-tool__title">
+                            <a href="http://eightshapes.com">
+                                
+  <svg class="icon-eightshapes-mark es-web-tool__title-logo">
+    <use xlink:href="svg/contrast-grid.svg#eightshapes-mark"></use>
+  </svg>
+
+                            </a>
+                            <span class="es-web-tool__title-text">Contrast Grid</span>
+                        </h1>
+                        
+    <form method="GET" class="es-color-form">
+        <div class="es-color-form__content">
+            <p class="es-color-form__copy">
+                Test many foreground and background color combos for compliance with <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG 2.0 minimum contrast</a>.
+            </p>
+            <p class="es-color-form__copy">
+                Add one color per line, separating hex value and optional label by commas.
+            </p>
+            <div class="es-color-form__field-wrapper es-color-form__field-wrapper--background-colors">
+                <label for="es-color-form__background-colors" class="es-color-form__label">Row Colors</label>
+                <textarea id="es-color-form__background-colors" name="background-colors" class="es-color-form__textarea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Enter HEX color values, one color per line"></textarea>
+            </div>
+            <div class="es-color-form__field-wrapper">
+                <label for="es-color-form__foreground-colors" class="es-color-form__label">Row &amp; Column Colors</label>
+                <textarea id="es-color-form__foreground-colors" name="foreground-colors" class="es-color-form__textarea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Enter HEX color values, one color per line">
+#FFFFFF, Brand White
+#EDEDEF
+#4784FF, Interactive Blue
+#404040, Dark Background
+#000000</textarea>
+                <a href="#" class="es-color-form__show-background-colors">Make rows &amp; columns different</a>
+                <a href="#" class="es-color-form__hide-background-colors">Make rows &amp; columns the same</a>
+            </div>
+
+            <div class="es-color-form__field-wrapper">
+                <label class="es-color-form__label">Tile Size</label>
+                <div class="es-color-form__radio-button-group">
+                    <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--compact" value="compact" name="es-color-form__tile-size">
+                        <span class="es-color-form__radio-button-text">
+                            S<span class="es-color-form__radio-button-subtext">(75&times;75)</span>
+                        </span>
+                    </label>
+                    <label for="es-color-form__tile-size--regular" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--regular" value="regular" name="es-color-form__tile-size" checked>
+                        <span class="es-color-form__radio-button-text">
+                            M<span class="es-color-form__radio-button-subtext">(100&times;100)</span>
+                        </span>
+                    </label>
+                    <label for="es-color-form__tile-size--large" class="es-color-form__radio-button">
+                        <input type="radio" class="es-color-form__radio-button-input" id="es-color-form__tile-size--large" value="large" name="es-color-form__tile-size">
+                        <span class="es-color-form__radio-button-text">
+                            L<span class="es-color-form__radio-button-subtext">(150&times;150)</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+                        <div class="es-web-tool__sidebar-actions">
+                            <div class="es-web-tool__sidebar-ctas">
+                                <button class="es-code-toggle es-button">Show Code</button>
+                                <a class="es-button es-web-tool__external-link--twitter" id="es-share-on-twitter-link" href="http://twitter.com/home?status=Test%20your%20entire%20color%20palette%20for%20accessibility.%20http://contrast-grid.eightshapes.com%20@eightshapes&amp;source=webclient">
+                                    
+  <svg class="icon-twitter es-web-tool__external-link-logo es-button__icon">
+    <use xlink:href="svg/contrast-grid.svg#twitter"></use>
+  </svg>
+
+                                    <span class="es-web-tool__external-link-text">
+                                        Tweet
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            
+                            <div class="es-web-tool__external-links-wrap">
+                                <a class="es-web-tool__external-link es-web-tool__external-link--github" href="http://eightshapes.com">
+                                    <span class="es-web-tool__external-link-text">
+                                        By Eightshapes
+                                    </span>
+                                </a>                      
+
+                                <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
+                                    
+  <svg class="icon-github es-web-tool__external-link-logo">
+    <use xlink:href="svg/contrast-grid.svg#github"></use>
+  </svg>
+
+                                    <span class="es-web-tool__external-link-text">
+                                        On Github
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            <p class="es-web-tool__legal">
+                                &copy; Copyright Eightshapes, LLC 2017
+                            </p>
+                        </div>
+                    </div>
+                    <div class="es-web-tool__results">
+                        
+    <div class="es-contrast-grid">
+        <div class="es-contrast-grid__inner">
+            <table class="es-contrast-grid__table">
+                <thead>
+                    <tr class="es-contrast-grid__foreground-key">
+                        <th>
+                            <div class="es-contrast-grid__key-swatch-spacer">
+                                <span class="es-contrast-grid__key-swatch-label es-contrast-grid__key-swatch-label--background">Background</span>
+                                <span class="es-contrast-grid__key-swatch-label es-contrast-grid__key-swatch-label--text">Text</span>
+                            </div>
+                        </th>
+                        <th id="es-contrast-grid__foreground-key-cell-template" class="es-contrast-grid__foreground-key-cell">
+                            <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--foreground">
+                                <div class="es-contrast-grid__key-swatch-label">
+                                    <div class="es-contrast-grid__key-swatch-label-text">
+                                        
+                                    </div>
+                                    <div class="es-contrast-grid__key-swatch-label-hex">
+                                        
+                                    </div>
+                                </div>
+                                <div class="es-contrast-grid__key-swatch-controls">
+                                    <a class="es-contrast-grid__key-swatch-remove" href="#">
+                                        
+  <svg class="icon-close es-contrast-grid__key-swatch-remove-icon">
+    <use xlink:href="svg/contrast-grid.svg#close"></use>
+  </svg>
+
+                                    </a>
+                                    <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--column">
+                                        
+  <svg class="icon-grip-horizontal es-contrast-grid__key-swatch-drag-handle-icon">
+    <use xlink:href="svg/contrast-grid.svg#grip-horizontal"></use>
+  </svg>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="es-contrast-grid__content">
+                    <tr id="es-contrast-grid__content-row-template" class="es-contrast-grid__content-row">
+                        <th class="es-contrast-grid__background-key-cell">
+                            <div class="es-contrast-grid__key-swatch es-contrast-grid__key-swatch--background">
+                                <div class="es-contrast-grid__key-swatch-label">
+                                    <div class="es-contrast-grid__key-swatch-label-text">
+                                        
+                                    </div>
+                                    <div class="es-contrast-grid__key-swatch-label-hex">
+                                        
+                                    </div>
+                                </div>
+                                <div class="es-contrast-grid__key-swatch-controls">
+                                    <a class="es-contrast-grid__key-swatch-remove" href="#">
+                                        
+  <svg class="icon-close es-contrast-grid__key-swatch-remove-icon">
+    <use xlink:href="svg/contrast-grid.svg#close"></use>
+  </svg>
+
+                                    </a>
+                                    <span class="es-contrast-grid__key-swatch-drag-handle es-contrast-grid__key-swatch-drag-handle--row">
+                                        
+  <svg class="icon-grip es-contrast-grid__key-swatch-drag-handle-icon">
+    <use xlink:href="svg/contrast-grid.svg#grip"></use>
+  </svg>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </th>
+                        <td id="es-contrast-grid__content-cell-template" class="es-contrast-grid__content-cell">
+                            <div class="es-contrast-grid__swatch">
+                                <span class="es-contrast-grid__swatch-demo-text">Text</span>
+                                <div class="es-contrast-grid__swatch-stats">
+                                    <span class="es-contrast-grid__accessibility-label"></span>
+                                    <span class="es-contrast-grid__contrast-ratio"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="es-contrast-grid__key">
+                    <tr class="es-contrast-grid__key-row">
+                        <td class="es-contrast-grid__key-cell">
+                            <div class="es-contrast-grid-key">
+                                <div class="es-contrast-grid-key__column">
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--aaa">AAA</span> Pass, AAA (7+)
+                                    </div>
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--aa">AA</span> Pass, AA (4.5+)
+                                    </div>
+                                </div>
+                                <div class="es-contrast-grid-key__column">
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--aa18">AA18</span> Pass, Large Text Only (3+)
+                                    </div>
+                                    <div class="es-contrast-grid-key__label">
+                                        <span class="es-contrast-grid__accessibility-label es-contrast-grid__accessibility-label--dnp">DNP</span> Does Not Pass
+                                    </div>
+                                </div>
+                                <a class="es-contrast-grid-key__link" href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">About WCAG 2.0 contrast</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <style class="es-contrast-grid-styles">
+            /* Override Contrast Grid Styles to make color and font changes */
+.es-contrast-grid {
+  font-family: 'Lato', sans-serif; }
+
+.es-contrast-grid {
+  box-sizing: border-box;
+  overflow: auto;
+  width: 100%; }
+  .es-contrast-grid *,
+  .es-contrast-grid *:before,
+  .es-contrast-grid *:after {
+    box-sizing: inherit; }
+
+.es-contrast-grid__table-wrap {
+  width: auto; }
+
+.es-contrast-grid__table {
+  border-collapse: collapse;
+  color: #fff; }
+  .es-contrast-grid__table td, .es-contrast-grid__table th {
+    border: solid 1px transparent;
+    font-size: 16px;
+    padding: 0;
+    margin: 0; }
+
+.es-contrast-grid--dark-label {
+  color: black; }
+
+.es-contrast-grid__accessibility-label {
+  background: #ccc;
+  border-radius: 4px;
+  display: inline-block;
+  color: #000;
+  font-size: 12px;
+  padding: 2px 4px;
+  text-align: center;
+  width: 36px; }
+
+.es-contrast-grid__accessibility-label--dnp {
+  background: red;
+  color: #FFFFFF; }
+
+.es-contrast-grid__accessibility-label--aa18 {
+  background: #CFB317; }
+
+.es-contrast-grid__swatch {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+  padding: 8px;
+  min-width: 100px; }
+  .es-contrast-grid--compact .es-contrast-grid__swatch {
+    height: 75px;
+    min-width: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__swatch {
+    height: 150px;
+    padding: 15px;
+    min-width: 150px; }
+
+.es-contrast-grid__swatch-demo-text {
+  font-size: 16px; }
+
+.es-contrast-grid__swatch-stats {
+  align-items: center;
+  display: flex;
+  justify-content: space-between; }
+
+.es-contrast-grid__contrast-ratio {
+  color: #FFFFFF;
+  font-size: 14px; }
+  .es-contrast-grid--dark-label .es-contrast-grid__contrast-ratio {
+    color: #000000; }
+
+.es-contrast-grid__key-swatch-spacer {
+  align-items: center;
+  background: linear-gradient(to top right, rgba(243, 241, 241, 0) 0%, rgba(243, 241, 241, 0) calc(50% - 1px), #f3f1f1 50%, rgba(243, 241, 241, 0) calc(50% + 1px), rgba(243, 241, 241, 0) 100%);
+  background-color: #FFFFFF;
+  border: solid 1px #F3F1F1;
+  color: #000000;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  padding: 8px;
+  width: 320px; }
+  .es-contrast-grid--compact .es-contrast-grid__key-swatch-spacer {
+    height: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__key-swatch-spacer {
+    height: 150px; }
+
+.es-contrast-grid__key-swatch-label--background {
+  align-self: flex-end; }
+
+.es-contrast-grid__swatch-spacer {
+  background-color: #FFFFFF;
+  border: solid 1px #F3F1F1;
+  height: 100px;
+  width: 100%; }
+  .es-contrast-grid--compact .es-contrast-grid__swatch-spacer {
+    height: 75px;
+    width: 100%; }
+  .es-contrast-grid--large .es-contrast-grid__swatch-spacer {
+    height: 150px;
+    width: 100%; }
+
+.es-contrast-grid__key-swatch--foreground {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  height: 100px;
+  justify-content: center;
+  padding: 8px;
+  text-align: left; }
+  .es-contrast-grid--compact .es-contrast-grid__key-swatch--foreground {
+    height: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__key-swatch--foreground {
+    height: 150px;
+    padding: 15px; }
+  .es-contrast-grid__key-swatch--foreground .es-contrast-grid__key-swatch-label-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+    white-space: nowrap; }
+
+.es-contrast-grid--bordered-swatch {
+  border: solid 1px #F3F1F1; }
+
+.es-contrast-grid__key-swatch--background {
+  align-items: center;
+  display: flex;
+  height: 100px;
+  padding: 8px;
+  text-align: left;
+  width: 320px; }
+  .es-contrast-grid--compact .es-contrast-grid__key-swatch--background {
+    height: 75px; }
+  .es-contrast-grid--large .es-contrast-grid__key-swatch--background {
+    height: 150px;
+    padding: 15px; }
+
+.es-contrast-grid__key-swatch-label-text {
+  font-weight: bold; }
+
+.es-contrast-grid__key-swatch-label-hex {
+  font-weight: normal;
+  font-size: 14px; }
+
+td.es-contrast-grid__key-cell {
+  padding-top: 26px; }
+
+.es-contrast-grid-key {
+  align-items: center;
+  border: solid 1px #F3F1F1;
+  color: #000000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 15px; }
+
+.es-contrast-grid__key-cell[colspan="1"] .es-contrast-grid-key,
+.es-contrast-grid__key-cell[colspan="2"] .es-contrast-grid-key,
+.es-contrast-grid__key-cell[colspan="3"] .es-contrast-grid-key {
+  display: block; }
+
+.es-contrast-grid__key-cell[colspan="1"] .es-contrast-grid-key__column,
+.es-contrast-grid__key-cell[colspan="2"] .es-contrast-grid-key__column,
+.es-contrast-grid__key-cell[colspan="3"] .es-contrast-grid-key__column {
+  margin-bottom: 8px;
+  width: 100%; }
+
+.es-contrast-grid-key__label {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 8px; }
+  .es-contrast-grid-key__label .es-contrast-grid__accessibility-label {
+    margin-right: 8px; }
+  .es-contrast-grid-key__label:last-child {
+    margin-bottom: 0; }
+
+.es-contrast-grid-key__link {
+  font-size: 14px; }
+
+        </style>
+    </div>
+    
+                    </div>
+                </div>
+                
+    <div class="es-code-snippet">
+        <button class="es-code-snippet__hide-button es-button">
+            
+  <svg class="icon-close es-code-snippet__hide-button-icon">
+    <use xlink:href="svg/contrast-grid.svg#close"></use>
+  </svg>
+ 
+            <span class="es-code-snippet__hide-button-text">Hide Code</span>
+        </button>
+        <div class="es-code-snippet__copy-header">
+            <label class="es-code-snippet__label">Persistent URL</label>        
+            <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__persistent-url">
+                
+  <svg class="icon-clipboard es-code-snippet__copy-button-icon">
+    <use xlink:href="svg/contrast-grid.svg#clipboard"></use>
+  </svg>
+
+                <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
+                <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
+            </a>
+        </div>
+        <input id="es-code-snippet__persistent-url" type="text" class="es-code-snippet__persistent-url" readonly="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+
+        <div class="es-code-snippet__copy-header">
+            <label class="es-code-snippet__label">Grid Code</label>
+            <a href="#" class="es-code-snippet__copy-button" data-clipboard-target="#es-code-snippet__code">
+                
+  <svg class="icon-clipboard es-code-snippet__copy-button-icon">
+    <use xlink:href="svg/contrast-grid.svg#clipboard"></use>
+  </svg>
+
+                <span class="es-code-snippet__copy-button-text">Copy to Clipboard</span>
+                <span class="es-code-snippet__copy-response">Press Ctrl + C to copy</span>
+            </a>
+        </div>
+        <div class="es-code-snippet__code-wrap">
+            
+            <pre id="es-code-snippet__code"><code class="language-markup">
+            </code></pre>
+            <div class="es-code-snippet__code-loading-wrap">
+                <div class="es-code-snippet__code-loading-message">
+                    
+  <svg class="icon-circle-o-notch es-code-snippet__code-loading-icon">
+    <use xlink:href="svg/contrast-grid.svg#circle-o-notch"></use>
+  </svg>
+
+                    <label class="es-code-snippet__code-loading-text">Updating Code&hellip;</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+        </div>
+    </div>
+</body>
 </html>
