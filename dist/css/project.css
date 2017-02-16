@@ -488,8 +488,8 @@ a {
 .es-web-tool__results {
   box-shadow: -3px 0 3px rgba(0, 0, 0, 0.15);
   flex: 1;
-  max-width: calc(100vw - 340px);
-  padding: 32px; }
+  max-width: calc(100vw - 310px);
+  padding: 32px 0 32px 32px; }
 
 .es-web-tool__sidebar-actions {
   padding: 0 26px 26px; }

@@ -150,8 +150,8 @@ a {
 .es-web-tool__results {
     box-shadow: $sidebar-shadow;
     flex: 1;
-    max-width: calc(100vw - 340px);
-    padding: $spacing-default;
+    max-width: calc(100vw - 310px);
+    padding: $spacing-default 0 $spacing-default $spacing-default;
 }
 
 .es-web-tool__sidebar-actions {

@@ -112,7 +112,7 @@
     height: $default-swatch-size;
     justify-content: space-between;
     padding: $spacing-xs;
-    width: 320px;
+    min-width: 200px;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
@@ -184,7 +184,7 @@
     height: $default-swatch-size;
     padding: $spacing-xs;
     text-align: left;
-    width: 320px;
+    min-width: 200px;
 
     .es-contrast-grid--compact & {
         height: $compact-swatch-size;
