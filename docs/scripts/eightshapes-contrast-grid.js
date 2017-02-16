@@ -264,7 +264,7 @@ EightShapes.ColorForm = function() {
         if ($(".es-color-form").hasClass("es-color-form--show-background-colors-input")) {
             // hide the background Colors Input
             $(".es-color-form").removeClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Row & Column Colors");
+            $("label[for='es-color-form__foreground-colors']").text("Rows & Columns");
             $foregroundColors.attr("data-persisted-text", $foregroundColors.val());
             $foregroundColors.val($backgroundColors.val());
             $backgroundColors.val("");
@@ -272,7 +272,7 @@ EightShapes.ColorForm = function() {
         } else {
             // show the background Colors Input
             $(".es-color-form").addClass("es-color-form--show-background-colors-input");
-            $("label[for='es-color-form__foreground-colors']").text("Column Colors");
+            $("label[for='es-color-form__foreground-colors']").text("Columns");
 
             if ($backgroundColors.val().length == 0) {
                 // $backgroundColors will already have a value when loading from the url
@@ -557,8 +557,6 @@ EightShapes.ContrastGrid = function() {
     }
 
     function setGridUiStatus() {
-        console.log(gridData.foregroundColors.length);
-        console.log(gridData.backgroundColors.length);
         if (gridData.foregroundColors.length <= 1 && gridData.backgroundColors.length <= 1) {
             disableRowAndColumnRemoval();
         } else {
@@ -582,11 +580,27 @@ EightShapes.ContrastGrid = function() {
     }
 
     function truncateContrastDisplayValues() {
+        var regex = /[\d]*.[\d][\d]/,
+            dotZeroRegex = /[\d]*.0/;
+
         $(".es-contrast-grid__contrast-ratio").each(function(){
-            $(this).text($(this).text().slice(0, -1));
-            if ($(this).text().endsWith('.')) {
-                $(this).text($(this).text().slice(0, -1));
+            var $ratio = $(this),
+                value = $(this).text();
+
+            if (regex.exec(value) !== null) {
+                // this matches x.xx numbers, truncate one number
+                value = value.slice(0,-1);
+
+
+                if (dotZeroRegex.exec(value) !== null) {
+                    value = value.slice(0, -2);
+                }
+
+                $ratio.text(value);
             }
+            // if ($(this).text().endsWith('.')) {
+            //     $(this).text($(this).text().slice(0, -1));
+            // }
         });
     }
 

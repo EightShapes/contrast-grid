@@ -51,8 +51,8 @@
   padding: 8px;
   min-width: 100px; }
   .es-contrast-grid--compact .es-contrast-grid__swatch {
-    height: 75px;
-    min-width: 75px; }
+    height: 80px;
+    min-width: 80px; }
   .es-contrast-grid--large .es-contrast-grid__swatch {
     height: 150px;
     padding: 15px;
@@ -82,9 +82,9 @@
   height: 100px;
   justify-content: space-between;
   padding: 8px;
-  width: 320px; }
+  min-width: 200px; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch-spacer {
-    height: 75px; }
+    height: 80px; }
   .es-contrast-grid--large .es-contrast-grid__key-swatch-spacer {
     height: 150px; }
 
@@ -97,7 +97,7 @@
   height: 100px;
   width: 100%; }
   .es-contrast-grid--compact .es-contrast-grid__swatch-spacer {
-    height: 75px;
+    height: 80px;
     width: 100%; }
   .es-contrast-grid--large .es-contrast-grid__swatch-spacer {
     height: 150px;
@@ -113,7 +113,7 @@
   padding: 8px;
   text-align: left; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch--foreground {
-    height: 75px; }
+    height: 80px; }
   .es-contrast-grid--large .es-contrast-grid__key-swatch--foreground {
     height: 150px;
     padding: 15px; }
@@ -132,9 +132,9 @@
   height: 100px;
   padding: 8px;
   text-align: left;
-  width: 320px; }
+  min-width: 200px; }
   .es-contrast-grid--compact .es-contrast-grid__key-swatch--background {
-    height: 75px; }
+    height: 80px; }
   .es-contrast-grid--large .es-contrast-grid__key-swatch--background {
     height: 150px;
     padding: 15px; }
