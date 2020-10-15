@@ -1,9 +1,0 @@
-@warn 'foo';
-
-@function foo {
-  @warn 'bar';
-}
-
-@mixin baz {
-  @warn 'qux';
-}

@@ -1,4 +1,0 @@
-options:
-  config-file: extend/.extend-b.yml
-rules:
-  no-ids: 2

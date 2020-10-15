@@ -9,7 +9,7 @@
   "authors": [
     "Kevin Powell <kevinmpowell@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "flat": "^2.0.0",

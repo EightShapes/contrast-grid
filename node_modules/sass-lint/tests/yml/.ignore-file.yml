@@ -1,9 +1,0 @@
-options:
-  formatter: stylish
-  cache-config: false
-  merge-default-rules: false
-files:
-  include: '**/*.s+(a|c)ss'
-  ignore: '**/cli.scss'
-rules:
-  no-color-literals: 1
