@@ -36,6 +36,7 @@
                         </h1>
                         
     <form method="GET" class="es-color-form">
+        <input type="hidden" name="version" value="1.1.0"/>
         <div class="es-color-form__content">
             <p class="es-color-form__copy">
                 Test many foreground and background color combos for compliance with <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG 2.0 minimum contrast</a>.
@@ -65,7 +66,6 @@
                 <a href="#" class="es-color-form__hide-background-colors">Use the same rows &amp; columns values</a>
             </div>
 
-            <div class="es-color-form__field-wrapper">
                 <label class="es-color-form__label">Tile Size</label>
                 <div class="es-color-form__radio-button-group">
                     <label for="es-color-form__tile-size--compact" class="es-color-form__radio-button">
@@ -87,7 +87,37 @@
                         </span>
                     </label>
                 </div>
-            </div>
+
+                <div class="es-color-form__field-wrapper">
+                    <label class="es-color-form__label">Show</label>
+
+                    <div class="es-color-form__checkbox-group es-color-form__radio-button-group">
+                    <label for="es-color-form__show-contrast--aaa" class="es-color-form__radio-button">
+                        <input class="es-color-form__radio-button-input" type="checkbox" id="es-color-form__show-contrast--aaa" value="aaa" name="es-color-form__show-contrast">
+                        <span class="es-color-form__radio-button-text">
+                            AAA
+                        </span>
+                    </label>
+                    <label for="es-color-form__show-contrast--aa" class="es-color-form__radio-button">
+                        <input class="es-color-form__radio-button-input" type="checkbox" id="es-color-form__show-contrast--aa" value="aa" name="es-color-form__show-contrast">
+                        <span class="es-color-form__radio-button-text">
+                            AA
+                        </span>
+                    </label>
+                    <label for="es-color-form__show-contrast--aa18" class="es-color-form__radio-button">
+                        <input class="es-color-form__radio-button-input" type="checkbox" id="es-color-form__show-contrast--aa18" value="aa18" name="es-color-form__show-contrast">
+                        <span class="es-color-form__radio-button-text">
+                            AA18
+                        </span>
+                    </label>
+                    <label for="es-color-form__show-contrast--dnp" class="es-color-form__radio-button">
+                        <input class="es-color-form__radio-button-input" type="checkbox" id="es-color-form__show-contrast--dnp" value="dnp" name="es-color-form__show-contrast">
+                        <span class="es-color-form__radio-button-text">
+                            DNP
+                        </span>
+                    </label>
+                    </div>
+                </div>
         </div>
     </form>
 
@@ -105,16 +135,16 @@
                                     </span>
                                 </a>
                             </div>
-                            
-                            
+
+
                             <div class="es-web-tool__external-links-wrap">
                                 <a class="es-web-tool__external-link es-web-tool__external-link--github" href="http://www.eightshapes.com/design-systems.html">
                                     <span class="es-web-tool__external-link-text">
                                         By Eightshapes
                                     </span>
-                                </a>    
+                                </a>
                                 <div class="es-web-tool__external-link-separator">
-                                </div>                  
+                                </div>
                                 <a class="es-web-tool__external-link es-web-tool__external-link--github" href="https://github.com/EightShapes/contrast-grid">
                                     
   <svg class="icon-github es-web-tool__external-link-logo">
@@ -126,9 +156,9 @@
                                     </span>
                                 </a>
                             </div>
-                            
+
                             <p class="es-web-tool__legal">
-                                &copy; Copyright Eightshapes, LLC 2017
+                                &copy; Copyright Eightshapes, LLC 2017-2021
                             </p>
                         </div>
                     </div>
@@ -430,7 +460,7 @@ td.es-contrast-grid__key-cell {
 
         </style>
     </div>
-    
+
                     </div>
                 </div>
                 
