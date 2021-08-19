@@ -69,7 +69,7 @@ EightShapes.ColorForm = function() {
 
     function removeColorFromData(hex, colors) {
         colors = colors.filter(function(color){
-            return color.hex !== hex ? true : false; 
+            return color.hex !== hex ? true : false;
         });
         return colors;
     }
@@ -215,6 +215,7 @@ EightShapes.ColorForm = function() {
         // $(document).on('escg.show-tab-es-tabs__global-panel--analyze', enableFormFields);
         $(".es-color-form__show-background-colors, .es-color-form__hide-background-colors").on("click", toggleBackgroundColorsInput)
         $("input[name='es-color-form__tile-size']").on("change", broadcastTileSizeChange);
+        $("input[name='es-color-form__show-contrast']").on("change", EightShapes.ContrastGrid.addAccessibilityToSwatches);
         $(".es-color-form__view-code-toggle").on("click", broadcastCodeSnippetViewToggle);
     }
 
@@ -229,10 +230,10 @@ EightShapes.ColorForm = function() {
     }
 
     var initialize = function initialize() {
-        $colorForm = $(".es-color-form"); 
-        $foregroundColorsInput = $("#es-color-form__foreground-colors");   
+        $colorForm = $(".es-color-form");
+        $foregroundColorsInput = $("#es-color-form__foreground-colors");
         $backgroundColorsInput = $("#es-color-form__background-colors");
-        loadFormDataFromUrl(); 
+        loadFormDataFromUrl();
         initializeEventHandlers();
         broadcastFormValueChange();
         broadcastTileSizeChange();
