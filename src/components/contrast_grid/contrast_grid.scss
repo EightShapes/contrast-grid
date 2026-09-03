@@ -31,6 +31,12 @@
         padding: 0;
         margin: 0;
     }
+
+    th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+    }
 }
 
 .es-contrast-grid--dark-label {
