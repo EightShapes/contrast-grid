@@ -30,7 +30,7 @@
     "grunt-svg-sprite": "^1.2.19",
     "grunt-svgmin": "^3.2.0",
     "load-grunt-tasks": "^3.5.2",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "semver": "^5.1.0",
     "yamljs": "^0.2.7"
   },
