@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
-    "flat": "^2.0.0",
+    "flat": "^5.0.1",
     "grunt": "^1.0.1",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^1.0.0",
